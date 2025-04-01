@@ -1,0 +1,187 @@
+import { FaExternalLinkAlt } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import attempt4 from "is-ua-webview";
+import { useQuery } from "@tanstack/react-query";
+
+import InApp from "@/utils/inapp";
+import attempt2 from "@/utils/attempt2";
+import ExternalLink from "@/components/ExternalLink";
+
+export default function Home() {
+  const [inApp, setInApp] = useState({});
+  const [attempt4Result, setAttempt4Result] = useState(false);
+
+  useEffect(() => {
+    const useragent = navigator.userAgent || navigator.vendor || (window as any).opera;
+    const inapp = new InApp(useragent);
+    setInApp(inapp);
+
+    setAttempt4Result(attempt4(useragent));
+  }, []);
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["whatismybrowser"],
+    queryFn: () =>
+      fetch("https://api.whatismybrowser.com/api/v2/user_agent_parse", {
+        method: "post",
+        body: JSON.stringify({
+          user_agent: navigator.userAgent || navigator.vendor || (window as any).opera,
+        }),
+        headers: {
+          "x-api-key": process.env.NEXT_PUBLIC_WIMB_KEY,
+          "Content-Type": "application/json",
+        },
+      }).then((res) => res.json()),
+  });
+
+  console.log("data:", data);
+  if (!data) return <div>Loading...</div>;
+  return (
+    <div className="App">
+      <h1>Am I inside a in-app browser? 🤔</h1>
+      <p style={{ fontSize: "14px" }}>
+        <b>User Agent: </b>
+        {inApp.ua}
+      </p>
+
+      <div className="grid-attempts">
+        <section>
+          <h3>
+            Attempt 1{" "}
+            <a href="https://github.com/f2etw/detect-inapp/blob/master/src/inapp.js" rel="noopener noreferrer" target="_blank">
+              <FaExternalLinkAlt />
+            </a>
+          </h3>
+          <p>
+            <span style={{ color: inApp.isInApp ? "green" : "red", fontWeight: "bold" }}>{JSON.stringify(inApp.isInApp)}</span>
+          </p>
+        </section>
+
+        <section>
+          <h3>
+            Attempt 2 (iOS only){" "}
+            <a href="https://github.com/f2etw/detect-inapp/blob/master/src/inapp.js" rel="noopener noreferrer" target="_blank">
+              <FaExternalLinkAlt />
+            </a>
+          </h3>
+          <p>
+            <span style={{ color: attempt2 ? "green" : "red", fontWeight: "bold" }}>{JSON.stringify(attempt2)}</span>
+          </p>
+        </section>
+
+        <section>
+          <h3>
+            Attempt 3{" "}
+            <a href="https://developers.whatismybrowser.com/" rel="noopener noreferrer" target="_blank">
+              <FaExternalLinkAlt />
+            </a>
+          </h3>
+          {isLoading && <p>loading...</p>}
+          {data && (
+            <>
+              <p>
+                <span
+                  style={{
+                    color: data.parse.software_sub_type === "in-app-browser" ? "green" : "red",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {JSON.stringify(data.parse.software_sub_type === "in-app-browser")}
+                </span>
+              </p>
+            </>
+          )}
+          {error && <p>{error}</p>}
+        </section>
+
+        <section>
+          <h3>
+            Attempt 4{" "}
+            <a href="https://snouzy.com/" rel="noopener noreferrer" target="_blank">
+              <FaExternalLinkAlt />
+            </a>
+          </h3>
+          <span
+            style={{
+              color: attempt4Result ? "green" : "red",
+              fontWeight: "bold",
+            }}
+          >
+            {JSON.stringify(attempt4Result)}
+          </span>
+        </section>
+      </div>
+
+      <details>
+        <p>For attempt 1:</p>
+        <div style={{ paddingLeft: "1em", fontStyle: "italic" }}>
+          <p>User Agent Summary: {JSON.stringify(inApp.browser)}</p>
+          <p>
+            Desktop? {JSON.stringify(inApp.isDesktop)} / Mobile? {JSON.stringify(inApp.isMobile)}
+          </p>
+        </div>
+        <summary>click here for more details</summary>
+        <p>For Attempt 3, using API:</p>
+        <textarea cols={30} readOnly rows={10} value={JSON.stringify(data, undefined, 4)}></textarea>
+      </details>
+
+      <section>
+        <h3>Try to get outside</h3>
+        <div className="grid">
+          <ExternalLink href="https://www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5">
+            Intelligent Link 1
+          </ExternalLink>
+
+          <ExternalLink href="https://www.google.com">Intelligent Link 2</ExternalLink>
+
+          <ExternalLink href="https://snouzy.com/home">Intelligent Link 3</ExternalLink>
+
+          <details>
+            <summary>Anciennes tentatives</summary>
+            <a
+              href={"https://www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5"}
+              target="_system"
+            >
+              Legacy Link 1
+            </a>
+            <button
+              onClick={() => {
+                window.open(
+                  "https://www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5",
+                  "_system",
+                  "location=yes",
+                );
+              }}
+              style={{ width: "50%" }}
+            >
+              Legacy Link 2
+            </button>
+            <a
+              href={
+                "googlechrome://navigate?url=www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5"
+              }
+              target="_system"
+            >
+              Legacy Link 3
+            </a>
+            <a
+              href={"googlechrome://www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5"}
+              target="_system"
+            >
+              Legacy Link 4
+            </a>
+            <a
+              href="intent://navigate?url=www.http.cat#Intent;scheme=;package=com.android.browser;S.browser_fallback_url=http%3A%2F%2Fhttp.cat;end"
+              target="_system"
+            >
+              Legacy Link 5
+            </a>
+          </details>
+        </div>
+      </section>
+      <a href="https://github.com/luizcieslak/am-i-inapp-browser" rel="noopener noreferrer" target="_blank">
+        Source code
+      </a>
+    </div>
+  );
+}

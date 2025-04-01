@@ -109,7 +109,7 @@ export const openExternalLink = (url) => {
       setTimeout(() => {
         if (!worked) {
           // Astuce spécifique pour iOS avec universal links
-          createHiddenIframe(`safari-https://${url.replace(/^https?:\/\//, "")}`);
+          createHiddenIframe(`x-safari-https://${url.replace(/^https?:\/\//, "")}`);
 
           // Dernier recours: utiliser la méthode standard
           setTimeout(() => forceWindowOpen(url), 500);
