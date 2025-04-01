@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import InApp from "@/utils/inapp";
 import attempt2 from "@/utils/attempt2";
+import ExternalLink from "@/components/ExternalLink";
 
 export default function Home() {
   const [inApp, setInApp] = useState({});
@@ -127,39 +128,55 @@ export default function Home() {
       <section>
         <h3>Try to get outside</h3>
         <div className="grid">
-          <a href={"https://www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5"} target="_system">
-            Link 1
-          </a>
-          <button
-            onClick={() => {
-              window.open(
-                "https://www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5",
-                "_system",
-                "location=yes",
-              );
-            }}
-            style={{ width: "50%" }}
-          >
-            Link 2
-          </button>
-          <a
-            href={"googlechrome://navigate?url=www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5"}
-            target="_system"
-          >
-            Link 3
-          </a>
-          <a
-            href={"googlechrome://www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5"}
-            target="_system"
-          >
-            Link 4
-          </a>
-          <a
-            href="intent://navigate?url=www.http.cat#Intent;scheme=;package=com.android.browser;S.browser_fallback_url=http%3A%2F%2Fhttp.cat;end"
-            target="_system"
-          >
-            Link 5
-          </a>
+          <ExternalLink href="https://www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5">
+            Intelligent Link 1
+          </ExternalLink>
+
+          <ExternalLink href="https://www.google.com">Intelligent Link 2</ExternalLink>
+
+          <ExternalLink href="https://snouzy.com/home">Intelligent Link 3</ExternalLink>
+
+          <details>
+            <summary>Anciennes tentatives</summary>
+            <a
+              href={"https://www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5"}
+              target="_system"
+            >
+              Legacy Link 1
+            </a>
+            <button
+              onClick={() => {
+                window.open(
+                  "https://www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5",
+                  "_system",
+                  "location=yes",
+                );
+              }}
+              style={{ width: "50%" }}
+            >
+              Legacy Link 2
+            </button>
+            <a
+              href={
+                "googlechrome://navigate?url=www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5"
+              }
+              target="_system"
+            >
+              Legacy Link 3
+            </a>
+            <a
+              href={"googlechrome://www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5"}
+              target="_system"
+            >
+              Legacy Link 4
+            </a>
+            <a
+              href="intent://navigate?url=www.http.cat#Intent;scheme=;package=com.android.browser;S.browser_fallback_url=http%3A%2F%2Fhttp.cat;end"
+              target="_system"
+            >
+              Legacy Link 5
+            </a>
+          </details>
         </div>
       </section>
       <a href="https://github.com/luizcieslak/am-i-inapp-browser" rel="noopener noreferrer" target="_blank">
