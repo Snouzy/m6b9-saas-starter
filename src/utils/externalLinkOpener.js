@@ -144,13 +144,18 @@ export const openExternalLink = (url) => {
       const twitterBrowserUrl = `twitter://open-safari?url=${encodedUrl}`;
       window.location.href = twitterBrowserUrl;
 
-      // Fallback à Safari
+      // Fallback à Safari - Modification pour ouvrir directement l'URL
       setTimeout(() => {
         if (!worked) {
-          const iframe = createHiddenIframe("x-web-search:///");
+          // Utiliser x-web-search avec l'URL directement plutôt qu'une recherche vide
+          window.location.href = `x-web-search://?${url.replace(/^https?:\/\//, "")}`;
+
+          // Second fallback avec la technique du iframe cachée si nécessaire
           setTimeout(() => {
-            iframe.contentWindow.location.href = universalUrl;
-          }, 100);
+            if (!worked) {
+              const iframe = createHiddenIframe(`safari-https://${url.replace(/^https?:\/\//, "")}`);
+            }
+          }, 300);
         }
       }, 500);
     } else {
@@ -167,25 +172,32 @@ export const openExternalLink = (url) => {
     }
   } else if (browser.isIOS) {
     // Techniques iOS génériques
-    // Essayer la navigation safari privée
-    const safariPrivateUrl = `x-web-search://?${universalUrl}`;
-    window.location.href = safariPrivateUrl;
+    // Amélioration pour utiliser x-web-search avec l'URL directe
+    // const safariPrivateUrl = `x-web-search://?${url.replace(/^https?:\/\//, "")}`;
+    // window.location.href = safariPrivateUrl;
 
-    // Utiliser une combinaison de techniques
+    // Fallback avec la technique safari-https://
     setTimeout(() => {
       if (!worked) {
-        // Technique avec iframe
-        const iframe = createHiddenIframe("about:blank");
+        window.location.href = `x-safari-https://${url.replace(/^https?:\/\//, "")}`;
+
+        // Technique avec iframe comme backup
         setTimeout(() => {
-          try {
-            iframe.contentWindow.location.href = universalUrl;
-            iframe.onload = () => {
-              document.location = universalUrl;
-            };
-          } catch (e) {
-            window.location = universalUrl;
+          if (!worked) {
+            // Technique avec iframe
+            const iframe = createHiddenIframe("about:blank");
+            setTimeout(() => {
+              try {
+                iframe.contentWindow.location.href = universalUrl;
+                iframe.onload = () => {
+                  document.location = universalUrl;
+                };
+              } catch (e) {
+                window.location = universalUrl;
+              }
+            }, 100);
           }
-        }, 100);
+        }, 200);
       }
     }, 200);
 
