@@ -12,10 +12,12 @@
     "@tanstack/react-query": "^5.71.1",
     "eslint-config-prettier": "^10.1.1",
     "is-ua-webview": "^1.1.2",
+    "lodash.findkey": "^4.6.0",
     "next": "15.2.3",
     "prettier": "^3.5.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.7",

@@ -1,69 +1,170 @@
-import Image from "next/image";
+import { FaExternalLinkAlt } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import attempt4 from "is-ua-webview";
+import { useQuery } from "@tanstack/react-query";
+
+import InApp from "@/utils/inapp";
+import attempt2 from "@/utils/attempt2";
 
 export default function Home() {
+  const [inApp, setInApp] = useState({});
+  const [attempt4Result, setAttempt4Result] = useState(false);
+
+  useEffect(() => {
+    const useragent = navigator.userAgent || navigator.vendor || (window as any).opera;
+    const inapp = new InApp(useragent);
+    setInApp(inapp);
+
+    setAttempt4Result(attempt4(useragent));
+  }, []);
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["whatismybrowser"],
+    queryFn: () =>
+      fetch("https://api.whatismybrowser.com/api/v2/user_agent_parse", {
+        method: "post",
+        body: JSON.stringify({
+          user_agent: navigator.userAgent || navigator.vendor || (window as any).opera,
+        }),
+        headers: {
+          "x-api-key": process.env.NEXT_PUBLIC_WIMB_KEY,
+          "Content-Type": "application/json",
+        },
+      }).then((res) => res.json()),
+  });
+
+  console.log("data:", data);
+  if (!data) return <div>Loading...</div>;
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image alt="Next.js logo" className="dark:invert" height={38} priority src="/next.svg" width={180} />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">Save and see your changes instantly.</li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            rel="noopener noreferrer"
-            target="_blank"
+    <div className="App">
+      <h1>Am I inside a in-app browser? 🤔</h1>
+      <p style={{ fontSize: "14px" }}>
+        <b>User Agent: </b>
+        {inApp.ua}
+      </p>
+
+      <div className="grid-attempts">
+        <section>
+          <h3>
+            Attempt 1{" "}
+            <a href="https://github.com/f2etw/detect-inapp/blob/master/src/inapp.js" rel="noopener noreferrer" target="_blank">
+              <FaExternalLinkAlt />
+            </a>
+          </h3>
+          <p>
+            <span style={{ color: inApp.isInApp ? "green" : "red", fontWeight: "bold" }}>{JSON.stringify(inApp.isInApp)}</span>
+          </p>
+        </section>
+
+        <section>
+          <h3>
+            Attempt 2 (iOS only){" "}
+            <a href="https://github.com/f2etw/detect-inapp/blob/master/src/inapp.js" rel="noopener noreferrer" target="_blank">
+              <FaExternalLinkAlt />
+            </a>
+          </h3>
+          <p>
+            <span style={{ color: attempt2 ? "green" : "red", fontWeight: "bold" }}>{JSON.stringify(attempt2)}</span>
+          </p>
+        </section>
+
+        <section>
+          <h3>
+            Attempt 3{" "}
+            <a href="https://developers.whatismybrowser.com/" rel="noopener noreferrer" target="_blank">
+              <FaExternalLinkAlt />
+            </a>
+          </h3>
+          {isLoading && <p>loading...</p>}
+          {data && (
+            <>
+              <p>
+                <span
+                  style={{
+                    color: data.parse.software_sub_type === "in-app-browser" ? "green" : "red",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {JSON.stringify(data.parse.software_sub_type === "in-app-browser")}
+                </span>
+              </p>
+            </>
+          )}
+          {error && <p>{error}</p>}
+        </section>
+
+        <section>
+          <h3>
+            Attempt 4{" "}
+            <a href="https://snouzy.com/" rel="noopener noreferrer" target="_blank">
+              <FaExternalLinkAlt />
+            </a>
+          </h3>
+          <span
+            style={{
+              color: attempt4Result ? "green" : "red",
+              fontWeight: "bold",
+            }}
           >
-            <Image alt="Vercel logomark" className="dark:invert" height={20} src="/vercel.svg" width={20} />
-            Deploy now
+            {JSON.stringify(attempt4Result)}
+          </span>
+        </section>
+      </div>
+
+      <details>
+        <p>For attempt 1:</p>
+        <div style={{ paddingLeft: "1em", fontStyle: "italic" }}>
+          <p>User Agent Summary: {JSON.stringify(inApp.browser)}</p>
+          <p>
+            Desktop? {JSON.stringify(inApp.isDesktop)} / Mobile? {JSON.stringify(inApp.isMobile)}
+          </p>
+        </div>
+        <summary>click here for more details</summary>
+        <p>For Attempt 3, using API:</p>
+        <textarea cols={30} readOnly rows={10} value={JSON.stringify(data, undefined, 4)}></textarea>
+      </details>
+
+      <section>
+        <h3>Try to get outside</h3>
+        <div className="grid">
+          <a href={"https://www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5"} target="_system">
+            Link 1
+          </a>
+          <button
+            onClick={() => {
+              window.open(
+                "https://www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5",
+                "_system",
+                "location=yes",
+              );
+            }}
+            style={{ width: "50%" }}
+          >
+            Link 2
+          </button>
+          <a
+            href={"googlechrome://navigate?url=www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5"}
+            target="_system"
+          >
+            Link 3
           </a>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            rel="noopener noreferrer"
-            target="_blank"
+            href={"googlechrome://www.businessinsider.com/the-founder-ceo-statsbomb-career-pivoting-in-sports-industry-2021-5"}
+            target="_system"
           >
-            Read our docs
+            Link 4
+          </a>
+          <a
+            href="intent://navigate?url=www.http.cat#Intent;scheme=;package=com.android.browser;S.browser_fallback_url=http%3A%2F%2Fhttp.cat;end"
+            target="_system"
+          >
+            Link 5
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <Image alt="File icon" aria-hidden height={16} src="/file.svg" width={16} />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <Image alt="Window icon" aria-hidden height={16} src="/window.svg" width={16} />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <Image alt="Globe icon" aria-hidden height={16} src="/globe.svg" width={16} />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+      <a href="https://github.com/luizcieslak/am-i-inapp-browser" rel="noopener noreferrer" target="_blank">
+        Source code
+      </a>
     </div>
   );
 }
