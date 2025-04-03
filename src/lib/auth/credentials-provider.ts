@@ -4,11 +4,11 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { cookies } from "next/headers";
 import { nanoid } from "nanoid";
 
-import type { NextRequest } from "next/server";
-import type { AuthConfig } from "@auth/core";
-
 import { prisma } from "@/lib/prisma";
 import { env } from "@/env";
+
+import type { NextRequest } from "next/server";
+import type { AuthConfig } from "@auth/core";
 
 const PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 
