@@ -15,7 +15,7 @@ export const Hero = () => {
         <Typography className="!leading-tight" variant="h1">
           Ta présence en ligne
           <span className="relative ml-2 inline-block rotate-2">
-            <span>en 10 clics.</span>
+            <span className="text-primary">en 10 clics.</span>
             <CircleSvg className="color-gradient-to-r from-red-500 to-orange-800 fill-primary" />
           </span>
         </Typography>
