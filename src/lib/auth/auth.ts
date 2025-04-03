@@ -4,6 +4,7 @@ import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 
 import { SiteConfig } from "@/site-config";
+import { prisma } from "@/lib/prisma";
 import { sendEmail } from "@/lib/mail/sendEmail";
 import { logger } from "@/lib/logger";
 import { env } from "@/env";
@@ -13,8 +14,6 @@ import { setupResendCustomer, setupStripeCustomer } from "./auth-config-setup";
 
 import type { NextAuthOptions, Session } from "next-auth";
 import type { User } from "@prisma/client";
-
-import { prisma } from "@/lib/prisma";
 
 const authOptions: NextAuthOptions = {
   pages: {

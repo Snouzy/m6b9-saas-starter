@@ -1,11 +1,14 @@
 import crypto from "crypto";
-import { nanoid } from "nanoid";
-import type { NextAuthConfig } from "next-auth";
+
 import CredentialsProvider from "next-auth/providers/credentials";
 import { cookies } from "next/headers";
+import { nanoid } from "nanoid";
+
 import type { NextRequest } from "next/server";
-import { env } from "../env";
-import { prisma } from "../prisma";
+import type { AuthConfig } from "@auth/core";
+
+import { prisma } from "@/lib/prisma";
+import { env } from "@/env";
 
 const PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 
@@ -33,13 +36,10 @@ export const getCredentialsProvider = () => {
       password: { label: "Password", type: "password" },
     },
     async authorize(credentials) {
-      if (!credentials.email || !credentials.password) return null;
+      if (!credentials?.email || !credentials?.password) return null;
 
       // Add logic here to look up the user from the credentials supplied
-      const passwordHash = hashStringWithSalt(
-        String(credentials.password),
-        env.NEXTAUTH_SECRET,
-      );
+      const passwordHash = hashStringWithSalt(String(credentials.password), env.NEXTAUTH_SECRET);
 
       const user = await prisma.user.findFirst({
         where: {
@@ -62,14 +62,11 @@ export const getCredentialsProvider = () => {
   });
 };
 
-const tokenName =
-  env.NODE_ENV === "development"
-    ? "authjs.session-token"
-    : "__Secure-authjs.session-token";
+const tokenName = env.NODE_ENV === "development" ? "authjs.session-token" : "__Secure-authjs.session-token";
 
-type SignInCallback = NonNullable<NextAuthConfig["events"]>["signIn"];
+type SignInCallback = NonNullable<AuthConfig["events"]>["signIn"];
 
-type JwtOverride = NonNullable<NextAuthConfig["jwt"]>;
+type JwtOverride = NonNullable<AuthConfig["jwt"]>;
 
 export const credentialsSignInCallback =
   (request: NextRequest | undefined): SignInCallback =>
@@ -104,7 +101,7 @@ export const credentialsSignInCallback =
       },
     });
 
-    const cookieList = cookies();
+    const cookieList = await cookies();
 
     cookieList.set(tokenName, uuid, {
       expires: expireAt,

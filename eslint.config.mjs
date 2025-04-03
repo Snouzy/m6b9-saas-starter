@@ -147,6 +147,7 @@ const config = [
       "class-methods-use-this": "off",
       "@typescript-eslint/explicit-module-boundary-types": "off",
       "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-empty-object-type": "off",
       "react/jsx-sort-props": [
         "error",
         {

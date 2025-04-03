@@ -1,0 +1,120 @@
+/* Dark theme */
+html.dark pre[class*="language-"],
+html.dark code[class*="language-"] {
+  color: #c9d1d9;
+  font-size: 13px;
+  text-shadow: none;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+html.dark pre[class*="language-"]::selection,
+html.dark code[class*="language-"]::selection {
+  text-shadow: none;
+  background: #234879;
+}
+
+@media print {
+  html.dark pre[class*="language-"],
+  html.dark code[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+html.dark pre[class*="language-"] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  background: #161b22;
+  border: 2px solid #161b22;
+  /* Remplacer @apply ring ring-2 ring-primary/80 */
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  opacity: 0.8;
+}
+
+html.dark :not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  color: #c9d1d9;
+  background: #343942;
+}
+
+/* Light theme */
+html.light pre[class*="language-"],
+html.light code[class*="language-"] {
+  color: #24292f;
+  font-size: 13px;
+  text-shadow: none;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* ... autres règles pour le thème clair (même structure) ... */
+
+/* Prose styles */
+.prose .code-line {
+  font-size: 1rem; /* équivalent de lg:text-base */
+}
+
+.prose .highlight-line {
+  width: 100%;
+  display: block;
+  --space: 0px;
+  background-color: hsl(var(--primary) / 0.2) !important;
+  padding-top: var(--space);
+  padding-bottom: var(--space);
+  padding-right: var(--space);
+  margin-top: calc(-1 * var(--space));
+  margin-bottom: calc(-1 * var(--space));
+  margin-right: calc(-1 * var(--space));
+  --space-left: 6px;
+  margin-left: calc(-1 * var(--space-left));
+  padding-left: var(--space-left);
+  border-left: 4px solid hsl(var(--primary) / 0.8);
+}
+
+.prose .code-highlight {
+  width: 100%;
+  display: block;
+}
+
+.prose code:not(.code-highlight):not(.not-prose code)::after,
+.prose code:not(.code-highlight):not(.not-prose code)::before {
+  content: "";
+}
+
+.prose code:not(.code-highlight):not(.not-prose code) {
+  background-color: hsl(var(--primary) / 0.2);
+  margin-top: -0.25rem;
+  margin-bottom: -0.25rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.125rem;
+  padding-right: 0.125rem;
+  border: 1px solid hsl(var(--primary) / 0.6);
+  font-family: ui-monospace, monospace;
+  border-radius: 0.125rem;
+} 

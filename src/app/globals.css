@@ -1,7 +1,39 @@
+/* Variables globales */
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
+  /* Variables thématiques */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -41,86 +73,7 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* todo delete */
-.App {
-	padding: 0 1em;
-}
-
-h1 {
-	text-align: center;
-}
-
-section {
-	border: 1px solid salmon;
-	padding: 0 1em;
-	margin-bottom: 1em;
-}
-
-textarea {
-	width: 100%;
-	min-height: 30rem;
-	font-family: 'Lucida Console', Monaco, monospace;
-	font-size: 0.8rem;
-	line-height: 1.2;
-}
-
-details {
-	margin-bottom: 1em;
-}
-
-p {
-	margin: 0.5em 0;
-}
-
-.grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap: 10px;
-	padding: 1em;
-}
-
-.grid-attempts {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-gap: 1em;
-	padding: 1em;
-}
-
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
+/* Thème sombre */
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -155,11 +108,58 @@ p {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+/* Styles de base */
+* {
+  border-color: var(--border);
+  outline-color: rgba(var(--ring), 0.5);
 }
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Styles de mise en page */
+.App {
+  padding: 0 1em;
+}
+
+h1 {
+  text-align: center;
+}
+
+section {
+  border: 1px solid salmon;
+  padding: 0 1em;
+  margin-bottom: 1em;
+}
+
+textarea {
+  width: 100%;
+  min-height: 30rem;
+  font-family: 'Lucida Console', Monaco, monospace;
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+details {
+  margin-bottom: 1em;
+}
+
+p {
+  margin: 0.5em 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  padding: 1em;
+}
+
+.grid-attempts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+  padding: 1em;
+} 
