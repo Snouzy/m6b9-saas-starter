@@ -16,6 +16,7 @@ import type { NextAuthOptions, Session } from "next-auth";
 import type { User } from "@prisma/client";
 
 const authOptions: NextAuthOptions = {
+  debug: true,
   pages: {
     signIn: "/auth/signin",
     signOut: "/auth/signout",
@@ -51,6 +52,7 @@ const authOptions: NextAuthOptions = {
   secret: env.NEXTAUTH_SECRET,
   callbacks: {
     session(params) {
+      console.log("params:", params);
       if (params.newSession) return params.session;
 
       const typedParams = params as unknown as {
@@ -89,4 +91,4 @@ const authOptions: NextAuthOptions = {
   },
 };
 
-export const { handlers, auth: baseAuth } = NextAuth(authOptions);
+export const { auth, signIn, signOut } = NextAuth(authOptions);
