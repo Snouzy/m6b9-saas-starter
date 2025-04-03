@@ -1,4 +1,6 @@
-import { auth as baseAuth } from "./auth";
+import { getServerSession } from "next-auth";
+
+import { authOptions } from "./auth";
 
 import type { User } from "@prisma/client";
 
@@ -9,7 +11,7 @@ export class AuthError extends Error {
 }
 
 export const auth = async () => {
-  const session = await baseAuth();
+  const session = await getServerSession(authOptions);
 
   if (session?.user) {
     const user = session.user as User;

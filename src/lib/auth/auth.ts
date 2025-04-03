@@ -91,4 +91,5 @@ const authOptions: NextAuthOptions = {
   },
 };
 
+export { authOptions };
 export const { auth, signIn, signOut } = NextAuth(authOptions);

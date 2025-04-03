@@ -43,10 +43,8 @@ const getUser = async () => {
 
 export const authAction = createSafeActionClient({
   handleServerError: handleReturnedServerError,
-  middleware: async () => {
-    const user = await getUser();
-    return {
-      user: user as User,
-    };
-  },
-} as const);
+} as const).use(async ({ next, clientInput, metadata }) => {
+  const user = await getUser();
+
+  return await next({ ctx: { user } });
+});

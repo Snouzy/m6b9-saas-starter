@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Variables globales */
 :root {
   --radius: 0.625rem;

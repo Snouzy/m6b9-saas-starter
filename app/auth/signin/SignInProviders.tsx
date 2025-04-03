@@ -56,7 +56,7 @@ export const SignInProviders = () => {
       </div>
       {providers.credentials ? (
         <Typography variant="small">
-          You don't have an account?{" "}
+          {"You don't have an account? "}{" "}
           <Typography as={Link} href="/auth/signup" variant="link">
             Sign up
           </Typography>
