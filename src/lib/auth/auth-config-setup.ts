@@ -4,7 +4,7 @@ import { env } from "@/env";
 
 import type { User } from "next-auth";
 
-export const setupStripeCustomer = async (user: User) => {
+export const setupStripeCustomer = async (user: Omit<User, "id">) => {
   if (!user.email) {
     return;
   }
@@ -17,7 +17,7 @@ export const setupStripeCustomer = async (user: User) => {
   return customer.id;
 };
 
-export const setupResendCustomer = async (user: User) => {
+export const setupResendCustomer = async (user: Omit<User, "id">) => {
   if (!user.email) {
     return;
   }

@@ -8,16 +8,16 @@ import { env } from "@/env";
 
 import { LoginCredentialsFormScheme } from "./signup.schema";
 
-export const signUpAction = action(LoginCredentialsFormScheme, async ({ email, password, name }) => {
-  if (!validatePassword(password)) {
+export const signUpAction = action.schema(LoginCredentialsFormScheme).action(async ({ parsedInput }) => {
+  if (!validatePassword(parsedInput.password)) {
     throw new ActionError("Invalid new password. Must be at least 8 characters, and contain at least one letter and one number");
   }
 
   try {
     const userData = {
-      email,
-      passwordHash: hashStringWithSalt(password, env.NEXTAUTH_SECRET),
-      name,
+      email: parsedInput.email,
+      passwordHash: hashStringWithSalt(parsedInput.password, env.NEXTAUTH_SECRET),
+      name: parsedInput.name,
     };
 
     const stripeCustomerId = await setupStripeCustomer(userData);
