@@ -12,7 +12,7 @@ export const Hero = () => {
   return (
     <main className="relative m-auto my-12 flex min-h-[700px] max-w-7xl items-center gap-4 px-0 max-lg:flex-col md:px-4">
       <div className="relative flex flex-1 flex-col items-start gap-4 md:w-auto lg:gap-6 xl:gap-8">
-        <Typography className="!leading-tight text-secondary" variant="h1">
+        <Typography className="!leading-tight" variant="h1">
           Ta présence en ligne
           <span className="relative ml-2 inline-block rotate-2">
             <span className="text-secondary">en 10 clics.</span>
