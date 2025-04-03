@@ -16,7 +16,7 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 
 import "./code-themee.scss";
-import "./globals.scss";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: SiteConfig.title,
