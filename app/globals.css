@@ -2,33 +2,52 @@
 @plugin "tailwindcss-animate";
 @custom-variant dark (&:is(.dark *));
 
+
 :root {
   --radius: 0.5rem;
 }
 @theme {
   --color-background: #ffffff;
-  --color-foreground: #0c0a09;
+  --color-foreground: #000000;
+
   --color-card: #ffffff;
-  --color-card-foreground: #0c0a09;
+  --color-card-foreground: #000000;
+
   --color-popover: #ffffff;
-  --color-popover-foreground: #0c0a09;
-  --color-primary: #ff5c1a;
-  --color-primary-foreground: #fafafa;
-  --color-secondary: #f5f5f4;
-  --color-secondary-foreground: #1c1917;
-  --color-muted: #f5f5f4;
-  --color-muted-foreground: #78716c;
-  --color-accent: #f5f5f4;
-  --color-accent-foreground: #1c1917;
+  --color-popover-foreground: #000000;
+
+  --color-primary: #000000; /* noir brutaliste */
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #f3f4f6; /* gris clair, un peu brut */
+  --color-secondary-foreground: #111827;
+
+  --color-muted: #e5e7eb;
+  --color-muted-foreground: #6b7280;
+
+  --color-accent: #f9a8d4; /* rose pastel punchy */
+  --color-accent-foreground: #000000;
+
+  --color-accent-pink: #fce7f3; /* rose clair */
+  --color-accent-orange: #ffe4cc; /* orange pastel */
+
   --color-destructive: #ef4444;
-  --color-destructive-foreground: #fafafa;
-  --color-border: #e7e4e4;
-  --color-input: #e7e4e4;
-  --color-ring: #f97316;
+  --color-destructive-foreground: #ffffff;
+
+  --color-border: #d1d5db;
+  --color-input: #d1d5db;
+  --color-ring: #6366f1; /* violet vibrant */
 
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   --font-caption: var(--font-caption), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --radius: 0rem; /* pour un effet plus brut */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
 
   --animate-accordion-up: accordion-up 0.2s ease-out;
   --animate-accordion-down: accordion-down 0.2s ease-out;
@@ -56,6 +75,60 @@
   --radius-lg: calc(var(--radius) + 4px);
   --radius-xl: calc(var(--radius) + 8px);
   --radius-2xl: calc(var(--radius) + 16px);
+}
+
+@layer utilities {
+  .brutal-hover\:shake:hover {
+    animation: brutal-shake 0.2s ease-in-out 1;
+  }
+
+  .brutal-hover\:slide-x:hover {
+    transform: translateX(4px);
+    transition: transform 150ms ease-in-out;
+  }
+
+  .brutal-hover\:press-down:hover {
+    transform: translateY(2px);
+    transition: transform 100ms ease-in-out;
+  }
+
+  .brutal-grid-bg {
+    background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 23px,
+        #e5e5e5 24px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 23px,
+        #e5e5e5 24px
+      );
+    background-size: 24px 24px;
+  }
+
+  .shadow-brutal {
+    box-shadow: 4px 4px 0 #000;
+  }
+
+  @keyframes brutal-shake {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-2px);
+    }
+    50% {
+      transform: translateX(2px);
+    }
+    75% {
+      transform: translateX(-2px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
 }
 
 @utility container {

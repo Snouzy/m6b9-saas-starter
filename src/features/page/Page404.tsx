@@ -1,7 +1,9 @@
-import { ContactSupportDialog } from "@/features/contact/support/ContactSupportDialog";
 import Link from "next/link";
-import { buttonVariants } from "../../components/ui/button";
+
+import { ContactSupportDialog } from "@/features/contact/support/ContactSupportDialog";
+
 import { Typography } from "../../components/ui/typography";
+import { buttonVariants } from "../../components/ui/button";
 
 export function Page404() {
   return (
@@ -10,11 +12,11 @@ export function Page404() {
         <Typography variant="code">404</Typography>
         <Typography variant="h1">Page not found</Typography>
         <Typography variant="base">
-          Sorry, we couldn't find the page you're looking for.
+          Oops! This link seems to be broken. Let&apos;s get you back to creating your perfect link in bio page.
         </Typography>
       </div>
       <div className="flex items-center gap-4">
-        <Link href="/" className={buttonVariants({ variant: "invert" })}>
+        <Link className={buttonVariants({ variant: "default" })} href="/">
           Go back home
         </Link>
         <ContactSupportDialog />

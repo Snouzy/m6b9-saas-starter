@@ -15,11 +15,11 @@ export const FeaturesSection = ({ features }: { features: FeatureLineProps[] }) 
         <div className="flex flex-col items-center gap-2">
           <Badge>The features you NEED.</Badge>
           <Typography className="m-auto max-w-xl text-center" variant="h2">
-            More than a post schedulure, we will help you <u>grow</u>.
+            More than just a link in bio, we help you <u>connect</u> with your audience.
           </Typography>
           <Typography className="m-auto max-w-lg text-center text-base" variant="muted">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, consequuntur! Similique, nulla placeat in expedita omnis ab
-            error eaque esse a doloremque, iusto libero eligendi, animi minus architecto. Modi, consectetur?
+            Organize and share all your important links in one beautiful, customizable page. Perfect for influencers, creators, and
+            businesses looking to maximize their online presence.
           </Typography>
         </div>
         {features.map((f, i) => {

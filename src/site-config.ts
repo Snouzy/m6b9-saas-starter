@@ -1,25 +1,25 @@
 export const SiteConfig = {
-  title: "FitFunnel",
-  description: "A template description for Product",
-  prodUrl: "https://fitfunnel.io",
-  domain: "fitfunnel.io",
+  title: "Fit'Links",
+  description: "Create beautiful and effective link in bio pages to connect with your audience",
+  prodUrl: "https://frontfit.links",
+  domain: "frontfit.links",
   appIcon: "/images/logo4.jpg",
   company: {
-    name: "FitFunnel",
+    name: "Fit'Links",
     address: "34 avenue des champ Elysée 75008 Paris, France",
   },
   brand: {
     primary: "#007291",
   },
   email: {
-    from: "Mathias <fitfunnel.io@gmail.com>",
-    contact: "fitfunnel.io@gmail.com",
+    from: "Fit'Links <frontfit.links@gmail.com>",
+    contact: "frontfit.links@gmail.com",
   },
   maker: {
-    image: "https://fitfunnel.io/images/me/twitter-en.jpg",
-    website: "https://fitfunnel.io",
-    twitter: "https://twitter.com/fitfunnel_io",
-    name: "FitFunnel",
+    image: "https://frontfit.links/images/me/twitter-en.jpg",
+    website: "https://frontfit.links",
+    twitter: "https://twitter.com/frontfit_links",
+    name: "Fit'Links",
   },
   auth: {
     password: false as boolean,

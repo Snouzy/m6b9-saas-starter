@@ -1,44 +1,44 @@
 import Link from "next/link";
-import { Rocket, Calendar } from "lucide-react";
+import { Rocket } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { CircleSvg } from "@/components/svg/CircleSvg";
 
 import { Typography } from "../../components/ui/typography";
 import { ReviewSmall } from "./review/ReviewSmall";
 
 export const Hero = () => {
   return (
-    <main className="relative m-auto my-12 flex min-h-[700px] max-w-7xl items-center gap-4 px-0 max-lg:flex-col md:px-4">
-      <div className="relative flex flex-1 flex-col items-start gap-4 md:w-auto lg:gap-6 xl:gap-8">
-        <Typography className="!leading-tight" variant="h1">
-          Ta présence en ligne
-          <span className="relative ml-2 inline-block rotate-2">
-            <span className="text-secondary">en 10 clics.</span>
-            <CircleSvg className="color-gradient-to-r from-red-500 to-orange-800 fill-primary" />
+    <main className="brutal-grid-bg relative m-auto my-20 flex min-h-[700px] max-w-7xl items-center gap-8 px-4 max-lg:flex-col border-t-4 border-black">
+      <div className="relative flex flex-1 flex-col items-start gap-6 text-black">
+        <Typography className="!leading-[1.1] text-5xl font-extrabold uppercase tracking-tight max-sm:text-4xl" variant="h1">
+          Convertis depuis tes liens
+          <span className="relative ml-3 inline-block rotate-2">
+            <span className="text-primary bg-accent px-2 py-1 shadow-brutal">de ta bio</span> 💪
           </span>
         </Typography>
-        <Typography variant="large">Personnalisez votre profil et découvrez les fonctionnalités de FitFunnel.</Typography>
-        <div className="flex flex-row ">
-          <Link
+
+        <Typography className="text-muted-foreground text-lg max-w-lg font-mono">
+          Engage tes visiteurs et convertis-les en clients n&apos;a jamais été aussi simple.
+        </Typography>
+
+        <div className="mt-4 flex flex-wrap gap-4">
+          <Link className={cn(buttonVariants({ variant: "brutal" }))} href="https://calendly.com/lemurian-agency/30min" target="_blank">
+            {/* <Calendar size={18} /> */}
+            <Rocket size={18} />
+            Commencer à convertir
+          </Link>
+
+          {/* <Link
             className={cn(
-              buttonVariants({
-                size: "lg",
-                variant: "default",
-              }),
-              "mr-4",
+              "brutal-hover:shake inline-flex items-center justify-center gap-2 rounded-none border-2 border-black bg-accent px-6 py-3 text-black hover:bg-black hover:text-white transition-colors uppercase text-sm font-bold shadow-brutal",
             )}
-            href="https://calendly.com/lemurian-agency/30min"
-            target="blank"
+            href="https://fitfunnel.io"
+            target="_blank"
           >
-            <Calendar className="mr-2" size={20} />
-            Prendre rendez-vous
-          </Link>
-          <Link className={cn(buttonVariants({ size: "lg", variant: "default" }))} href="https://fitfunnel.io" target="blank">
-            <Rocket className="mr-2" size={20} />
+            <Rocket size={18} />
             Démarrer
-          </Link>
+          </Link> */}
         </div>
 
         <ReviewSmall
@@ -51,12 +51,16 @@ export const Hero = () => {
           ]}
           stars={5}
         >
-          220+ utilisateurs
+          <span className="font-mono text-sm text-muted-foreground">220+ utilisateurs</span>
         </ReviewSmall>
       </div>
 
-      <div className="flex flex-1 justify-end ">
-        <img alt="Hero images" className="max-w-lg rounded-lg object-contain max-md:max-w-md" src="/images/hero1.jpg" />
+      <div className="flex flex-1 justify-end">
+        <img
+          alt="Hero images"
+          className="max-w-lg rounded-sm border-4 border-black object-contain shadow-brutal max-md:max-w-md"
+          src="/images/header.png"
+        />
       </div>
     </main>
   );
