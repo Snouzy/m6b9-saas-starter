@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+
 import iPhone from "@public/images/iphone.png";
 import Avatar04 from "@public/images/avatar-04.jpg";
 import Avatar03 from "@public/images/avatar-03.jpg";
