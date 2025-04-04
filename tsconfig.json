@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@emails/*": ["emails/*"]
+      "@emails/*": ["emails/*"],
+      "@public/*": ["public/*"]
     },
     "plugins": [
       {

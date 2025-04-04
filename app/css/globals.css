@@ -2,11 +2,24 @@
 @plugin "tailwindcss-animate";
 @custom-variant dark (&:is(.dark *));
 
+@import './additional-styles/utility-patterns.css' layer(components);
+
+
+@plugin "@tailwindcss/forms" {
+  strategy: base;
+}
+@plugin "@tailwindcss/typography" {
+  strategy: base;
+}
 
 :root {
   --radius: 0.5rem;
 }
 @theme {
+  --font-inter: Inter, sans-serif;
+  --font-hkgrotesk: HK Grotesk, sans-serif;
+  --font-permanent-marker: Permanent Marker, cursive;
+
   --color-background: #ffffff;
   --color-foreground: #000000;
 
@@ -41,6 +54,7 @@
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   --font-caption: var(--font-caption), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-gd-sherpa: var(--font-gd-sherpa), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   --radius: 0rem; /* pour un effet plus brut */
   --radius-sm: 0.25rem;
@@ -48,6 +62,45 @@
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
   --radius-2xl: 2rem;
+
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5715;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5;
+  --text-base--letter-spacing: -0.01em;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.5;
+  --text-lg--letter-spacing: -0.01em;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.5;
+  --text-xl--letter-spacing: -0.01em;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 1.415;
+  --text-2xl--letter-spacing: -0.01em;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 1.333;
+  --text-3xl--letter-spacing: -0.01em;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 1.277;
+  --text-4xl--letter-spacing: -0.01em;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1;
+  --text-5xl--letter-spacing: -0.01em;
+  --text-6xl: 3.5rem;
+  --text-6xl--line-height: 1;
+  --text-6xl--letter-spacing: -0.01em;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1;
+  --text-7xl--letter-spacing: -0.01em;
+
+  --tracking-tighter: -0.02em;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.01em;
+  --tracking-wider: 0.02em;
+  --tracking-widest: 0.4em;
 
   --animate-accordion-up: accordion-up 0.2s ease-out;
   --animate-accordion-down: accordion-down 0.2s ease-out;

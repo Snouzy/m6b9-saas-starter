@@ -83,7 +83,7 @@ export function LandingHeader() {
             opacity: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0]),
           }}
         >
-          <SignInButton variant="expandIcon" />
+          <SignInButton variant="link" />
           <ThemeToggle />
         </motion.nav>
       </div>
