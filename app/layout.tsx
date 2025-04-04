@@ -17,7 +17,6 @@ import { Providers } from "./providers";
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 
-import "./code-themee.scss";
 import "./css/globals.css";
 
 export const metadata: Metadata = {

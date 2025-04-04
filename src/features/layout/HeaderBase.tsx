@@ -9,7 +9,7 @@ import type { PropsWithChildren } from "react";
 
 export function HeaderBase({ children }: PropsWithChildren) {
   return (
-    <header className="sticky top-0 z-40 w-full border-b-4 border-black bg-background shadow-brutal">
+    <header className="sticky top-0 w-full border-b-4 border-black bg-background shadow-brutal">
       <div className="container flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-3">
           <div className="inline-flex items-center justify-center rounded-none border-2 border-black bg-white p-1 shadow-brutal">
