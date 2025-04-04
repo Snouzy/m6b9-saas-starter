@@ -9,21 +9,22 @@ import type { PropsWithChildren } from "react";
 
 export function HeaderBase({ children }: PropsWithChildren) {
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
-        <div className="flex items-center gap-2">
-          <Image alt="app logo" height={32} src={SiteConfig.appIcon} width={32} />
-          <Link className="text-xl font-bold" href="/">
+    <header className="sticky top-0 z-40 w-full border-b-4 border-black bg-background shadow-brutal">
+      <div className="container flex h-16 items-center justify-between px-4">
+        <div className="flex items-center gap-3">
+          <div className="inline-flex items-center justify-center rounded-none border-2 border-black bg-white p-1 shadow-brutal">
+            <Image alt="app logo" height={28} src={SiteConfig.appIcon} width={28} />
+          </div>
+
+          <Link className="text-xl font-extrabold uppercase tracking-wide text-black hover:underline" href="/">
             {SiteConfig.title}
           </Link>
         </div>
 
-        <div className="flex flex-1 items-center justify-end space-x-4">
-          <nav className="flex items-center space-x-1">
-            {children}
-            <ThemeToggle />
-          </nav>
-        </div>
+        <nav className="flex items-center space-x-3">
+          {children}
+          <ThemeToggle />
+        </nav>
       </div>
     </header>
   );

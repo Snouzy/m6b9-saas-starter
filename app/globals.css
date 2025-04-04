@@ -109,7 +109,11 @@
   }
 
   .shadow-brutal {
-    box-shadow: 4px 4px 0 #000;
+    box-shadow: 4px 4px 0 var(--color-primary);
+  }
+
+  .shadow-brutal-accent {
+    box-shadow: 4px 4px 0 var(--color-accent);
   }
 
   @keyframes brutal-shake {

@@ -16,9 +16,10 @@ const buttonVariants = cva(
         ghost: "bg-transparent text-black border-transparent hover:bg-muted",
         link: "text-black underline underline-offset-2 hover:text-primary",
 
-        brutal:
+        brutalBlack:
           "brutal-hover:press-down inline-flex items-center justify-center gap-2 rounded-none border-2 border-black bg-primary px-6 py-3 text-white hover:bg-white hover:text-black transition-colors uppercase text-sm font-bold shadow-brutal",
-        brutalAccent: "bg-accent text-black border-black hover:bg-black hover:text-accent",
+        brutalAccent:
+          "brutal-hover:press-down inline-flex items-center justify-center gap-2 rounded-none border-2 border-black bg-accent px-6 py-3 text-black hover:bg-black hover:text-white transition-colors uppercase text-sm font-bold shadow-brutal hover:shadow-brutal-accent",
         brutalGhost: "bg-transparent text-black border-black hover:bg-muted",
       },
       size: {

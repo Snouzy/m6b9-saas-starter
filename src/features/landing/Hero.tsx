@@ -23,7 +23,11 @@ export const Hero = () => {
         </Typography>
 
         <div className="mt-4 flex flex-wrap gap-4">
-          <Link className={cn(buttonVariants({ variant: "brutal" }))} href="https://calendly.com/lemurian-agency/30min" target="_blank">
+          <Link
+            className={cn(buttonVariants({ variant: "brutalAccent", size: "md" }))}
+            href="https://calendly.com/lemurian-agency/30min"
+            target="_blank"
+          >
             {/* <Calendar size={18} /> */}
             <Rocket size={18} />
             Commencer à convertir

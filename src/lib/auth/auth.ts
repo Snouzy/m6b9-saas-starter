@@ -1,6 +1,5 @@
 import Google from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
-import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 
 import { SiteConfig } from "@/site-config";
@@ -92,4 +91,3 @@ const authOptions: NextAuthOptions = {
 };
 
 export { authOptions };
-export const { auth, signIn, signOut } = NextAuth(authOptions);
