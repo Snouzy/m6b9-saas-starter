@@ -14,7 +14,7 @@ export const Hero = () => {
         <Typography className="!leading-[1.1] text-5xl font-extrabold uppercase tracking-tight max-sm:text-4xl" variant="h1">
           Convertis depuis tes liens
           <span className="relative ml-3 inline-block rotate-2">
-            <span className="text-primary bg-accent px-2 py-1 shadow-brutal">de ta bio</span> 💪
+            <span className="text-primary bg-accent px-2 py-1">de ta bio</span> 💪
           </span>
         </Typography>
 

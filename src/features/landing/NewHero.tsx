@@ -16,20 +16,20 @@ export function NewHero() {
             {/* Background */}
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-linear-to-br from-slate-900 to-slate-800 rounded-3xl -mx-20 -z-10 overflow-hidden mb-12 mt-0 md:mb-0"
+              className="absolute inset-0 bg-linear-to-br from-slate-900 to-slate-800 rounded-3xl -mx-20 overflow-hidden mb-12 mt-0 md:mb-0"
             >
               {/* Illustration */}
-              <div className="absolute -top-16 left-1/2 -translate-x-1/3 md:-translate-x-1/2 pointer-events-none -z-10 blur-2xl">
+              <div className="absolute -top-16 left-1/2 -translate-x-1/3 md:-translate-x-1/2 pointer-events-none z-0 blur-2xl">
                 <svg height="1327" width="2106" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <filter filterUnits="objectBoundingBox" height="131.3%" id="hi-a" width="133.3%" x="-16.7%" y="-15.6%">
-                      <feGaussianBlur in="SourceGraphic" stdDeviation="0" />
+                      <feGaussianBlur in="SourceGraphic" stdDeviation="50" />
                     </filter>
                     <filter filterUnits="objectBoundingBox" height="131.3%" id="hi-b" width="133.3%" x="-16.7%" y="-15.6%">
-                      <feGaussianBlur in="SourceGraphic" stdDeviation="0" />
+                      <feGaussianBlur in="SourceGraphic" stdDeviation="50" />
                     </filter>
                     <filter filterUnits="objectBoundingBox" height="145%" id="hi-c" width="159.9%" x="-29.9%" y="-22.5%">
-                      <feGaussianBlur in="SourceGraphic" stdDeviation="0" />
+                      <feGaussianBlur in="SourceGraphic" stdDeviation="50" />
                     </filter>
                   </defs>
                   <g fill="none" fillRule="evenodd">
@@ -60,15 +60,15 @@ export function NewHero() {
             </div>
 
             {/* Content */}
-            <div className="md:w-[640px] py-12 md:py-20 md:min-h-[450px]">
+            <div className="md:w-[640px] py-12 md:py-20 md:min-h-[450px] z-10">
               {/* Copy */}
               <h1 className="h1 font-hkgrotesk text-slate-100 mb-6" data-aos="fade-right" data-aos-delay="100">
                 Convertis tes élèves en clients depuis{" "}
-                <span className="font-permanent-marker text-blue-500 font-normal whitespace-nowrap">
+                <span className="font-permanent-marker text-accent font-normal whitespace-nowrap">
                   ta{" "}
                   <span className="inline-flex relative">
                     <svg
-                      className="absolute right-0 top-full mt-1 max-w-none -z-10"
+                      className="absolute right-0 top-full mt-1 max-w-none"
                       height="9"
                       viewBox="0 0 135 9"
                       width="135"
@@ -157,7 +157,7 @@ export function NewHero() {
             </div>
 
             {/* Image */}
-            <div className="max-w-sm mx-auto md:max-w-none md:absolute md:left-[40rem] md:top-1/2 md:-translate-y-1/2 md:ml-8 lg:ml-20 xl:ml-32">
+            <div className="max-w-sm mx-auto md:max-w-none md:absolute md:left-[40rem] md:top-1/2 md:-translate-y-1/2 md:ml-8 lg:ml-20 xl:ml-32 z-10">
               <div data-aos="fade-left" data-aos-duration="1100">
                 <Image alt="iPhone" className="md:max-w-none" height={601} priority src={iPhone} width={298} />
               </div>
