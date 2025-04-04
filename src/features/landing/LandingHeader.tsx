@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
+import { Menu } from "lucide-react";
 import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 
-import { SiteConfig } from "@/site-config";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 import { LogoSvg } from "@/components/svg/LogoSvg";
 
 import { ThemeToggle } from "../theme/ThemeToggle";
@@ -47,43 +50,116 @@ export function LandingHeader() {
 
   return (
     <motion.header
-      className="fixed inset-x-0 z-50 flex h-20 w-screen shadow backdrop-blur-md"
+      className="fixed inset-x-0 z-50 flex h-10 w-screen shadow backdrop-blur-md"
       style={{
-        height: useTransform(scrollYBoundedProgressDelayed, [0, 1], [80, 50]),
+        height: useTransform(scrollYBoundedProgressDelayed, [0, 1], [55, 50]),
       }}
     >
       <div className="max-w-8xl mx-auto flex w-full items-center justify-between px-4 lg:px-8">
-        <div className="flex items-center gap-1">
-          <LogoSvg size={24} />
-          <motion.p
-            className="flex origin-left items-center text-xl  font-semibold uppercase text-orange-600 max-sm:hidden"
-            style={{
-              scale: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.9]),
-            }}
-          >
-            {SiteConfig.title}
-          </motion.p>
-        </div>
-        <motion.nav
-          className="flex items-center gap-4 text-sm font-medium text-muted-foreground"
+        <motion.div
+          className="flex items-center gap-1"
           style={{
-            opacity: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0]),
+            scale: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.9]),
           }}
         >
-          <a href="#">Accueil</a>
-          <a href="/posts">Blog</a>
-          <a href="#">Expertise</a>
-          <a href="#">Méthodologie</a>
-          <a href="#">Prestation</a>
-          <a href="#">Projets</a>
+          <LogoSvg size={128} />
+        </motion.div>
+
+        {/* Desktop Navigation */}
+        <motion.nav
+          className="hidden items-center gap-4 text-sm font-medium text-muted-foreground md:flex"
+          style={{
+            opacity: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.8]),
+          }}
+        >
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button className="p-0" variant="ghost">
+                Accueil
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <a className="flex w-full" href="#">
+                    Présentation
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <a className="flex w-full" href="#">
+                    Services
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <Button asChild className="p-0" variant="ghost">
+            <a href="/posts">Blog</a>
+          </Button>
+          <Button asChild className="p-0" variant="ghost">
+            <a href="#">Expertise</a>
+          </Button>
+          <Button asChild className="p-0" variant="ghost">
+            <a href="#">Méthodologie</a>
+          </Button>
+          <Button asChild className="p-0" variant="ghost">
+            <a href="#">Prestation</a>
+          </Button>
+          <Button asChild className="p-0" variant="ghost">
+            <a href="#">Projets</a>
+          </Button>
         </motion.nav>
-        <motion.nav
-          className="flex items-center gap-4 text-sm font-medium text-muted-foreground"
+
+        {/* Mobile Navigation Trigger */}
+        <motion.div
+          className="flex md:hidden"
           style={{
-            opacity: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0]),
+            opacity: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.8]),
           }}
         >
-          <SignInButton variant="link" />
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button size="icon" variant="ghost">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent className="w-[300px] sm:w-[400px]" side="right">
+              <SheetHeader>
+                <SheetTitle>Menu</SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col gap-4 py-4">
+                <Button asChild className="justify-start" variant="ghost">
+                  <a href="#">Accueil</a>
+                </Button>
+                <Button asChild className="justify-start" variant="ghost">
+                  <a href="/posts">Blog</a>
+                </Button>
+                <Button asChild className="justify-start" variant="ghost">
+                  <a href="#">Expertise</a>
+                </Button>
+                <Button asChild className="justify-start" variant="ghost">
+                  <a href="#">Méthodologie</a>
+                </Button>
+                <Button asChild className="justify-start" variant="ghost">
+                  <a href="#">Prestation</a>
+                </Button>
+                <Button asChild className="justify-start" variant="ghost">
+                  <a href="#">Projets</a>
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </motion.div>
+
+        {/* Auth and Theme */}
+        <motion.nav
+          className="flex items-center gap-4"
+          style={{
+            opacity: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.8]),
+          }}
+        >
+          <SignInButton variant="ghost" />
           <ThemeToggle />
         </motion.nav>
       </div>

@@ -17,7 +17,7 @@ export function NewHero() {
             {/* Background */}
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-linear-to-br from-slate-900 to-slate-800 rounded-3xl -mx-20 overflow-hidden mb-12 mt-0 md:mb-0"
+              className="absolute inset-0 bg-linear-to-br from-primary to-primary rounded-3xl -mx-20 overflow-hidden mb-12 mt-0 md:mb-0"
             >
               {/* Illustration */}
               <div className="absolute -top-16 left-1/2 -translate-x-1/3 md:-translate-x-1/2 pointer-events-none z-0 blur-2xl">
@@ -35,24 +35,10 @@ export function NewHero() {
                   </defs>
                   <g fill="none" fillRule="evenodd">
                     <path
-                      d="M1110.164 893.257C1191.124 1079.102 1484 839.962 1484 626.315S883.228 0 669.507 0s40.54 412.668 40.54 626.315c0 213.647 319.156 81.096 400.117 266.942Z"
-                      fill="#6D28D9"
-                      fillOpacity=".72"
-                      filter="url(#hi-a)"
-                      transform="translate(0 -605)"
-                    />
-                    <path
                       d="M1732.164 1753.257c80.96 185.845 373.836-53.295 373.836-266.942S1505.228 860 1291.507 860s40.54 412.668 40.54 626.315c0 213.647 319.156 81.096 400.117 266.942Z"
-                      fill="#67E8F9"
-                      fillOpacity=".64"
+                      fill="#fb734a"
+                      fillOpacity=".44"
                       filter="url(#hi-b)"
-                      transform="translate(0 -605)"
-                    />
-                    <path
-                      d="M1191.108 871C1338.988 871 1631 635.765 1631 487.507 1631 339.248 1625.874 205 1477.994 205s-267.76 120.187-267.76 268.445c0 148.259-167.006 397.555-19.126 397.555Z"
-                      fill="#F472B6"
-                      fillOpacity=".8"
-                      filter="url(#hi-c)"
                       transform="translate(0 -605)"
                     />
                   </g>
@@ -64,7 +50,7 @@ export function NewHero() {
             <div className="md:w-[640px] py-12 md:py-20 md:min-h-[450px] z-10">
               {/* Copy */}
               <h1 className="h1 font-hkgrotesk text-slate-100 mb-6" data-aos="fade-right" data-aos-delay="100">
-                Convertis tes élèves en clients depuis{" "}
+                Convertis tes prospects en clients depuis{" "}
                 <span className="font-permanent-marker text-accent font-normal whitespace-nowrap">
                   ta{" "}
                   <span className="inline-flex relative">
@@ -88,7 +74,7 @@ export function NewHero() {
                 </span>
               </h1>
               <p className="text-lg text-slate-400 mb-8" data-aos="fade-right" data-aos-delay="200">
-                Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.
+                Un seul lien pour mettre en lumière tes conseils, tes créations, ton expertise.
               </p>
               {/* Buttons */}
               <div
@@ -98,13 +84,13 @@ export function NewHero() {
               >
                 <div>
                   <Link className="btn text-white bg-blue-500 hover:bg-blue-600 group shadow-xs" href="/subscribe">
-                    Subscribe - Free{" "}
-                    <span className="tracking-normal text-blue-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
-                      -&gt;
-                    </span>
+                    Je m&apos;inscris pour 0€{" "}
                   </Link>
+                  <p className="text-xs text-center text-slate-400 mt-1" data-aos="fade-right" data-aos-delay="200">
+                    et sans carte.
+                  </p>
                 </div>
-                <div className="sm:flex sm:items-center sm:justify-center space-y-2 sm:space-y-0 sm:space-x-3">
+                <div className="sm:flex sm:items-start sm:justify-center space-y-2 sm:space-y-0 sm:space-x-3">
                   <div className="inline-flex -space-x-3 -ml-0.5">
                     <Image
                       alt="Avatar 01"

@@ -46,7 +46,6 @@ export default function HomePage() {
               Link to the pages where your products are listed, including online stores, marketplaces, and more.
             </p>
           </div>
-
           {/* Feature Card - Social Media */}
           <div className="rounded-lg bg-white p-6 shadow-lg">
             <div className="flex gap-4 mb-6">
