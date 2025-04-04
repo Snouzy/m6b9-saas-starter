@@ -7,7 +7,6 @@ import { FAQSection } from "@/features/landing/FAQSection";
 import { CTAImageSection } from "@/features/landing/cta/CTAImageSection";
 import CardDescription from "@/features/landing/CardDescription";
 import { BentoGridSection } from "@/features/landing/BentoSection";
-
 import { EmailFormSection } from "@/features/email/EmailFormSection";
 
 export default function HomePage() {
