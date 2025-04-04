@@ -1,6 +1,8 @@
 import { Layout } from "@/features/page/layout";
-import type { ReviewItemProps } from "./ReviewItem";
+
 import { ReviewItem } from "./ReviewItem";
+
+import type { ReviewItemProps } from "./ReviewItem";
 
 export type ReviewTripleProps = {
   /**

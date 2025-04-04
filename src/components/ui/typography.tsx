@@ -34,6 +34,7 @@ const typographyVariants = cva("", {
 });
 type TypographyCvaProps = VariantProps<typeof typographyVariants>;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const defaultElement = "p";
 
 const defaultElementMapping: Record<NonNullable<TypographyCvaProps["variant"]>, ElementType> = {

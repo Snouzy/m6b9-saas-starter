@@ -47,6 +47,10 @@ const config = [
       "**/package-lock.json",
       "**/eslint.config.mjs",
       "**/next.config.js",
+      "src/utils/attempt2.js",
+      "src/utils/inapp.js",
+      "src/utils/externalLinkOpener.js",
+      "src/utils/browserEscape.js",
     ],
     plugins: {
       "react-hooks": fixupPluginRules(reactHooks),

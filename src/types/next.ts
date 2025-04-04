@@ -15,7 +15,6 @@ import type { ReactNode } from "react";
  * }
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export type PageParams<T extends Record<string, string> = {}> = {
   params: T;
   searchParams: { [key: string]: string | string[] | undefined };
@@ -35,7 +34,6 @@ export type PageParams<T extends Record<string, string> = {}> = {
  * }
  * ```
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export type LayoutParams<T extends Record<string, string> = {}> = {
   params: T;
   children?: ReactNode | undefined;

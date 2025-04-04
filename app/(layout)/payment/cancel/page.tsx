@@ -10,13 +10,13 @@ export default function CancelPaymentPage() {
     <Layout>
       <LayoutHeader>
         <Badge variant="outline">Payment failed</Badge>
-        <LayoutTitle>We're sorry, but we couldn't process your payment</LayoutTitle>
+        <LayoutTitle>We&apos;re sorry, but we couldn&apos;t process your payment</LayoutTitle>
         <LayoutDescription>
           We encountered an issue processing your payment.
           <br /> Please check your payment details and try again. <br />
-          If the problem persists, don't hesitate to contact us for assistance.
+          If the problem persists, don&apos;t hesitate to contact us for assistance.
           <br />
-          We're here to help you resolve this smoothly.
+          We&apos;re here to help you resolve this smoothly.
         </LayoutDescription>
       </LayoutHeader>
       <LayoutContent className="flex items-center gap-2">

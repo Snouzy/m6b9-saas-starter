@@ -4,7 +4,15 @@ export type LogoSvgProps = ComponentPropsWithoutRef<"svg"> & { size?: number };
 
 export const LogoSvg = ({ size = 32, ...props }: LogoSvgProps) => {
   return (
-    <svg data-name="Calque 14" height={size} id="Calque_14" viewBox="0 0 646.62 185.44" width={size} xmlns="http://www.w3.org/2000/svg">
+    <svg
+      data-name="Calque 14"
+      height={size}
+      id="Calque_14"
+      viewBox="0 0 646.62 185.44"
+      width={size}
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <g>
         <path d="M16.52,52.49C16.72,22.58,31.13,2.05,56.74,2.05c18.01,0,29.21,9.17,29.21,9.17l-12.41,24.93s-4.8-2.79-10.61-2.79c-9,0-11.01,5.98-11.01,20.14v20.74h23.61v26.92h-23.61v75.37H16.52V101.15H1.71v-26.92h14.81v-21.74Z" />
         <g>

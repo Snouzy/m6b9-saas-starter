@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Rocket } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -32,17 +33,6 @@ export const Hero = () => {
             <Rocket size={18} />
             Commencer à convertir
           </Link>
-
-          {/* <Link
-            className={cn(
-              "brutal-hover:shake inline-flex items-center justify-center gap-2 rounded-none border-2 border-black bg-accent px-6 py-3 text-black hover:bg-black hover:text-white transition-colors uppercase text-sm font-bold shadow-brutal",
-            )}
-            href="https://fitfunnel.io"
-            target="_blank"
-          >
-            <Rocket size={18} />
-            Démarrer
-          </Link> */}
         </div>
 
         <ReviewSmall
@@ -60,7 +50,7 @@ export const Hero = () => {
       </div>
 
       <div className="flex flex-1 justify-end">
-        <img
+        <Image
           alt="Hero images"
           className="max-w-lg rounded-sm border-4 border-black object-contain shadow-brutal max-md:max-w-md"
           src="/images/header.png"

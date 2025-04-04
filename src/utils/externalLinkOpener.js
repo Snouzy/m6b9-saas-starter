@@ -153,7 +153,7 @@ export const openExternalLink = (url) => {
           // Second fallback avec la technique du iframe cachée si nécessaire
           setTimeout(() => {
             if (!worked) {
-              const iframe = createHiddenIframe(`safari-https://${url.replace(/^https?:\/\//, "")}`);
+              createHiddenIframe(`safari-https://${url.replace(/^https?:\/\//, "")}`);
             }
           }, 300);
         }
@@ -193,6 +193,7 @@ export const openExternalLink = (url) => {
                   document.location = universalUrl;
                 };
               } catch (e) {
+                console.error("Failed to change location in iframe:", e);
                 window.location = universalUrl;
               }
             }, 100);

@@ -1,8 +1,9 @@
-import { Typography } from "@/components/ui/typography";
-import { Layout, LayoutContent } from "@/features/page/layout";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
-const markdown = `Terms Markdown`;
+import { Layout, LayoutContent } from "@/features/page/layout";
+import { Typography } from "@/components/ui/typography";
+
+const markdown = "Terms Markdown";
 
 export default function page() {
   return (

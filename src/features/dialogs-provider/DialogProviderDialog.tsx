@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { Loader } from "../../components/ui/loader";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,7 +11,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "../../components/ui/alert-dialog";
-import { Loader } from "../../components/ui/loader";
+
+import type { ReactNode } from "react";
 
 export type ConfirmationDialogProps = {
   title?: string;
@@ -28,14 +29,7 @@ export type ConfirmationDialogProps = {
   children?: ReactNode;
 };
 
-export const ProviderConfirmationDialog = ({
-  title,
-  description,
-  loading,
-  action,
-  cancel,
-  children,
-}: ConfirmationDialogProps) => {
+export const ProviderConfirmationDialog = ({ title, description, loading, action, cancel, children }: ConfirmationDialogProps) => {
   return (
     <AlertDialog open={true}>
       <AlertDialogContent>
@@ -45,9 +39,7 @@ export const ProviderConfirmationDialog = ({
           <>
             <AlertDialogHeader>
               <AlertDialogTitle>{title ?? ""}</AlertDialogTitle>
-              {description ? (
-                <AlertDialogDescription>{description}</AlertDialogDescription>
-              ) : null}
+              {description ? <AlertDialogDescription>{description}</AlertDialogDescription> : null}
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel disabled={loading} onClick={cancel?.onClick}>

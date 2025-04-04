@@ -1,12 +1,13 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
-import { Card, CardFooter, CardHeader } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Typography } from "@/components/ui/typography";
-import { BuyButton } from "@/features/stripe/BuyButton";
-import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { BuyButton } from "@/features/stripe/BuyButton";
+import { Typography } from "@/components/ui/typography";
+import { Separator } from "@/components/ui/separator";
+import { Card, CardFooter, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export type PricingCardProps = {
   isPopular?: boolean;
@@ -42,9 +43,7 @@ export const PricingCard = (props: PricingCardProps) => {
         </div>
       ) : null}
       <CardHeader className="flex flex-col items-start gap-6 lg:gap-8">
-        <p className="gap-4 text-lg font-bold uppercase text-primary">
-          {props.title}
-        </p>
+        <p className="gap-4 text-lg font-bold uppercase text-primary">{props.title}</p>
         <div className="flex items-end justify-center gap-2">
           <p className="text-5xl font-extrabold">${props.price}</p>
           <Typography variant="base">{props.currency ?? "USD"}</Typography>
@@ -60,9 +59,9 @@ export const PricingCard = (props: PricingCardProps) => {
         <Separator />
         <ul className="flex w-full flex-col gap-3 lg:gap-4">
           {props.features.map((feature, i) => (
-            <li key={i} className="flex items-center gap-1">
+            <li className="flex items-center gap-1" key={i}>
               <Check className="text-green-500" size={20} />
-              <Typography variant="muted" className="flex-1">
+              <Typography className="flex-1" variant="muted">
                 {" "}
                 {feature}
               </Typography>
@@ -71,10 +70,7 @@ export const PricingCard = (props: PricingCardProps) => {
         </ul>
       </CardHeader>
       <CardFooter className="flex flex-col items-stretch gap-2">
-        <BuyButton
-          variant={props.isPopular ? "default" : "outline"}
-          priceId={props.priceId}
-        >
+        <BuyButton priceId={props.priceId} variant={props.isPopular ? "default" : "outline"}>
           {props.cta}
         </BuyButton>
         <Typography variant="muted">{props.ctaSubtitle}</Typography>

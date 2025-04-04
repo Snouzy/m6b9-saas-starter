@@ -6,7 +6,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 
 import type { PageParams } from "@/types/next";
 
-export default async function AuthVerifyRequestPage(props: PageParams) {
+export default async function AuthVerifyRequestPage(_: PageParams) {
   return (
     <div className="h-full">
       <header className="flex items-center gap-2 px-4 pt-4">

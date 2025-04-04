@@ -27,7 +27,7 @@ export const CTAImageSection = () => {
         </Typography>
 
         <Typography className="w-full max-w-3xl text-base font-mono leading-relaxed text-white/90" variant="base">
-          Que ce soit pour une question, une demande de devis, une remarque : n'hésitez pas à nous contacter via notre formulaire de
+          Que ce soit pour une question, une demande de devis, une remarque : n&apos;hésitez pas à nous contacter via notre formulaire de
           contact. Je me ferai un plaisir de revenir vers vous pour en discuter ensemble.
         </Typography>
 

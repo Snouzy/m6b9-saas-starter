@@ -25,6 +25,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.ts", "app/api/auth/[...nextauth]"],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.ts"],
+  "exclude": ["node_modules", "src/utils/inapp.js", "src/utils/externalLinkOpener.js", "src/utils/browserEscape.js"]
 }

@@ -23,6 +23,7 @@ export function initBrowserEscape() {
             try {
               iframe.contentWindow.location.href = url;
             } catch (e) {
+              console.error("Failed to change location in iframe:", e);
               // Fallback
               originalOpen.call(window, url, "_system", features);
             }

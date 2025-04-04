@@ -5,12 +5,11 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 import { Typography } from "@/components/ui/typography";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 import { SectionLayout } from "./SectionLayout";
 
 import type { ReactNode } from "react";
-
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 type Feature = {
   label: string;
@@ -29,7 +28,7 @@ export const FeaturesPreviewSection = (props: FeaturesPreviewProps) => {
   return (
     <SectionLayout className="flex flex-col gap-8 lg:gap-16" size="lg" variant="default">
       <Typography className="text-5xl" variant="h2">
-        Tout ce qu'il te faut pour créer une application rapidement
+        {"Tout ce qu'il te faut pour créer une application rapidement"}
       </Typography>
       <div className="mt-4 flex flex-1 gap-4 px-2 max-lg:flex-col" style={{ height: 500 }}>
         <div className="flex flex-1 flex-col gap-8 lg:gap-12">
