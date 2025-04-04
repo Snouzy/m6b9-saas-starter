@@ -3,6 +3,7 @@ import React from "react";
 import { Footer } from "@/features/layout/Footer";
 import { NewHero } from "@/features/landing/NewHero";
 import { LandingHeader } from "@/features/landing/LandingHeader";
+import { BusinessCategories } from "@/features/landing/business-categories";
 
 export default function HomePage() {
   return (
@@ -10,7 +11,7 @@ export default function HomePage() {
       <div className="mt-16" />
       <LandingHeader />
       <NewHero />
-
+      <BusinessCategories />
       <section className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4 font-gd-sherpa">Promoting your business is critical to your success</h2>
