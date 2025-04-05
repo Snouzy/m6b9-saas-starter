@@ -5,7 +5,6 @@ import { Menu } from "lucide-react";
 import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { LogoSvg } from "@/components/svg/LogoSvg";
 
@@ -55,14 +54,49 @@ export function LandingHeader() {
       }}
     >
       <div className="max-w-8xl mx-auto flex w-full items-center justify-between px-4 lg:px-8">
-        <motion.div
-          className="flex items-center gap-1"
-          style={{
-            scale: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.9]),
-          }}
-        >
-          <LogoSvg size={128} />
-        </motion.div>
+        <div className="flex items-center gap-2">
+          {/* Mobile Navigation Trigger - Now placed first */}
+          <motion.div
+            className="md:hidden"
+            style={{
+              opacity: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.8]),
+            }}
+          >
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button size="icon" variant="ghost">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent className="w-[300px] sm:w-[400px]" side="left">
+                <SheetHeader>
+                  <SheetTitle>Menu</SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col gap-4 py-4">
+                  <Button asChild className="justify-start" variant="ghost">
+                    <a href="#">FAQ</a>
+                  </Button>
+                  <Button asChild className="justify-start" variant="ghost">
+                    <a href="#">Prix</a>
+                  </Button>
+                  <Button asChild className="justify-start" variant="ghost">
+                    <a href="#">Contact</a>
+                  </Button>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </motion.div>
+
+          {/* Logo - Now second */}
+          <motion.div
+            className="flex items-center gap-1"
+            style={{
+              scale: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.9]),
+            }}
+          >
+            <LogoSvg size={128} />
+          </motion.div>
+        </div>
 
         {/* Desktop Navigation */}
         <motion.nav
@@ -71,85 +105,16 @@ export function LandingHeader() {
             opacity: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.8]),
           }}
         >
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button className="" variant="ghost">
-                Accueil
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuGroup>
-                <DropdownMenuItem>
-                  <a className="flex w-full" href="#">
-                    Présentation
-                  </a>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <a className="flex w-full" href="#">
-                    Services
-                  </a>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <Button asChild className="" variant="ghost">
-            <a href="/posts">Blog</a>
+          <Button asChild className="font-semibold" variant="ghost">
+            <a href="#">Foire</a>
           </Button>
-          <Button asChild className="" variant="ghost">
-            <a href="#">Expertise</a>
+          <Button asChild className="font-semibold" variant="ghost">
+            <a href="#">Prix</a>
           </Button>
-          <Button asChild className="" variant="ghost">
-            <a href="#">Méthodologie</a>
-          </Button>
-          <Button asChild className="" variant="ghost">
-            <a href="#">Prestation</a>
-          </Button>
-          <Button asChild className="" variant="ghost">
-            <a href="#">Projets</a>
+          <Button asChild className="font-semibold" variant="ghost">
+            <a href="#">Contact</a>
           </Button>
         </motion.nav>
-
-        {/* Mobile Navigation Trigger */}
-        <motion.div
-          className="flex md:hidden"
-          style={{
-            opacity: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.8]),
-          }}
-        >
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button size="icon" variant="ghost">
-                <Menu className="h-6 w-6" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent className="w-[300px] sm:w-[400px]" side="right">
-              <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
-              </SheetHeader>
-              <div className="flex flex-col gap-4 py-4">
-                <Button asChild className="justify-start" variant="ghost">
-                  <a href="#">Accueil</a>
-                </Button>
-                <Button asChild className="justify-start" variant="ghost">
-                  <a href="/posts">Blog</a>
-                </Button>
-                <Button asChild className="justify-start" variant="ghost">
-                  <a href="#">Expertise</a>
-                </Button>
-                <Button asChild className="justify-start" variant="ghost">
-                  <a href="#">Méthodologie</a>
-                </Button>
-                <Button asChild className="justify-start" variant="ghost">
-                  <a href="#">Prestation</a>
-                </Button>
-                <Button asChild className="justify-start" variant="ghost">
-                  <a href="#">Projets</a>
-                </Button>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </motion.div>
 
         {/* Auth and Theme */}
         <motion.nav
