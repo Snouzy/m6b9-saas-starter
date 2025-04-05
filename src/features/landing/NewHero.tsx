@@ -84,7 +84,7 @@ export function NewHero() {
               >
                 <div>
                   <Link className="btn text-white bg-blue-500 hover:bg-blue-600 group shadow-xs" href="/subscribe">
-                    Je m&apos;inscris pour 0€{" "}
+                    {"Je m'inscris pour 0€"}{" "}
                   </Link>
                   <p className="text-xs text-center text-slate-400 mt-1" data-aos="fade-right" data-aos-delay="200">
                     et sans carte.
