@@ -106,7 +106,7 @@ export function LandingHeader() {
           }}
         >
           <Button asChild className="font-semibold" variant="ghost">
-            <a href="#">Foire</a>
+            <a href="#">FAQ</a>
           </Button>
           <Button asChild className="font-semibold" variant="ghost">
             <a href="#">Prix</a>
