@@ -9,7 +9,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 import { Button } from "@/components/ui/button";
 import { LogoSvg } from "@/components/svg/LogoSvg";
 
-import { ThemeToggle } from "../theme/ThemeToggle";
 import { SignInButton } from "../auth/SignInButton";
 
 function useBoundedScroll(threshold: number) {
@@ -74,7 +73,7 @@ export function LandingHeader() {
         >
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button className="p-0" variant="ghost">
+              <Button className="" variant="ghost">
                 Accueil
               </Button>
             </DropdownMenuTrigger>
@@ -94,19 +93,19 @@ export function LandingHeader() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button asChild className="p-0" variant="ghost">
+          <Button asChild className="" variant="ghost">
             <a href="/posts">Blog</a>
           </Button>
-          <Button asChild className="p-0" variant="ghost">
+          <Button asChild className="" variant="ghost">
             <a href="#">Expertise</a>
           </Button>
-          <Button asChild className="p-0" variant="ghost">
+          <Button asChild className="" variant="ghost">
             <a href="#">Méthodologie</a>
           </Button>
-          <Button asChild className="p-0" variant="ghost">
+          <Button asChild className="" variant="ghost">
             <a href="#">Prestation</a>
           </Button>
-          <Button asChild className="p-0" variant="ghost">
+          <Button asChild className="" variant="ghost">
             <a href="#">Projets</a>
           </Button>
         </motion.nav>
@@ -160,7 +159,6 @@ export function LandingHeader() {
           }}
         >
           <SignInButton variant="ghost" />
-          <ThemeToggle />
         </motion.nav>
       </div>
     </motion.header>

@@ -1,327 +1,162 @@
 "use client";
 
-import {
-  // BarChart3,
-  // Calendar,
-  // CalendarCheck,
-  // CheckCircle,
-  Sparkles,
-  // X,
-} from "lucide-react";
-import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
 
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import { BentoGrid, BentoGridItem } from "@/components/ui/Bento";
-// import { Alert, AlertTitle } from "@/components/ui/alert";
-// import { Loader } from "@/components/ui/loader";
-// import { Typography } from "@/components/ui/typography";
-// import type { Variants } from "framer-motion";
 
-import { SectionLayout } from "./SectionLayout";
-
-export function BentoGridSection() {
+export function BentoSection() {
   return (
-    <SectionLayout>
-      <BentoGrid className="mx-auto max-w-4xl md:auto-rows-[20rem]">
-        {items.map((item, i) => (
-          <BentoGridItem
-            className={cn("[&>p:text-lg]", item.className)}
-            description={item.description}
-            header={item.header}
-            icon={item.icon}
-            key={i}
-            title={item.title}
-          />
-        ))}
-      </BentoGrid>
-    </SectionLayout>
+    <section className="mt-0 md:mt-20" data-aos-id-2>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="md:w-3/4">
+            <BentoGrid className="md:grid-cols-2">
+              {/* Higher traffic */}
+              <BentoGridItem
+                className="bg-[#1e2b80] text-white"
+                title={<div className="font-bold text-2xl mt-auto">Plus de traffic sur tes liens affiliés.</div>}
+              />
+
+              {/* Boosted revenue */}
+              <BentoGridItem
+                className="bg-[#f8a396] text-black"
+                title={<div className="font-bold text-2xl mt-auto">Plus de revenus.</div>}
+              />
+
+              {/* Trust and loyalty */}
+              <BentoGridItem
+                className="md:col-span-2 bg-[#3f51b5] text-white"
+                title={<div className="font-bold text-2xl mt-auto">Une plus grande confiance et fidélité de la part de ta communauté.</div>}
+              />
+
+              {/* Brand partnerships */}
+              <BentoGridItem
+                className="bg-[#d6e6fa] text-black"
+                title={<div className="font-bold text-2xl mt-auto">Plus de demandes de partenariats de marque.</div>}
+              />
+
+              {/* Better engagement */}
+              <BentoGridItem
+                className="bg-black text-white"
+                title={<div className="font-bold text-2xl mt-auto">{"Plus d'engagement avec tes followers."}</div>}
+              />
+            </BentoGrid>
+          </div>
+
+          {/* Profile card - Now outside the BentoGrid */}
+          <div className="md:w-1/4 bg-[#f0f8ff] rounded-xl shadow-input border border-border lg:min-w-[350px]">
+            <div className="flex flex-col items-center p-8 gap-4">
+              <div className="w-24 h-24 rounded-full overflow-hidden relative">
+                <Image alt="Profile" className="object-cover" fill src="/images/profile.png" />
+              </div>
+              <div className="text-center">
+                <p className="font-medium">@Sophie_Delish</p>
+                <div className="flex gap-3 mt-2 justify-center">
+                  <Link aria-label="Twitter" href="#">
+                    <svg
+                      fill="none"
+                      height="20"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                    </svg>
+                  </Link>
+                  <Link aria-label="Instagram" href="#">
+                    <svg
+                      fill="none"
+                      height="20"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                    </svg>
+                  </Link>
+                  <Link aria-label="YouTube" href="#">
+                    <svg
+                      fill="none"
+                      height="20"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path>
+                      <path d="m10 15 5-3-5-3z"></path>
+                    </svg>
+                  </Link>
+                  <Link aria-label="TikTok" href="#">
+                    <svg
+                      fill="none"
+                      height="20"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M9 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path>
+                      <path d="M20 9V7a3 3 0 0 0-3-3h-2"></path>
+                      <path d="M13 22V11a3 3 0 0 1 3-3h2"></path>
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="w-full mt-4">
+                <Image alt="Product" className="  mb-4 w-full h-auto rounded" height={200} src="/images/product.png" width={300} />
+
+                <Button className="w-full mb-2 flex items-center gap-2" variant="outline">
+                  Get 10% Off
+                  <svg
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect height="14" rx="2" ry="2" width="14" x="8" y="8"></rect>
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                  </svg>
+                </Button>
+
+                <Button className="w-full mb-4 bg-gray-600 text-white">Order Today</Button>
+
+                <Button className="w-full mb-2 bg-[#f0f8e6]" variant="outline">
+                  Listen to My Podcast
+                </Button>
+
+                <Button className="w-full bg-[#f0f8e6]" variant="outline">
+                  Amazon Storefront
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
-
-// const Skeleton1 = () => {
-//   const variants: Variants = {
-//     initial: { opacity: 0 },
-//     animate: { opacity: 1 },
-//   };
-
-//   return (
-//     <motion.div
-//       initial="initial"
-//       whileHover="animate"
-//       className="flex h-full flex-col gap-2"
-//     >
-//       <motion.div className="flex flex-row items-start gap-2 rounded-2xl border border-border bg-background p-3">
-//         <img
-//           alt="avatar"
-//           src="/images/AndyPhotoNoir&Blanc.jpeg"
-//           className="size-6 shrink-0 rounded-full"
-//         />
-//         <div>
-//           <p className="text-xs text-neutral-500">
-//             Create a Thread to announce Now.ts
-//           </p>
-//         </div>
-//       </motion.div>
-//       <motion.div
-//         variants={variants}
-//         className="flex flex-row items-start justify-end gap-2 rounded-2xl border border-border bg-background p-3"
-//       >
-//         <p className="text-xs text-neutral-500">
-//           Today I announced my new project, Now.TS, the perfect way to create
-//           professional Next.js application in days.
-//         </p>
-//         <div className="size-6 shrink-0 rounded-full bg-gradient-to-r from-pink-500 to-violet-500" />
-//       </motion.div>
-//     </motion.div>
-//   );
-// };
-
-// const Skeleton2 = () => {
-//   const variants: Variants = {
-//     initial: { opacity: 0, y: -10 },
-//     animate: { opacity: 1, y: 0 },
-//   };
-//   return (
-//     <motion.div
-//       initial="initial"
-//       whileHover="animate"
-//       className="flex h-full flex-col gap-2"
-//     >
-//       <motion.div>
-//         <Alert variant="default" className="">
-//           <Loader size={20} />
-//           <AlertTitle>Schedule your threads...</AlertTitle>
-//         </Alert>
-//       </motion.div>
-//       <motion.div variants={variants}>
-//         <Alert variant="success" className="">
-//           <CheckCircle size={20} />
-//           <AlertTitle>Your threads are now scheduled for 7:00 AM</AlertTitle>
-//         </Alert>
-//       </motion.div>
-//     </motion.div>
-//   );
-// };
-
-const Skeleton3 = () => {
-  const variants = {
-    initial: {
-      backgroundPosition: "0 50%",
-    },
-    animate: {
-      backgroundPosition: ["0, 50%", "100% 50%", "0 50%"],
-    },
-  };
-  return (
-    <motion.div
-      animate="animate"
-      className="dark:bg-dot-white/[0.2] bg-dot-black/[0.2] flex size-full min-h-[6rem] flex-1 flex-col space-y-2 rounded-lg"
-      initial="initial"
-      style={{
-        background: "linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)",
-        backgroundSize: "400% 400%",
-      }}
-      transition={{
-        duration: 5,
-        repeat: Infinity,
-        repeatType: "reverse",
-      }}
-      variants={variants}
-    >
-      <motion.div className="size-full rounded-lg"></motion.div>
-    </motion.div>
-  );
-};
-
-// const Skeleton4 = () => {
-//   const first = {
-//     initial: {
-//       x: 20,
-//       rotate: -5,
-//     },
-//     hover: {
-//       x: 0,
-//       rotate: 0,
-//     },
-//   };
-//   const second = {
-//     initial: {
-//       x: -20,
-//       rotate: 5,
-//     },
-//     hover: {
-//       x: 0,
-//       rotate: 0,
-//     },
-//   };
-//   return (
-//     <motion.div
-//       initial="initial"
-//       animate="animate"
-//       whileHover="hover"
-//       className="flex flex-1 flex-row gap-4"
-//     >
-//       <motion.div
-//         variants={first}
-//         className="flex h-full w-1/3 flex-col items-center justify-center rounded-2xl border border-border bg-background p-4"
-//       >
-//         <Typography variant="large">Fille-de-la-grace.com</Typography>
-//         <Typography variant={"muted"}>In the last 30 days</Typography>
-//         <Typography variant={"muted"} className="text-green-500">
-//           +12%
-//         </Typography>
-//       </motion.div>
-//       <motion.div className="flex h-full w-1/3 flex-col items-center justify-center rounded-2xl border border-border bg-background p-4">
-//         <Typography variant="large">VanilleB2B.com</Typography>
-//         <Typography variant={"muted"}>In the last 30 days</Typography>
-//         <Typography variant={"muted"} className="text-green-500">
-//           +21%
-//         </Typography>
-//       </motion.div>
-//       <motion.div
-//         variants={second}
-//         className="flex h-full w-1/3 flex-col items-center justify-center rounded-2xl border border-border bg-background p-4"
-//       >
-//         <Typography variant="large">Marketplace.com</Typography>
-//         <Typography variant={"muted"}>In the last 30 days</Typography>
-//         <Typography variant={"muted"} className="text-green-500">
-//           +12%
-//         </Typography>
-//       </motion.div>
-//     </motion.div>
-//   );
-// };
-
-// const Skeleton5 = () => {
-//   const variants = {
-//     initial: {
-//       x: 0,
-//     },
-//     animate: {
-//       x: 10,
-//       rotate: 5,
-//       transition: {
-//         duration: 0.2,
-//       },
-//     },
-//   };
-//   const variantsSecond = {
-//     initial: {
-//       x: 0,
-//     },
-//     animate: {
-//       x: -10,
-//       rotate: -5,
-//       transition: {
-//         duration: 0.2,
-//       },
-//     },
-//   };
-
-//   return (
-//     <motion.div
-//       initial="initial"
-//       whileHover="animate"
-//       className="flex flex-col gap-2"
-//     >
-//       <motion.div
-//         variants={variants}
-//         className="flex flex-row items-start gap-2 rounded-2xl border border-border bg-background p-3"
-//       >
-//         <img
-//           src="/images/AndyPhotoNoir&Blanc.jpeg"
-//           alt="avatar"
-//           height="100"
-//           width="100"
-//           className="size-10 rounded-full"
-//         />
-//         <p className="text-xs text-neutral-500">
-//           What I need to do to get more followers ?
-//         </p>
-//       </motion.div>
-//       <motion.div
-//         variants={variantsSecond}
-//         className="flex flex-row items-start justify-end gap-2 rounded-2xl border border-border bg-background p-3"
-//       >
-//         <div>
-//           <p className="text-xs text-neutral-500">Searching...</p>
-//           <motion.p
-//             className="text-xs text-neutral-500"
-//             variants={{
-//               initial: {
-//                 opacity: 0,
-//               },
-//               animate: {
-//                 opacity: 1,
-//               },
-//             }}
-//           >
-//             Based on the Threads activity of the past 30 days, you should focus
-//             creating content on Next.js
-//           </motion.p>
-//         </div>
-//         <div className="size-6 shrink-0 rounded-full bg-gradient-to-r from-pink-500 to-violet-500" />
-//       </motion.div>
-//     </motion.div>
-//   );
-// };
-
-const items = [
-  {
-    title: "Unlcoaching.com",
-    description: (
-      <span className="text-sm">Réalisation d&apos;un site vitrine avec un blog, et presentation activité pour un coach sportif.</span>
-    ),
-    header: <Skeleton3 />,
-    className: "md:col-span-1",
-    icon: <Sparkles size={20} />,
-  },
-  {
-    title: "Fille-de-la-grace.fr",
-    description: <span className="text-sm">Création d&apos;un site vitrine pour mon activité de services et création de site web .</span>,
-    header: <Skeleton3 />,
-    className: "md:col-span-1",
-    icon: <Sparkles size={20} />,
-  },
-  {
-    title: "Vanille-B2B.com",
-    description: <span className="text-sm">Réalisation d&apos;une application de service et d&apos;entre aide solidaire.</span>,
-    header: <Skeleton3 />,
-    className: "md:col-span-1",
-    icon: <Sparkles size={20} />,
-  },
-  {
-    title: "Unlcoaching.app",
-    description: (
-      <span className="text-sm">
-        Application permettant à un coach sportif de créer, publier et vendre ses pack personnalisés d&apos;exercices.
-      </span>
-    ),
-    header: <Skeleton3 />,
-    className: "md:col-span-1",
-    icon: <Sparkles size={20} />,
-  },
-
-  {
-    title: "Marketplace.com",
-    description: (
-      <span className="text-sm">
-        Application permettant à un coach sportif de créer, publier et vendre ses pack personnalisés d&apos;exercices.
-      </span>
-    ),
-    header: <Skeleton3 />,
-    className: "md:col-span-1",
-    icon: <Sparkles size={20} />,
-  },
-  {
-    title: "I-Doctor.com",
-    description: (
-      <span className="text-sm">
-        Application permettant à un coach sportif de créer, publier et vendre ses pack personnalisés d&apos;exercices.
-      </span>
-    ),
-    header: <Skeleton3 />,
-    className: "md:col-span-1",
-    icon: <Sparkles size={20} />,
-  },
-];

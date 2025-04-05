@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { Typography } from "./typography";
 
 export const BentoGrid = ({ className, children }: { className?: string; children?: React.ReactNode }) => {
-  return <div className={cn("grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto ", className)}>{children}</div>;
+  return <div className={cn("grid md:auto-rows-[13rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto ", className)}>{children}</div>;
 };
 
 export const BentoGridItem = ({

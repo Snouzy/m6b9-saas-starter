@@ -16,7 +16,7 @@ export function HeaderBase({ children }: PropsWithChildren) {
             <Image alt="app logo" height={28} src={SiteConfig.appIcon} width={28} />
           </div>
 
-          <Link className="text-xl font-extrabold uppercase tracking-wide text-black hover:underline" href="/">
+          <Link className="text-xl tracking-wide text-black hover:underline" href="/">
             {SiteConfig.title}
           </Link>
         </div>
