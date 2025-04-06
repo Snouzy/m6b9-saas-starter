@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { Typography } from "@/components/ui/typography";
 import { Separator } from "@/components/ui/separator";
 
-import { DASHBOARD_LINKS } from "../../../app/(dashboard-layout)/dashboard-links";
+import { DASHBOARD_LINKS } from "../../../app/[locale]/(dashboard-layout)/dashboard-links";
 
 import type { NavigationLinkGroups } from "./navigation.type";
 
@@ -48,13 +48,15 @@ export const DesktopVerticalMenu = ({ links, className }: { links: NavigationLin
 
               return (
                 <Link
-                  className={cn("flex h-8 items-center gap-2 rounded-md px-2 text-sm transition-colors", "hover:bg-card", {
-                    "bg-accent/50 hover:bg-accent/80": isCurrent,
+                  className={cn("flex h-8 items-center gap-2 rounded-md px-2 text-sm transition-colors", "hover:bg-gray-100", {
+                    "bg-gray-200 hover:bg-gray-200": isCurrent,
                   })}
                   href={link.url}
                   key={link.url}
                 >
                   {cloneElement(link.icon, {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-expect-error
                     className: "h-4 w-4",
                   })}
                   <span className="flex h-8 items-center gap-2 rounded-md px-2 text-sm">{link.title}</span>

@@ -1,21 +1,19 @@
 import Link from "next/link";
-import Image from "next/image";
 
-import { SiteConfig } from "@/site-config";
 import { requiredAuth } from "@/lib/auth/helper";
 import { ThemeToggle } from "@/features/theme/ThemeToggle";
+import { MobileDropdownMenu } from "@/features/navigation/MobileDropdownMenu";
+import { DesktopVerticalMenu } from "@/features/navigation/DesktopVerticalMenu";
+import { ContactFeedbackPopover } from "@/features/contact/feedback/ContactFeedbackPopover";
 import { UserDropdown } from "@/features/auth/UserDropdown";
 import { AuthButton } from "@/features/auth/AuthButton";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { LogoSvg } from "@/components/svg/LogoSvg";
 
 import { DASHBOARD_LINKS } from "./dashboard-links";
 
 import type { PropsWithChildren } from "react";
-
-import { MobileDropdownMenu } from "@/features/navigation/MobileDropdownMenu";
-import { DesktopVerticalMenu } from "@/features/navigation/DesktopVerticalMenu";
-import { ContactFeedbackPopover } from "@/features/contact/feedback/ContactFeedbackPopover";
 
 export const DashboardNavigation = async (props: PropsWithChildren) => {
   const user = await requiredAuth();
@@ -23,10 +21,9 @@ export const DashboardNavigation = async (props: PropsWithChildren) => {
     <div className="flex h-full flex-col lg:flex-row lg:overflow-hidden">
       {/* Desktop ONLY Navigation bar */}
       <div className="flex size-full max-w-[240px] flex-col border-r border-border px-2 py-4 max-lg:hidden">
-        <div className="flex items-center gap-2">
-          <Image alt="app logo" height={24} src={SiteConfig.appIcon} width={24} />
+        <div className="flex items-center justify-center">
           <Link className="text-xl font-bold" href="/">
-            {SiteConfig.title}
+            <LogoSvg className="h-8 w-24" />
           </Link>
         </div>
         <div className="h-10" />
@@ -45,21 +42,17 @@ export const DashboardNavigation = async (props: PropsWithChildren) => {
       {/* Main container */}
       <div className="flex-1">
         {/* Header */}
-        <header className="w-full border-b bg-background max-lg:sticky max-lg:top-0 max-lg:z-40">
-          <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
+        <header className="w-full border-b bg-background max-lg:sticky max-lg:top-0 max-lg:z-40 px-2">
+          <div className="flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
             <div className="flex items-center gap-2 lg:hidden">
-              <Image alt="app logo" height={32} src={SiteConfig.appIcon} width={32} />
-              <Link className="text-lg font-bold " href="/">
-                {SiteConfig.title}
-              </Link>
+              <MobileDropdownMenu links={DASHBOARD_LINKS} />
+              <LogoSvg className="h-6 w-24" />
             </div>
 
-            <div className="flex flex-1 items-center justify-end space-x-4">
+            <div className="flex flex-1 items-center justify-end">
               {/* Mobile header */}
-              <nav className="flex items-center space-x-1 lg:hidden">
+              <nav className="flex items-center lg:hidden">
                 <AuthButton />
-                <ThemeToggle />
-                <MobileDropdownMenu links={DASHBOARD_LINKS} />
               </nav>
               {/* Desktop header */}
               <nav className="flex items-center space-x-1 max-lg:hidden">

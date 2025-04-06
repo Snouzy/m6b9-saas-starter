@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import { ContactSupportDialog } from "@/features/contact/support/ContactSupportDialog";
-
 import { Typography } from "../../components/ui/typography";
 import { buttonVariants } from "../../components/ui/button";
 
@@ -19,7 +17,7 @@ export function Page404() {
         <Link className={buttonVariants({ variant: "default" })} href="/">
           Go back home
         </Link>
-        <ContactSupportDialog />
+        {/* <ContactSupportDialog /> */}
       </div>
     </main>
   );

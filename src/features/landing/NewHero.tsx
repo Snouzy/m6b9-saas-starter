@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import { getI18n } from "locales/server";
 import iPhone from "@public/images/iphone.png";
 import Avatar04 from "@public/images/avatar-04.jpg";
 import Avatar03 from "@public/images/avatar-03.jpg";
@@ -8,8 +9,9 @@ import Avatar02 from "@public/images/avatar-02.jpg";
 import Avatar01 from "@public/images/avatar-01.jpg";
 import Particles from "@/components/ui/particles";
 import { Button } from "@/components/ui/moving-border";
+export async function NewHero() {
+  const t = await getI18n();
 
-export function NewHero() {
   return (
     <section className="relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -76,7 +78,7 @@ export function NewHero() {
                 </span>
               </h1>
               <p className="text-lg text-slate-400 mb-8" data-aos="fade-right" data-aos-delay="200">
-                Un seul lien pour mettre en lumière tes conseils, tes créations, ton expertise.
+                {t("hero_subtitle")}
               </p>
               {/* Buttons */}
               <div

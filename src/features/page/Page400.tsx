@@ -1,9 +1,6 @@
 import Link from "next/link";
 
-import { ContactSupportDialog } from "@/features/contact/support/ContactSupportDialog";
-
 import { Typography } from "../../components/ui/typography";
-import { buttonVariants } from "../../components/ui/button";
 
 export function Page400() {
   return (
@@ -18,10 +15,8 @@ export function Page400() {
         </Typography>
       </div>
       <div className="flex items-center gap-4">
-        <Link className={buttonVariants({ variant: "linkHover1" })} href="/">
-          Go back home
-        </Link>
-        <ContactSupportDialog />
+        <Link href="/">Go back home</Link>
+        {/* <ContactSupportDialog /> */}
       </div>
     </main>
   );

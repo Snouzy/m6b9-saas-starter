@@ -16,31 +16,33 @@ export function BentoSection() {
               {/* Higher traffic */}
               <BentoGridItem
                 className="bg-[#1e2b80] text-white"
-                title={<div className="font-bold text-2xl mt-auto">Plus de traffic sur tes liens affiliés.</div>}
+                title={<span className="font-bold text-2xl mt-auto">Plus de traffic sur tes liens affiliés.</span>}
               />
 
               {/* Boosted revenue */}
               <BentoGridItem
                 className="bg-[#f8a396] text-black"
-                title={<div className="font-bold text-2xl mt-auto">Plus de revenus.</div>}
+                title={<span className="font-bold text-2xl mt-auto">Plus de revenus.</span>}
               />
 
               {/* Trust and loyalty */}
               <BentoGridItem
                 className="md:col-span-2 bg-[#3f51b5] text-white"
-                title={<div className="font-bold text-2xl mt-auto">Une plus grande confiance et fidélité de la part de ta communauté.</div>}
+                title={
+                  <span className="font-bold text-2xl mt-auto">Une plus grande confiance et fidélité de la part de ta communauté.</span>
+                }
               />
 
               {/* Brand partnerships */}
               <BentoGridItem
                 className="bg-[#d6e6fa] text-black"
-                title={<div className="font-bold text-2xl mt-auto">Plus de demandes de partenariats de marque.</div>}
+                title={<span className="font-bold text-2xl mt-auto">Plus de demandes de partenariats de marque.</span>}
               />
 
               {/* Better engagement */}
               <BentoGridItem
                 className="bg-black text-white"
-                title={<div className="font-bold text-2xl mt-auto">{"Plus d'engagement avec tes followers."}</div>}
+                title={<span className="font-bold text-2xl mt-auto">{"Plus d'engagement avec tes followers."}</span>}
               />
             </BentoGrid>
           </div>

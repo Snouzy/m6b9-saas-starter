@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
-import { DASHBOARD_LINKS } from "../../../app/(dashboard-layout)/dashboard-links";
+import { DASHBOARD_LINKS } from "../../../app/[locale]/(dashboard-layout)/dashboard-links";
 
 import type { NavigationLinkGroups } from "./navigation.type";
 

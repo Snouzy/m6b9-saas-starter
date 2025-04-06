@@ -4,20 +4,18 @@ import { Inter, Permanent_Marker } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 
-import { LayoutParams } from "@/types/next";
 import { SiteConfig } from "@/site-config";
 import { cn } from "@/lib/utils";
 import { getServerUrl } from "@/lib/server-url";
 import { NextTopLoader } from "@/features/page/NextTopLoader";
-import { FloatingLegalFooter } from "@/features/legal/FloatingLegalFooter";
 import { TailwindIndicator } from "@/components/utils/TailwindIndicator";
 
 import { Providers } from "./providers";
 
-import type { ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import type { Metadata } from "next";
 
-import "./css/globals.css";
+import "../css/globals.css";
 
 export const metadata: Metadata = {
   title: SiteConfig.title,
@@ -41,11 +39,11 @@ const permanentMarker = Permanent_Marker({
 const hkgrotesk = localFont({
   src: [
     {
-      path: "../public/fonts/HKGrotesk-Medium.woff2",
+      path: "../../public/fonts/HKGrotesk-Medium.woff2",
       weight: "500",
     },
     {
-      path: "../public/fonts/HKGrotesk-ExtraBold.woff2",
+      path: "../../public/fonts/HKGrotesk-ExtraBold.woff2",
       weight: "800",
     },
   ],
@@ -53,7 +51,17 @@ const hkgrotesk = localFont({
   display: "swap",
 });
 
-export default function RootLayout({ children, modal }: LayoutParams<{}> & { modal?: ReactNode }) {
+export const preferredRegion = ["fra1", "sfo1", "iad1"];
+
+interface RootLayoutProps {
+  params: Promise<{ locale: string }>;
+  children: ReactElement;
+  modal?: ReactNode;
+}
+
+export default async function RootLayout({ params, children, modal }: RootLayoutProps) {
+  const { locale } = await params;
+  console.log("locale in layout.tsx:", locale);
   return (
     <>
       <html className="h-full" lang="en" suppressHydrationWarning>
@@ -71,14 +79,14 @@ export default function RootLayout({ children, modal }: LayoutParams<{}> & { mod
           )}
           suppressHydrationWarning
         >
-          <Providers>
+          <Providers locale={locale}>
             <NextTopLoader color="hsl(var(--primary))" delay={100} showSpinner={false} />
-            <div className="flex flex-col min-h-screen overflow-hidden">
+            <div className="flex flex-col min-h-screen overflow-hidden h-full">
               {children}
               {modal}
             </div>
             <TailwindIndicator />
-            <FloatingLegalFooter />
+            {/* <FloatingLegalFooter /> */}
           </Providers>
         </body>
       </html>
