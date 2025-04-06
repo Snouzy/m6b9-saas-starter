@@ -14,10 +14,10 @@ export async function NewHero() {
 
   return (
     <section className="relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="pt-16 pb-12 md:pt-40 md:pb-20">
+      <div className="max-w-6xl mx-auto px-1 sm:px-6">
+        <div className="pb-12 lg:pt-40 lg:pb-20">
           {/* Content */}
-          <div className="relative max-w-xl mx-auto md:max-w-none text-center md:text-left flex flex-col md:flex-row pl-10 justify-center lg:justify-start">
+          <div className="relative max-w-xl mx-auto md:max-w-none text-center md:text-left flex flex-col md:flex-row md:pl-10 justify-center lg:justify-start px-2">
             {/* Background */}
             <div
               aria-hidden="true"
@@ -55,13 +55,13 @@ export async function NewHero() {
               <div className="">
                 {/* Copy */}
                 <h1
-                  className="text-center lg:text-left font-hkgrotesk text-slate-100 mb-6 h1 text-[clamp(1.5rem,4vw,3rem)] sm:text-[clamp(2rem,4.5vw,3.5rem)] lg:max-w-2xl"
+                  className="text-center lg:text-left font-hkgrotesk text-slate-100 mb-6 h1 text-[clamp(2rem,4vw,3rem)] sm:text-[clamp(2rem,4.5vw,3.5rem)] lg:max-w-2xl"
                   data-aos="fade-right"
                   data-aos-delay="100"
                 >
-                  Convertis tes prospects en clients depuis{" "}
+                  {t("hero_title")}{" "}
                   <span className="font-permanent-marker text-accent font-normal whitespace-nowrap">
-                    ta{" "}
+                    {t("commons.your_feminine")}{" "}
                     <span className="inline-flex relative">
                       <svg
                         className="absolute right-0 top-full mt-1 max-w-none"
@@ -77,7 +77,7 @@ export async function NewHero() {
                           opacity=".32"
                         />
                       </svg>
-                      bio
+                      {t("hero_title_highlight")}
                     </span>
                     <span className="text-slate-100">.</span>
                   </span>
@@ -101,9 +101,7 @@ export async function NewHero() {
                         borderRadius="50px"
                         className="py-7 group w-full bg-gradient-to-r from-primary to-primary px-10 border justify-center"
                       >
-                        <span className="font-inter font-bold text-2xl">
-                          S&apos;inscrire pour 0€ <span className={"inline-block transition-transform duration-300 ease-out"}>🚀</span>
-                        </span>
+                        <span className="font-inter font-bold text-xl md:text-2xl">{t("hero_cta")}</span>
                       </Button>
                     </Link>
 
