@@ -10,6 +10,8 @@ import { getError } from "../error/auth-error-mapping";
 import { SignInProviders } from "./SignInProviders";
 
 export default async function AuthSignInPage({ params }: { params: Promise<{ error: string }> }) {
+  const allParams = await params;
+  console.log("allParams:", allParams);
   const { error } = await params;
   const { errorMessage, error: errorCode } = getError(error);
   console.log("errorCode:", errorCode);

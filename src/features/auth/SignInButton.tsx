@@ -20,7 +20,7 @@ const useHref = () => {
     return "";
   }
 
-  const href = `${window.location.href}dashboard`;
+  const href = `${window.location.href}/dashboard`;
 
   return `${href}`;
 };

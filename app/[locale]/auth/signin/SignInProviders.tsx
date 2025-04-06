@@ -9,7 +9,6 @@ import { Divider } from "@/components/ui/divider";
 
 import { SignInCredentialsAndMagicLinkForm } from "./SignInCredentialsAndMagicLinkForm";
 import { ProviderButton } from "./ProviderButton";
-import { MagicLinkForm } from "./MagicLinkForm";
 
 export const SignInProviders = () => {
   const { data: providers, isPending } = useQuery({
@@ -34,30 +33,19 @@ export const SignInProviders = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      {!providers.credentials ? (
-        <>
-          <Typography variant="small">Magic link ✨</Typography>
-          <MagicLinkForm />
-          <Divider>ou</Divider>
-        </>
-      ) : null}
+      <SignInCredentialsAndMagicLinkForm />
+      <Divider>ou</Divider>
 
-      {providers.credentials ? (
-        <>
-          <SignInCredentialsAndMagicLinkForm />
-          <Divider>ou</Divider>
-        </>
-      ) : null}
+      <div className="flex flex-col gap-2">
+        <ProviderButton providerId="google" variant="accent" />
+      </div>
 
-      <div className="flex flex-col gap-2">{providers.google ? <ProviderButton providerId="google" variant="accent" /> : null}</div>
-      {providers.credentials ? (
-        <Typography className="text-center text-gray-400" variant="small">
-          {"Vous n'avez pas de compte? "}{" "}
-          <Typography as={Link} className="text-gray-400" href="/auth/signup" variant="link">
-            {"S'inscrire"}
-          </Typography>
+      <Typography className="text-center text-gray-400" variant="small">
+        {"Vous n'avez pas de compte? "}{" "}
+        <Typography as={Link} className="text-gray-400" href="/auth/signup" variant="link">
+          {"S'inscrire"}
         </Typography>
-      ) : null}
+      </Typography>
     </div>
   );
 };

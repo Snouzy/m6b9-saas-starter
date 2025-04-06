@@ -7,7 +7,10 @@ export default {
   "invoice_count#zero": "Aucune facture",
   "invoice_count#one": "1 facture",
   "invoice_count#other": "{count} factures",
+  use_password: "Se connecter avec mot de passe",
   commons: {
     your_feminine: "ta",
+    password: "Mot de passe",
+    email: "Email",
   },
 } as const;

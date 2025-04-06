@@ -7,7 +7,10 @@ export default {
   "invoice_count#zero": "No invoices",
   "invoice_count#one": "1 invoice",
   "invoice_count#other": "{count} invoices",
+  use_password: "Use password",
   commons: {
     your_feminine: "your",
+    password: "Password",
+    email: "Email",
   },
 } as const;

@@ -18,7 +18,7 @@ export default function Page() {
           router.back();
         }
       }}
-      open={path.startsWith("/auth/signin")}
+      open={path.includes("/auth/signin")}
     >
       <DialogContent className="bg-card">
         <DialogHeader className="flex flex-col items-center justify-center gap-2">

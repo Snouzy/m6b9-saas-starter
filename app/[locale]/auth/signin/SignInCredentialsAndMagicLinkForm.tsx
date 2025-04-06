@@ -5,6 +5,7 @@ import { useLocalStorage } from "usehooks-ts";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 
+import { useI18n } from "locales/client";
 import { Typography } from "@/components/ui/typography";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, useZodForm } from "@/components/ui/form";
@@ -18,6 +19,8 @@ const LoginCredentialsFormScheme = z.object({
 type LoginCredentialsFormType = z.infer<typeof LoginCredentialsFormScheme>;
 
 export const SignInCredentialsAndMagicLinkForm = () => {
+  const t = useI18n();
+
   const form = useZodForm({
     schema: LoginCredentialsFormScheme,
   });
@@ -61,7 +64,7 @@ export const SignInCredentialsAndMagicLinkForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{t("commons.password")}</FormLabel>
                 <FormControl>
                   <Input type="password" {...field} />
                 </FormControl>
@@ -80,7 +83,7 @@ export const SignInCredentialsAndMagicLinkForm = () => {
           type="button"
           variant="link"
         >
-          Use password
+          {t("use_password")}
         </Typography>
       )}
 

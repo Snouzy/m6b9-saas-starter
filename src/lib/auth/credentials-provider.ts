@@ -48,10 +48,6 @@ export const getCredentialsProvider = () => {
         },
       });
 
-      if (!user) {
-        throw new Error("Invalid login details. Please check your information and try again.");
-      }
-
       if (user) {
         return {
           id: user.id,
