@@ -81,7 +81,7 @@ export default async function RootLayout({ params, children, modal }: RootLayout
         >
           <Providers locale={locale}>
             <NextTopLoader color="hsl(var(--primary))" delay={100} showSpinner={false} />
-            <div className="flex flex-col min-h-screen overflow-hidden h-full">
+            <div className="h-full">
               {children}
               {modal}
             </div>
