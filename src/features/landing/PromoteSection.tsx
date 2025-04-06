@@ -84,7 +84,7 @@ export const PromoteSection = () => {
             {/* Section content */}
             <div className="relative xl:max-w-none text-center xl:text-left flex flex-col xl:flex-row items-center justify-center">
               {/* Content */}
-              <div className="max-w-full shrink-0 order-1 xl:order-2 relative">
+              <div className="max-w-full shrink-0 relative">
                 {/* Accent line - MORE VISIBLE */}
                 <div aria-hidden="true" className="absolute -left-4 top-1/2 w-3 h-20 bg-accent/30 rounded-full hidden xl:block" />
 

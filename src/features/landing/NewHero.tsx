@@ -87,7 +87,7 @@ export async function NewHero() {
                 </p>
                 {/* Buttons */}
                 <div
-                  className="flex-col max-w-xs mx-auto sm:max-w-none sm:flex justify-start space-y-4 sm:space-y-0 sm:space-x-4"
+                  className="flex-col mb-0 md:mb-10 lg:mb-0 max-w-xs mx-auto sm:max-w-none sm:flex justify-start space-y-4 sm:space-y-0 "
                   data-aos="fade-right"
                   data-aos-delay="300"
                 >
@@ -109,8 +109,8 @@ export async function NewHero() {
                       et sans carte.
                     </p>
                   </div>
-                  <div className="sm:flex sm:justify-center items-center space-y-2 sm:space-y-0 sm:space-x-3 mb-10 lg:mb-0">
-                    <div className="inline-flex -space-x-3 -ml-0.5">
+                  <div className="flex justify-center items-center space-y-2 spacex-x-2 sm:space-x-3 lg:mb-0">
+                    <div className="inline-flex -space-x-3 -ml-0.5 mb-0">
                       <Image
                         alt="Avatar 01"
                         className="rounded-full border-2 border-slate-800 box-content"
@@ -140,13 +140,13 @@ export async function NewHero() {
                         width={28}
                       />
                     </div>
-                    <div className="text-xs text-slate-500 font-medium">+2K</div>
+                    <div className="text-xs text-slate-500 font-medium ml-1">+2K</div>
                   </div>
                 </div>
               </div>
 
               {/* Image */}
-              <div className="max-w-sm mx-auto lg:max-w-none lg:absolute lg:right-10 lg:top-1/2 lg:-translate-y-1/2 lg:ml-8 lg:ml-20 xl:ml-32 z-10">
+              <div className="translate-y-6 sm:translate-y-10 md:translate-y-1 max-w-sm mx-auto lg:max-w-none lg:absolute lg:right-10 lg:top-1/2 lg:-translate-y-1/2 lg:ml-8 lg:ml-20 xl:ml-32 z-10">
                 <div data-aos="fade-left" data-aos-duration="1100">
                   <Image alt="iPhone" className="lg:max-w-none" height={601} priority src={iPhone} width={298} />
                 </div>
