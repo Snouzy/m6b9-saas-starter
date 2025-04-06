@@ -5,7 +5,8 @@ import { useMutation } from "@tanstack/react-query";
 
 import { getServerUrl } from "@/lib/server-url";
 import { Loader } from "@/components/ui/loader";
-import { Button } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/button";
+import { GoogleSvg } from "@/components/svg/GoogleSvg";
 
 import type { ReactNode } from "react";
 
@@ -16,13 +17,14 @@ const ProviderData: Record<string, { icon: ReactNode; name: string }> = {
     name: "Github",
   },
   google: {
-    icon: <Github size={16} />,
+    icon: <GoogleSvg size={16} />,
     name: "Google",
   },
 };
 
 type ProviderButtonProps = {
   providerId: string;
+  variant: ButtonProps["variant"];
 };
 
 export const ProviderButton = (props: ProviderButtonProps) => {
@@ -39,14 +41,14 @@ export const ProviderButton = (props: ProviderButtonProps) => {
 
   return (
     <Button
-      className="border-gray-500 bg-black text-white hover:bg-gray-950"
       onClick={() => {
         signInMutation.mutate();
       }}
       size="lg"
+      variant="outline"
     >
       {signInMutation.isPending ? <Loader size={16} /> : data.icon}
-      <span className="ml-2 text-base">Sign in with {data.name}</span>
+      <span className="ml-2 text-base">Se connecter avec {data.name}</span>
     </Button>
   );
 };

@@ -41,7 +41,6 @@ export const SignInCredentialsAndMagicLinkForm = () => {
 
   return (
     <Form className="max-w-lg space-y-4" form={form} onSubmit={onSubmit}>
-      <Typography variant="small">{isUsingCredentials ? "Authentificate with credentials" : "Magic link ✨"}</Typography>
       <FormField
         control={form.control}
         name="email"
@@ -86,21 +85,22 @@ export const SignInCredentialsAndMagicLinkForm = () => {
       )}
 
       <Button className="w-full" type="submit">
-        {isUsingCredentials ? "Login with Password" : "Login with MagicLink"}
+        {isUsingCredentials ? "Se connecter" : "Obtenir un lien magique ✨️"}
       </Button>
 
       {isUsingCredentials && (
-        <Typography variant="small">
-          Forgot password ?{" "}
+        <Typography className="text-center text-gray-400" variant="small">
+          Mot de passe oublié ?{" "}
           <Typography
             as="button"
+            className="text-gray-400"
             onClick={() => {
               setIsUsingCredentials(false);
             }}
             type="button"
             variant="link"
           >
-            Login with magic link
+            Obtenir un lien
           </Typography>
         </Typography>
       )}

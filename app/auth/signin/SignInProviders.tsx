@@ -22,7 +22,7 @@ export const SignInProviders = () => {
       <div className="flex flex-col gap-4">
         <Skeleton className="h-3 w-12" />
         <Skeleton className="h-9" />
-        <Divider>or</Divider>
+        <Divider>ou</Divider>
         <Skeleton className="h-11" />
       </div>
     );
@@ -38,27 +38,23 @@ export const SignInProviders = () => {
         <>
           <Typography variant="small">Magic link ✨</Typography>
           <MagicLinkForm />
-          <Divider>or</Divider>
+          <Divider>ou</Divider>
         </>
       ) : null}
 
       {providers.credentials ? (
         <>
           <SignInCredentialsAndMagicLinkForm />
-          <Divider>or</Divider>
+          <Divider>ou</Divider>
         </>
       ) : null}
 
-      <div className="flex flex-col gap-2">
-        {/* ℹ️ Add provider you want to support here */}
-        {providers.github ? <ProviderButton providerId="github" /> : null}
-        {providers.google ? <ProviderButton providerId="google" /> : null}
-      </div>
+      <div className="flex flex-col gap-2">{providers.google ? <ProviderButton providerId="google" variant="accent" /> : null}</div>
       {providers.credentials ? (
-        <Typography variant="small">
-          {"You don't have an account? "}{" "}
-          <Typography as={Link} href="/auth/signup" variant="link">
-            Sign up
+        <Typography className="text-center text-gray-400" variant="small">
+          {"Vous n'avez pas de compte? "}{" "}
+          <Typography as={Link} className="text-gray-400" href="/auth/signup" variant="link">
+            {"S'inscrire"}
           </Typography>
         </Typography>
       ) : null}

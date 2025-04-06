@@ -2,9 +2,11 @@ import { redirect } from "next/navigation";
 
 import { auth } from "@/lib/auth/helper";
 
+import { SignUpCredentialsForm } from "./SignUpCredentialsForm";
+
 export const metadata = {
-  title: "Sign Up - Simple",
-  description: "Page description",
+  title: "Sign Up - Front Fit Links",
+  description: "Créez votre compte pour commencer",
 };
 
 export default async function AuthSignUpPage() {
@@ -15,52 +17,27 @@ export default async function AuthSignUpPage() {
   }
 
   return (
-    <>
-      <div className="mb-10">
-        <h1 className="text-4xl font-bold">Créer un compte</h1>
+    <div className="container max-w-lg mx-auto py-8 px-4">
+      <div className="mb-8 space-y-2">
+        <h1 className="text-3xl font-bold tracking-tight">Créer un compte</h1>
+        <p className="text-muted-foreground">Entrez vos informations ci-dessous pour créer votre compte</p>
       </div>
-      {/* Form */}
-      <form>
-        <div className="space-y-4">
-          <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700" htmlFor="email">
-              Email
-            </label>
-            <input className="form-input w-full py-2" id="email" placeholder="corybarker@email.com" required type="email" />
-          </div>
 
-          <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700" htmlFor="password">
-              Password
-            </label>
-            <input autoComplete="on" className="form-input w-full py-2" id="password" placeholder="••••••••" required type="password" />
-          </div>
-        </div>
-        <div className="mt-6 space-y-3">
-          <button className="btn w-full bg-linear-to-t from-blue-600 to-blue-500 bg-[length:100%_100%] bg-[bottom] text-white shadow-sm hover:bg-[length:100%_150%]">
-            Register
-          </button>
-          <div className="text-center text-sm text-gray-400">Ou</div>
-          <button className="btn w-full bg-linear-to-t from-gray-900 to-gray-700 bg-[length:100%_100%] bg-[bottom] text-white shadow-sm hover:bg-[length:100%_150%]">
-            Continue with GitHub
-          </button>
-        </div>
-      </form>
+      <SignUpCredentialsForm />
 
-      {/* Bottom link */}
-      <div className="mt-6 text-center">
-        <p className="text-xs text-gray-500">
-          By signing up, you agree to the{" "}
-          <a className="whitespace-nowrap font-medium text-gray-700 underline hover:no-underline" href="#0">
-            Terms
+      <div className="mt-6 text-center text-sm text-muted-foreground">
+        <p>
+          En vous inscrivant, vous acceptez nos{" "}
+          <a className="font-medium text-primary underline-offset-4 hover:underline" href="/terms">
+            Conditions d&apos;utilisation
           </a>{" "}
-          and{" "}
-          <a className="whitespace-nowrap font-medium text-gray-700 underline hover:no-underline" href="#0">
-            Privacy Policy
+          et notre{" "}
+          <a className="font-medium text-primary underline-offset-4 hover:underline" href="/privacy">
+            Politique de confidentialité
           </a>
           .
         </p>
       </div>
-    </>
+    </div>
   );
 }

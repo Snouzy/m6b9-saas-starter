@@ -11,7 +11,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <div className="flex h-16 items-center justify-between md:h-20">
             {/* Site branding */}
             <div className="mr-4 shrink-0">
-              <LogoSvg className="h-32 w-32" />
+              <LogoSvg className="w-32" />
             </div>
           </div>
         </div>

@@ -5,13 +5,13 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all duration-200 disabled:pointer-events-none disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 group",
+  "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all duration-200 disabled:pointer-events-none disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 group hover:cursor-pointer",
   {
     variants: {
       variant: {
         default: "bg-primary text-white border border-transparent hover:bg-primary/90 hover:scale-[0.98]",
         destructive: "bg-destructive text-white border border-transparent hover:bg-destructive/90 hover:scale-[0.98]",
-        outline: "bg-transparent text-primary border border-primary/20 hover:bg-primary/5 hover:border-primary/40",
+        outline: "bg-transparent text-primary border border-primary/20 hover:bg-primary/5 hover:border-primary/40 hover:scale-[0.98]",
         secondary: "bg-secondary text-primary border border-transparent hover:bg-secondary/80",
         ghost: "bg-transparent text-primary hover:bg-primary/5",
         link: "text-primary underline-offset-4 hover:underline hover:text-primary/80",

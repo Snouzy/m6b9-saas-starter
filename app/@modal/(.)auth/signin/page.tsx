@@ -22,8 +22,8 @@ export default function Page() {
     >
       <DialogContent className="bg-card">
         <DialogHeader className="flex flex-col items-center justify-center gap-2">
-          <LogoSvg />
-          <DialogTitle>Sign in to your account</DialogTitle>
+          <LogoSvg className="w-32" />
+          <DialogTitle>Connexion à votre compte</DialogTitle>
         </DialogHeader>
         <SignInProviders />
       </DialogContent>

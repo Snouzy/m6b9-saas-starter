@@ -20,10 +20,10 @@ export const SignUpCredentialsForm = () => {
 
   const submitMutation = useMutation({
     mutationFn: async (values: LoginCredentialsFormType) => {
-      const { serverError } = await signUpAction(values);
+      const actionResult = await signUpAction(values);
 
-      if (serverError) {
-        toast.error(serverError);
+      if (actionResult?.serverError) {
+        toast.error(actionResult?.serverError, { position: "bottom-center" });
         return;
       }
 

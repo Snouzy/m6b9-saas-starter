@@ -60,7 +60,7 @@ export const LoggedInButton = ({
   return (
     <UserDropdown>
       <Button size="sm" variant="outline">
-        <Avatar className="mr-2 size-6 bg-card">
+        <Avatar className="size-6 bg-card hover:cursor-pointer">
           <AvatarFallback className="bg-card">{user.email.slice(0, 1).toUpperCase()}</AvatarFallback>
           {user.image && <AvatarImage src={user.image} />}
         </Avatar>

@@ -17,7 +17,7 @@ import type { NextAuthOptions, Session } from "next-auth";
 import type { User } from "@prisma/client";
 
 const authOptions: NextAuthOptions = {
-  debug: true,
+  debug: false,
   pages: {
     signIn: "/auth/signin",
     signOut: "/auth/signout",
