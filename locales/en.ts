@@ -1,4 +1,6 @@
 export default {
+  my_account: "My account",
+  dashboard: "Dashboard",
   page_404: {
     title: "Page not found",
     description: "Oops! This link seems to be broken. Let&apos;s get you back to creating your perfect link in bio page.",
@@ -58,5 +60,6 @@ export default {
     your_feminine: "your",
     password: "Password",
     email: "Email",
+    logout: "Logout",
   },
 } as const;

@@ -4,6 +4,7 @@ import { useIsClient } from "usehooks-ts";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { ArrowRightIcon } from "lucide-react";
+import { User } from "@prisma/client";
 
 import { displayName } from "@/lib/format/displayName";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -41,22 +42,14 @@ export const AuthButtonClient = () => {
   const session = useSession();
 
   if (session.data?.user) {
-    const user = session.data.user;
+    const user = session.data.user as User;
     return <LoggedInButton user={user} />;
   }
 
   return <SignInButton />;
 };
 
-export const LoggedInButton = ({
-  user,
-}: {
-  user: {
-    name?: string | null;
-    email: string;
-    image?: string | null;
-  };
-}) => {
+export const LoggedInButton = ({ user, showName = true }: { user: User; showName?: boolean }) => {
   return (
     <UserDropdown>
       <Button size="sm" variant="outline">
@@ -64,7 +57,7 @@ export const LoggedInButton = ({
           <AvatarFallback className="bg-card">{user.email.slice(0, 1).toUpperCase()}</AvatarFallback>
           {user.image && <AvatarImage src={user.image} />}
         </Avatar>
-        <span className="max-lg:hidden">{displayName(user)}</span>
+        {showName && <span className="max-lg:hidden">{displayName(user)}</span>}
       </Button>
     </UserDropdown>
   );

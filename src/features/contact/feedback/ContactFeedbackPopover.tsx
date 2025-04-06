@@ -86,7 +86,7 @@ export const ContactFeedbackPopover = (props: ContactFeedbackPopoverProps) => {
               )}
             />
           </div>
-          <div className="flex w-full items-center justify-between  border-t border-accent bg-accent/50 p-2">
+          <div className="flex w-full items-center justify-between  border-t border-secondary bg-secondary/50 p-2">
             <FormField
               control={form.control}
               name="review"

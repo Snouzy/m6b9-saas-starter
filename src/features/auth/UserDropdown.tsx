@@ -5,6 +5,7 @@ import Link from "next/link";
 import { LayoutDashboard, LogOut, User2 } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 
+import { useI18n } from "locales/client";
 import { Loader } from "@/components/ui/loader";
 import {
   DropdownMenu,
@@ -20,8 +21,10 @@ import type { PropsWithChildren } from "react";
 
 export const UserDropdown = ({ children }: PropsWithChildren) => {
   const logout = useMutation({
-    mutationFn: () => signOut(),
+    mutationFn: () => signOut({ redirect: true, callbackUrl: "/" }),
   });
+
+  const t = useI18n();
 
   return (
     <DropdownMenu>
@@ -31,14 +34,14 @@ export const UserDropdown = ({ children }: PropsWithChildren) => {
         <DropdownMenuItem asChild>
           <Link href="/account">
             <User2 className="mr-2 size-4" />
-            My account
+            {t("my_account")}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Link href="/dashboard">
             <LayoutDashboard className="mr-2 size-4" />
-            Dashboard
+            {t("dashboard")}
           </Link>
         </DropdownMenuItem>
 
@@ -53,7 +56,7 @@ export const UserDropdown = ({ children }: PropsWithChildren) => {
             }}
           >
             {logout.isPending ? <Loader className="mr-2 size-4" /> : <LogOut className="mr-2 size-4" />}
-            <span>Logout</span>
+            <span>{t("commons.logout")}</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

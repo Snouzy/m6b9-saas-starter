@@ -1,4 +1,6 @@
 export default {
+  my_account: "Mon compte",
+  dashboard: "Tableau de bord",
   page_404: {
     title: "Page non trouvée",
     description: "Oops! Cette page n'existe pas. Veuillez vérifier l'URL et réessayer.",
@@ -64,5 +66,6 @@ export default {
     your_feminine: "ta",
     password: "Mot de passe",
     email: "Email",
+    logout: "Déconnexion",
   },
 } as const;

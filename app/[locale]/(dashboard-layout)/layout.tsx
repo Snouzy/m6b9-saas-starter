@@ -4,10 +4,9 @@ import { requiredAuth } from "@/lib/auth/helper";
 import { MobileDropdownMenu } from "@/features/navigation/MobileDropdownMenu";
 import { DesktopVerticalMenu } from "@/features/navigation/DesktopVerticalMenu";
 import { ContactFeedbackPopover } from "@/features/contact/feedback/ContactFeedbackPopover";
-import { UserDropdown } from "@/features/auth/UserDropdown";
+import { LoggedInButton } from "@/features/auth/SignInButton";
 import { AuthButton } from "@/features/auth/AuthButton";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { LogoSvg } from "@/components/svg/LogoSvg";
 
 import { DASHBOARD_LINKS } from "./dashboard-links";
@@ -29,15 +28,7 @@ export default async function DashboardLayout(props: PropsWithChildren) {
         <div className="h-10" />
         <DesktopVerticalMenu links={DASHBOARD_LINKS} />
         <div className="flex-1" />
-        <UserDropdown>
-          <Button size="sm" variant="outline">
-            <Avatar className="mr-2 size-6">
-              <AvatarFallback>{user.email ? user.email.slice(0, 2) : "??"}</AvatarFallback>
-              {user.image && <AvatarImage src={user.image} />}
-            </Avatar>
-            <span className="max-lg:hidden">{user.name}</span>
-          </Button>
-        </UserDropdown>
+        <LoggedInButton user={user} />
       </div>
       {/* Main container */}
       <div className="flex-1">
