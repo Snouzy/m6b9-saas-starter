@@ -7,6 +7,7 @@ export default {
   register_privacy: "Conditions d'utilisation",
   register_privacy_link: "et notre",
   register_privacy_link_2: "Politique de confidentialité",
+  signin_with: "Se connecter avec {provider}",
   signin_error_subtitle: "Vérifie tes informations et réessaie.",
   signin_title: "Connexion à ton compte",
   dashboard: "Tableau de bord",

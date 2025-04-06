@@ -1,8 +1,10 @@
+"use client";
+
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import { Github } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 
+import { useI18n } from "locales/client";
 import { getServerUrl } from "@/lib/server-url";
 import { Loader } from "@/components/ui/loader";
 import { Button, ButtonProps } from "@/components/ui/button";
@@ -10,12 +12,7 @@ import { GoogleSvg } from "@/components/svg/GoogleSvg";
 
 import type { ReactNode } from "react";
 
-// ℹ️ Update this object with the providers you want to support
 const ProviderData: Record<string, { icon: ReactNode; name: string }> = {
-  github: {
-    icon: <Github size={16} />,
-    name: "Github",
-  },
   google: {
     icon: <GoogleSvg size={16} />,
     name: "Google",
@@ -25,9 +22,12 @@ const ProviderData: Record<string, { icon: ReactNode; name: string }> = {
 type ProviderButtonProps = {
   providerId: string;
   variant: ButtonProps["variant"];
+  action: "signin" | "signup";
 };
 
 export const ProviderButton = (props: ProviderButtonProps) => {
+  const t = useI18n();
+
   const searchParams = useSearchParams();
 
   const signInMutation = useMutation({
@@ -48,7 +48,7 @@ export const ProviderButton = (props: ProviderButtonProps) => {
       variant="outline"
     >
       {signInMutation.isPending ? <Loader size={16} /> : data.icon}
-      <span className="ml-2 text-base">Se connecter avec {data.name}</span>
+      <span className="ml-2 text-base">{t("signin_with", { provider: data.name })}</span>
     </Button>
   );
 };

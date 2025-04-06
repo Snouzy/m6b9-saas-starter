@@ -37,10 +37,10 @@ export const SignInProviders = () => {
   return (
     <div className="flex flex-col gap-4">
       <SignInCredentialsAndMagicLinkForm />
-      <Divider>{t("or")}</Divider>
+      <div className="flex items-center justify-center">{t("or")}</div>
 
       <div className="flex flex-col gap-2">
-        <ProviderButton providerId="google" variant="accent" />
+        <ProviderButton action="signin" providerId="google" variant="accent" />
       </div>
 
       <Typography className="text-center text-gray-400" variant="small">

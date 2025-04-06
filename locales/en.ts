@@ -7,6 +7,7 @@ export default {
   register_privacy: "Terms of Service",
   register_privacy_link: "and our",
   register_privacy_link_2: "Privacy Policy",
+  signin_with: "Sign in with {provider}",
   signin_error_subtitle: "Please check your information and try again.",
   signin_title: "Sign in to your account",
   dashboard: "Dashboard",
