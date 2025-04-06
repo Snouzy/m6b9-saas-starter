@@ -17,7 +17,7 @@ export async function NewHero() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="pt-16 pb-12 md:pt-40 md:pb-20">
           {/* Content */}
-          <div className="relative max-w-xl mx-auto md:max-w-none text-center md:text-left flex flex-col md:flex-row pl-10">
+          <div className="relative max-w-xl mx-auto md:max-w-none text-center md:text-left flex flex-col md:flex-row pl-10 justify-center lg:justify-start">
             {/* Background */}
             <div
               aria-hidden="true"
@@ -50,123 +50,108 @@ export async function NewHero() {
               </div>
             </div>
 
-            {/* Content */}
-            <div className="md:w-[640px] py-12 md:py-20 md:min-h-[450px] z-10 md:pb-16">
-              {/* Copy */}
-              <h1
-                className="font-hkgrotesk text-slate-100 mb-6 h1 text-[clamp(1.5rem,4vw,3rem)] sm:text-[clamp(2rem,5vw,3.5rem)] lg:max-w-2xl"
-                data-aos="fade-right"
-                data-aos-delay="100"
-              >
-                Convertis tes prospects en clients depuis{" "}
-                <span className="font-permanent-marker text-accent font-normal whitespace-nowrap">
-                  ta{" "}
-                  <span className="inline-flex relative">
-                    <svg
-                      className="absolute right-0 top-full mt-1 max-w-none"
-                      height="9"
-                      viewBox="0 0 135 9"
-                      width="135"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        className="fill-white"
-                        d="M36.54 1.016C40.01.912 43.39.78 46.95.712 50.51.644 54.071.567 57.81.566c2.744.002 5.018-.162 7.897-.113 9.89.085 20.486.459 31.646 1.116 2.484.151 4.835.242 7.296.39 2.461.147 4.924.282 7.34.413 1.528.069 3.186.202 4.684.31a187 187 0 0 1 4.89.34c3.416.326 6.937.738 10.5 1.23 2.316.32 2.482.762 1.474 1.152-1.082.485-3.3.708-6.3.635-.705-.026-1.39-.039-2.117-.076l-2.202-.137-4.43-.268a899.607 899.607 0 0 1-8.75-.477c-2.953-.174-5.754-.262-8.71-.427-2.955-.165-5.803-.257-8.829-.424-1.786-.084-3.509-.137-5.156-.16-1.697-.039-3.396-.07-5.027-.081l-9.497.059c-6.873.071-13.98.132-20.388.403-4.089.123-7.886.344-11.683.565l-8.169.637c-2.596.256-5.236.496-7.537.828-1.768.261-3.332.576-4.873.895-1.541.319-2.877.683-4.575.95-.775.112-1.367.265-2.142.376-2.903.406-4.781.312-8.094-.282a79.95 79.95 0 0 1-2.301-.412C.465 7.541-.327 6.866.558 6.205c.714-.471 1.384-.971 2.398-1.395 1.013-.424 2.483-.741 3.838-1.08 1.355-.34 3.28-.546 5.025-.802 1.744-.256 3.69-.446 5.594-.66C23.24 1.688 29.49 1.233 36.13.904l.408.112Z"
-                        fillRule="nonzero"
-                        opacity=".32"
-                      />
-                    </svg>
-                    bio
+            <div className="md:max-w-[550px] lg:max-w-[630px] py-12 md:py-20 md:min-h-[450px] z-10 md:pb-16 flex flex-col justify-center">
+              {/* Content */}
+              <div className="">
+                {/* Copy */}
+                <h1
+                  className="text-center lg:text-left font-hkgrotesk text-slate-100 mb-6 h1 text-[clamp(1.5rem,4vw,3rem)] sm:text-[clamp(2rem,4.5vw,3.5rem)] lg:max-w-2xl"
+                  data-aos="fade-right"
+                  data-aos-delay="100"
+                >
+                  Convertis tes prospects en clients depuis{" "}
+                  <span className="font-permanent-marker text-accent font-normal whitespace-nowrap">
+                    ta{" "}
+                    <span className="inline-flex relative">
+                      <svg
+                        className="absolute right-0 top-full mt-1 max-w-none"
+                        height="9"
+                        viewBox="0 0 135 9"
+                        width="135"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          className="fill-white"
+                          d="M36.54 1.016C40.01.912 43.39.78 46.95.712 50.51.644 54.071.567 57.81.566c2.744.002 5.018-.162 7.897-.113 9.89.085 20.486.459 31.646 1.116 2.484.151 4.835.242 7.296.39 2.461.147 4.924.282 7.34.413 1.528.069 3.186.202 4.684.31a187 187 0 0 1 4.89.34c3.416.326 6.937.738 10.5 1.23 2.316.32 2.482.762 1.474 1.152-1.082.485-3.3.708-6.3.635-.705-.026-1.39-.039-2.117-.076l-2.202-.137-4.43-.268a899.607 899.607 0 0 1-8.75-.477c-2.953-.174-5.754-.262-8.71-.427-2.955-.165-5.803-.257-8.829-.424-1.786-.084-3.509-.137-5.156-.16-1.697-.039-3.396-.07-5.027-.081l-9.497.059c-6.873.071-13.98.132-20.388.403-4.089.123-7.886.344-11.683.565l-8.169.637c-2.596.256-5.236.496-7.537.828-1.768.261-3.332.576-4.873.895-1.541.319-2.877.683-4.575.95-.775.112-1.367.265-2.142.376-2.903.406-4.781.312-8.094-.282a79.95 79.95 0 0 1-2.301-.412C.465 7.541-.327 6.866.558 6.205c.714-.471 1.384-.971 2.398-1.395 1.013-.424 2.483-.741 3.838-1.08 1.355-.34 3.28-.546 5.025-.802 1.744-.256 3.69-.446 5.594-.66C23.24 1.688 29.49 1.233 36.13.904l.408.112Z"
+                          fillRule="nonzero"
+                          opacity=".32"
+                        />
+                      </svg>
+                      bio
+                    </span>
+                    <span className="text-slate-100">.</span>
                   </span>
-                  <span className="text-slate-100">.</span>
-                </span>
-              </h1>
-              <p className="text-lg text-slate-400 mb-8" data-aos="fade-right" data-aos-delay="200">
-                {t("hero_subtitle")}
-              </p>
-              {/* Buttons */}
-              <div
-                className="flex-col max-w-xs mx-auto sm:max-w-none sm:flex justify-start space-y-4 sm:space-y-0 sm:space-x-4"
-                data-aos="fade-right"
-                data-aos-delay="300"
-              >
-                <div className="flex flex-col items-center justify-center mb-4">
-                  <Link
-                    className="w-full flex text-md font-semibold leading-6 text-white hover:cursor-pointer justify-center"
-                    href="https://app.fitdistance.io/register"
-                  >
-                    <Particles className="absolute inset-0 -z-10" quantity={10} />
-                    <Button
-                      borderRadius="50px"
-                      className="py-7 group w-full bg-gradient-to-r from-primary to-primary px-10 border justify-center"
+                </h1>
+                <p className="text-center lg:text-left text-lg text-slate-400 mb-8" data-aos="fade-right" data-aos-delay="200">
+                  {t("hero_subtitle")}
+                </p>
+                {/* Buttons */}
+                <div
+                  className="flex-col max-w-xs mx-auto sm:max-w-none sm:flex justify-start space-y-4 sm:space-y-0 sm:space-x-4"
+                  data-aos="fade-right"
+                  data-aos-delay="300"
+                >
+                  <div className="flex flex-col items-center justify-center mb-4">
+                    <Link
+                      className="w-full flex text-md font-semibold leading-6 text-white hover:cursor-pointer justify-center"
+                      href="https://app.fitdistance.io/register"
                     >
-                      <span className="font-inter font-bold text-2xl">
-                        S&apos;inscrire pour 0€ <span className={"inline-block transition-transform duration-300 ease-out"}>🚀</span>
-                      </span>
-                    </Button>
-                  </Link>
+                      <Particles className="absolute inset-0 -z-10" quantity={10} />
+                      <Button
+                        borderRadius="50px"
+                        className="py-7 group w-full bg-gradient-to-r from-primary to-primary px-10 border justify-center"
+                      >
+                        <span className="font-inter font-bold text-2xl">
+                          S&apos;inscrire pour 0€ <span className={"inline-block transition-transform duration-300 ease-out"}>🚀</span>
+                        </span>
+                      </Button>
+                    </Link>
 
-                  <p className="text-xs text-center text-slate-400 mt-1" data-aos="fade-right" data-aos-delay="200">
-                    et sans carte.
-                  </p>
-                </div>
-                <div className="sm:flex sm:justify-center items-center space-y-2 sm:space-y-0 sm:space-x-3">
-                  <div className="inline-flex -space-x-3 -ml-0.5">
-                    <Image
-                      alt="Avatar 01"
-                      className="rounded-full border-2 border-slate-800 box-content"
-                      height={28}
-                      src={Avatar01}
-                      width={28}
-                    />
-                    <Image
-                      alt="Avatar 02"
-                      className="rounded-full border-2 border-slate-800 box-content"
-                      height={28}
-                      src={Avatar02}
-                      width={28}
-                    />
-                    <Image
-                      alt="Avatar 03"
-                      className="rounded-full border-2 border-slate-800 box-content"
-                      height={28}
-                      src={Avatar03}
-                      width={28}
-                    />
-                    <Image
-                      alt="Avatar 04"
-                      className="rounded-full border-2 border-slate-800 box-content"
-                      height={28}
-                      src={Avatar04}
-                      width={28}
-                    />
+                    <p className="text-xs text-center text-slate-400 mt-1" data-aos="fade-right" data-aos-delay="200">
+                      et sans carte.
+                    </p>
                   </div>
-                  <div className="text-xs text-slate-500 font-medium">+2K</div>
+                  <div className="sm:flex sm:justify-center items-center space-y-2 sm:space-y-0 sm:space-x-3 mb-10 lg:mb-0">
+                    <div className="inline-flex -space-x-3 -ml-0.5">
+                      <Image
+                        alt="Avatar 01"
+                        className="rounded-full border-2 border-slate-800 box-content"
+                        height={28}
+                        src={Avatar01}
+                        width={28}
+                      />
+                      <Image
+                        alt="Avatar 02"
+                        className="rounded-full border-2 border-slate-800 box-content"
+                        height={28}
+                        src={Avatar02}
+                        width={28}
+                      />
+                      <Image
+                        alt="Avatar 03"
+                        className="rounded-full border-2 border-slate-800 box-content"
+                        height={28}
+                        src={Avatar03}
+                        width={28}
+                      />
+                      <Image
+                        alt="Avatar 04"
+                        className="rounded-full border-2 border-slate-800 box-content"
+                        height={28}
+                        src={Avatar04}
+                        width={28}
+                      />
+                    </div>
+                    <div className="text-xs text-slate-500 font-medium">+2K</div>
+                  </div>
                 </div>
               </div>
-              {/* Press logos */}
-              {/* <div className="max-w-xs mx-auto sm:max-w-none" data-aos="fade-right" data-aos-delay="400">
-                <div className="inline-flex flex-wrap items-center justify-center -my-2 -mx-4 md:-mx-6">
-                  <div className="w-1/2 sm:w-auto flex justify-center py-2 px-4 md:px-6">
-                    <Image src={Client01} width={82} alt="Client 01" />
-                  </div>
-                  <div className="w-1/2 sm:w-auto flex justify-center py-2 px-4 md:px-6">
-                    <Image src={Client02} width={97} alt="Client 02" />
-                  </div>
-                  <div className="w-1/2 sm:w-auto flex justify-center py-2 px-4 md:px-6">
-                    <Image src={Client03} width={113} alt="Client 03" />
-                  </div>
-                  <div className="w-1/2 sm:w-auto flex justify-center py-2 px-4 md:px-6 sm:-mt-2">
-                    <Image src={Client04} width={82} alt="Client 04" />
-                  </div>
-                </div>
-              </div> */}
-            </div>
 
-            {/* Image */}
-            <div className="max-w-sm mx-auto md:max-w-none md:absolute md:left-[40rem] md:top-1/2 md:-translate-y-1/2 md:ml-8 lg:ml-20 xl:ml-32 z-10">
-              <div data-aos="fade-left" data-aos-duration="1100">
-                <Image alt="iPhone" className="md:max-w-none" height={601} priority src={iPhone} width={298} />
+              {/* Image */}
+              <div className="max-w-sm mx-auto lg:max-w-none lg:absolute lg:right-10 lg:top-1/2 lg:-translate-y-1/2 lg:ml-8 lg:ml-20 xl:ml-32 z-10">
+                <div data-aos="fade-left" data-aos-duration="1100">
+                  <Image alt="iPhone" className="lg:max-w-none" height={601} priority src={iPhone} width={298} />
+                </div>
               </div>
             </div>
           </div>
