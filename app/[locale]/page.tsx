@@ -1,24 +1,24 @@
 import React from "react";
 
-import { requiredAuth } from "@/lib/auth/helper";
+import { auth } from "@/lib/auth/helper";
 import { Footer } from "@/features/layout/Footer";
 import { PromoteSection } from "@/features/landing/PromoteSection";
 import { NewHero } from "@/features/landing/NewHero";
 import { LandingHeader } from "@/features/landing/LandingHeader";
 import { FAQSection } from "@/features/landing/FAQSection";
 import { ConvertSection } from "@/features/landing/ConvertSection";
+import { BusinessCategories } from "@/features/landing/business-categories";
 import { BentoSection } from "@/features/landing/BentoSection";
 
 export default async function HomePage() {
-  const user = await requiredAuth();
-  console.log("user:", user);
+  const user = await auth();
 
   return (
     <div className="relative flex h-fit flex-col bg-background text-foreground">
       <div className="mt-16" />
       <LandingHeader user={user} />
       <NewHero />
-      {/* <BusinessCategories /> */}
+      <BusinessCategories />
       <PromoteSection />
       <ConvertSection />
       <BentoSection />

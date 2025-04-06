@@ -16,15 +16,17 @@ export const SignOutButton = () => {
     onSuccess: () => {
       router.push("/");
     },
+    onError: (error) => {
+      console.error(error);
+    },
   });
 
+  const handleLogout = () => {
+    logout.mutateAsync();
+  };
+
   return (
-    <Button
-      onClick={() => {
-        logout.mutate();
-      }}
-      size="sm"
-    >
+    <Button onClick={handleLogout} size="sm">
       {logout.isPending ? <Loader className="mr-2 size-4" /> : <LogOut className="mr-2 size-4" />}
       Logout
     </Button>

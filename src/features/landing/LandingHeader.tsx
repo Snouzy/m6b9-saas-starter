@@ -92,13 +92,8 @@ export function LandingHeader({ user }: { user: User | null }) {
           </motion.div>
 
           {/* Logo - Now second */}
-          <motion.div
-            className="flex items-center gap-1"
-            style={{
-              scale: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.9]),
-            }}
-          >
-            <LogoSvg size={128} />
+          <motion.div className="flex items-center gap-1">
+            <LogoSvg className="h-8 w-24 md:w-32" />
           </motion.div>
         </div>
 
@@ -133,7 +128,6 @@ export function LandingHeader({ user }: { user: User | null }) {
                 <AvatarFallback>{user.email ? user.email.slice(0, 2) : "??"}</AvatarFallback>
                 {user.image && <AvatarImage src={user.image} />}
               </Avatar>
-              <span className="max-lg:hidden">{user.name}</span>
               {t("open_app")}
             </Link>
           ) : (

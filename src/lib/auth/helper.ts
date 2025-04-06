@@ -1,4 +1,5 @@
 import { getServerSession } from "next-auth";
+import { notFound } from "next/navigation";
 
 import { authOptions } from "./auth";
 
@@ -25,7 +26,7 @@ export const requiredAuth = async () => {
   const user = await auth();
 
   if (!user) {
-    throw new AuthError("You must be authenticated to access this resource.");
+    notFound();
   }
 
   return user;

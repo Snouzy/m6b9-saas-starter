@@ -17,12 +17,13 @@ import type { PropsWithChildren } from "react";
 
 export const DashboardNavigation = async (props: PropsWithChildren) => {
   const user = await requiredAuth();
+
   return (
     <div className="flex h-full flex-col lg:flex-row lg:overflow-hidden">
       {/* Desktop ONLY Navigation bar */}
       <div className="flex size-full max-w-[240px] flex-col border-r border-border px-2 py-4 max-lg:hidden">
         <div className="flex items-center justify-center">
-          <Link className="text-xl font-bold" href="/">
+          <Link href="/">
             <LogoSvg className="h-8 w-24" />
           </Link>
         </div>
