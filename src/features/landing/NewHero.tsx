@@ -17,11 +17,11 @@ export async function NewHero() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="pt-16 pb-12 md:pt-40 md:pb-20">
           {/* Content */}
-          <div className="relative max-w-xl mx-auto md:max-w-none text-center md:text-left flex flex-col md:flex-row">
+          <div className="relative max-w-xl mx-auto md:max-w-none text-center md:text-left flex flex-col md:flex-row pl-10">
             {/* Background */}
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-linear-to-br from-primary to-primary rounded-3xl -mx-20 overflow-hidden mb-12 mt-0 md:mb-0"
+              className="absolute inset-0 bg-linear-to-br from-primary to-primary rounded-3xl overflow-hidden mb-12 mt-0 md:mb-0"
             >
               {/* Illustration */}
               <div className="absolute -top-16 left-1/2 -translate-x-1/3 md:-translate-x-1/2 pointer-events-none z-0 blur-2xl">
@@ -53,7 +53,11 @@ export async function NewHero() {
             {/* Content */}
             <div className="md:w-[640px] py-12 md:py-20 md:min-h-[450px] z-10 md:pb-16">
               {/* Copy */}
-              <h1 className="h1 font-hkgrotesk text-slate-100 mb-6" data-aos="fade-right" data-aos-delay="100">
+              <h1
+                className="font-hkgrotesk text-slate-100 mb-6 h1 text-[clamp(1.5rem,4vw,3rem)] sm:text-[clamp(2rem,5vw,3.5rem)] lg:max-w-2xl"
+                data-aos="fade-right"
+                data-aos-delay="100"
+              >
                 Convertis tes prospects en clients depuis{" "}
                 <span className="font-permanent-marker text-accent font-normal whitespace-nowrap">
                   ta{" "}
@@ -91,7 +95,7 @@ export async function NewHero() {
                     className="w-full flex text-md font-semibold leading-6 text-white hover:cursor-pointer justify-center"
                     href="https://app.fitdistance.io/register"
                   >
-                    <Particles className="absolute inset-0 z-10" quantity={10} />
+                    <Particles className="absolute inset-0 -z-10" quantity={10} />
                     <Button
                       borderRadius="50px"
                       className="py-7 group w-full bg-gradient-to-r from-primary to-primary px-10 border justify-center"

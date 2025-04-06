@@ -6,7 +6,6 @@ import { NewHero } from "@/features/landing/NewHero";
 import { LandingHeader } from "@/features/landing/LandingHeader";
 import { FAQSection } from "@/features/landing/FAQSection";
 import { ConvertSection } from "@/features/landing/ConvertSection";
-import { BusinessCategories } from "@/features/landing/business-categories";
 import { BentoSection } from "@/features/landing/BentoSection";
 
 export default function HomePage() {
@@ -15,7 +14,7 @@ export default function HomePage() {
       <div className="mt-16" />
       <LandingHeader />
       <NewHero />
-      <BusinessCategories />
+      {/* <BusinessCategories /> */}
       <PromoteSection />
       <ConvertSection />
       <BentoSection />
