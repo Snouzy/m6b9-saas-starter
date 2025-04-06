@@ -1,5 +1,13 @@
 export default {
   my_account: "Mon compte",
+  register_title: "Créer un compte",
+  register_description: "Entrez vos informations ci-dessous pour créer votre compte",
+  register_terms: "En vous inscrivant, vous acceptez nos",
+  register_privacy: "Conditions d'utilisation",
+  register_privacy_link: "et notre",
+  register_privacy_link_2: "Politique de confidentialité",
+  signin_error_subtitle: "Vérifie tes informations et réessaie.",
+  signin_title: "Connexion à ton compte",
   dashboard: "Tableau de bord",
   page_404: {
     title: "Page non trouvée",
@@ -44,7 +52,7 @@ export default {
     MissingCSRF: "Une erreur de sécurité est survenue. Veuillez rafraîchir la page et réessayer.",
     MissingSecret: "Une erreur de configuration du serveur est survenue. Veuillez contacter le support.",
     MissingWebAuthnAutocomplete: "Une erreur de configuration est survenue avec WebAuthn. Veuillez contacter le support.",
-    OAuthAccountNotLinked: "Ton email est lié à un autre compte. Veuillez utiliser le compte originalement lié à cet email.",
+    OAuthAccountNotLinked: "Ton email est lié à une autre méthode de connexion.",
     OAuthCallbackError: "La connexion avec le service externe a échouée. Veuillez réessayer ou choisir une autre méthode de connexion.",
     OAuthProfileParseError:
       "Nous n'avons pas pu récupérer ton profil depuis le service externe. Veuillez réessayer ou contacter le support.",
@@ -67,5 +75,9 @@ export default {
     password: "Mot de passe",
     email: "Email",
     logout: "Déconnexion",
+    first_name: "Prénom",
+    last_name: "Nom",
+    verify_password: "Vérifier le mot de passe",
+    submit: "Envoyer",
   },
 } as const;

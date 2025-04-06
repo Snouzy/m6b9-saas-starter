@@ -7,8 +7,12 @@ const I18nMiddleware = createI18nMiddleware({
   defaultLocale: "en",
 });
 
-export function middleware(request: NextRequest) {
-  return I18nMiddleware(request);
+export async function middleware(request: NextRequest) {
+  const response = I18nMiddleware(request);
+  const searchParams = request.nextUrl.searchParams.toString();
+  response.headers.set("searchParams", searchParams);
+
+  return response;
 }
 
 export const config = {

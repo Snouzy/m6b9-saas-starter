@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { signIn } from "next-auth/react";
 import { useMutation } from "@tanstack/react-query";
 
+import { useI18n } from "locales/client";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, useZodForm } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,8 @@ import { signUpAction } from "./signup.action";
 import type { LoginCredentialsFormType } from "./signup.schema";
 
 export const SignUpCredentialsForm = () => {
+  const t = useI18n();
+
   const form = useZodForm({
     schema: LoginCredentialsFormScheme,
   });
@@ -21,7 +24,6 @@ export const SignUpCredentialsForm = () => {
   const submitMutation = useMutation({
     mutationFn: async (values: LoginCredentialsFormType) => {
       const actionResult = await signUpAction(values);
-      console.log("actionResult:", actionResult);
 
       if (actionResult?.serverError) {
         toast.error(actionResult?.serverError, { position: "bottom-center" });
@@ -56,25 +58,42 @@ export const SignUpCredentialsForm = () => {
         return onSubmit(values);
       }}
     >
-      <FormField
-        control={form.control}
-        name="name"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Name</FormLabel>
-            <FormControl>
-              <Input placeholder="John Doe" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+      <div className="grid grid-cols-2 gap-4">
+        <FormField
+          control={form.control}
+          name="firstName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t("commons.first_name")}</FormLabel>
+              <FormControl>
+                <Input placeholder="John" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="lastName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t("commons.last_name")}</FormLabel>
+              <FormControl>
+                <Input placeholder="Doe" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </div>
+
       <FormField
         control={form.control}
         name="email"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Email</FormLabel>
+            <FormLabel>{t("commons.email")}</FormLabel>
             <FormControl>
               <Input placeholder="john@doe.com" {...field} />
             </FormControl>
@@ -82,12 +101,13 @@ export const SignUpCredentialsForm = () => {
           </FormItem>
         )}
       />
+
       <FormField
         control={form.control}
         name="password"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Password</FormLabel>
+            <FormLabel>{t("commons.password")}</FormLabel>
             <FormControl>
               <Input type="password" {...field} />
             </FormControl>
@@ -95,12 +115,13 @@ export const SignUpCredentialsForm = () => {
           </FormItem>
         )}
       />
+
       <FormField
         control={form.control}
         name="verifyPassword"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Verify Password</FormLabel>
+            <FormLabel>{t("commons.verify_password")}</FormLabel>
             <FormControl>
               <Input type="password" {...field} />
             </FormControl>
@@ -110,7 +131,7 @@ export const SignUpCredentialsForm = () => {
       />
 
       <Button className="w-full" type="submit">
-        Submit
+        {t("commons.submit")}
       </Button>
     </Form>
   );

@@ -1,5 +1,13 @@
 export default {
   my_account: "My account",
+  register_title: "Create an account",
+  register_description: "Enter your information below to create your account",
+  register_terms: "By signing up, you agree to our",
+  register_privacy: "Terms of Service",
+  register_privacy_link: "and our",
+  register_privacy_link_2: "Privacy Policy",
+  signin_error_subtitle: "Please check your information and try again.",
+  signin_title: "Sign in to your account",
   dashboard: "Dashboard",
   page_404: {
     title: "Page not found",
@@ -61,5 +69,9 @@ export default {
     password: "Password",
     email: "Email",
     logout: "Logout",
+    first_name: "First name",
+    last_name: "Last name",
+    verify_password: "Verify password",
+    submit: "Submit",
   },
 } as const;

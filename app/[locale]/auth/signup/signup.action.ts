@@ -9,6 +9,7 @@ import { env } from "@/env";
 import { LoginCredentialsFormScheme } from "./signup.schema";
 
 export const signUpAction = action.schema(LoginCredentialsFormScheme).action(async ({ parsedInput }) => {
+  console.log("parsedInput:", parsedInput);
   if (!validatePassword(parsedInput.password)) {
     throw new ActionError("Invalid new password. Must be at least 8 characters, and contain at least one letter and one number");
   }
@@ -17,7 +18,8 @@ export const signUpAction = action.schema(LoginCredentialsFormScheme).action(asy
     const userData = {
       email: parsedInput.email,
       passwordHash: hashStringWithSalt(parsedInput.password, env.NEXTAUTH_SECRET),
-      name: parsedInput.name,
+      firstName: parsedInput.firstName,
+      lastName: parsedInput.lastName,
     };
 
     const stripeCustomerId = await setupStripeCustomer(userData);
@@ -32,7 +34,8 @@ export const signUpAction = action.schema(LoginCredentialsFormScheme).action(asy
     });
 
     return user;
-  } catch {
+  } catch (error) {
+    console.error(error);
     throw new ActionError("Email already exists");
   }
 });

@@ -4,7 +4,7 @@ import { z } from "zod";
 import { useLocalStorage } from "usehooks-ts";
 import { toast } from "sonner";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { useI18n } from "locales/client";
 import { Typography } from "@/components/ui/typography";
@@ -26,6 +26,7 @@ export const SignInCredentialsAndMagicLinkForm = () => {
     schema: LoginCredentialsFormScheme,
   });
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [isUsingCredentials, setIsUsingCredentials] = useLocalStorage("sign-in-with-credentials", false);
 
   async function onSubmit(values: LoginCredentialsFormType) {
@@ -44,9 +45,11 @@ export const SignInCredentialsAndMagicLinkForm = () => {
       if (result?.error) {
         const translated = t(`next_auth_errors.${result.error}` as keyof typeof t);
         toast.error(translated);
+        return;
       }
 
       // TODO: handle the OK
+      router.push("/dashboard");
     } else {
       await signIn("resend", {
         email: values.email,

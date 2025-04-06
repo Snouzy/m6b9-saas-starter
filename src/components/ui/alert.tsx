@@ -1,4 +1,5 @@
 import * as React from "react";
+import { AlertCircle, AlertTriangle, CheckCircle2, Info, XCircle, type LucideIcon } from "lucide-react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
@@ -9,8 +10,13 @@ const alertVariants = cva(
     variants: {
       variant: {
         default: "bg-background text-foreground",
-        destructive: "border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive",
-        success: "border-green-500/60 dark:border-green-500 [&>svg]:text-green-500",
+        error:
+          "border-red-500/50 bg-red-50/50 text-red-600 dark:border-red-500/30 dark:bg-red-900/30 dark:text-red-400 [&>svg]:text-red-600 dark:[&>svg]:text-red-400",
+        warning:
+          "border-yellow-500/50 bg-yellow-50/50 text-yellow-700 dark:border-yellow-500/30 dark:bg-yellow-900/30 dark:text-yellow-400 [&>svg]:text-yellow-600 dark:[&>svg]:text-yellow-400",
+        success:
+          "border-green-500/50 bg-green-50/50 text-green-600 dark:border-green-500/30 dark:bg-green-900/30 dark:text-green-400 [&>svg]:text-green-600 dark:[&>svg]:text-green-400",
+        info: "border-blue-500/50 bg-blue-50/50 text-blue-600 dark:border-blue-500/30 dark:bg-blue-900/30 dark:text-blue-400 [&>svg]:text-blue-600 dark:[&>svg]:text-blue-400",
       },
     },
     defaultVariants: {
@@ -19,10 +25,29 @@ const alertVariants = cva(
   },
 );
 
-const Alert = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>>(
-  ({ className, variant, ...props }, ref) => (
-    <div className={cn(alertVariants({ variant }), className)} ref={ref} role="alert" {...props} />
-  ),
+const iconMap: Record<string, LucideIcon> = {
+  error: XCircle,
+  warning: AlertTriangle,
+  success: CheckCircle2,
+  info: Info,
+  default: AlertCircle,
+};
+
+interface AlertProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof alertVariants> {
+  icon?: LucideIcon;
+}
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+  ({ className, variant = "default", children, icon: CustomIcon, ...props }, ref) => {
+    const Icon = CustomIcon || iconMap[variant || "default"];
+
+    return (
+      <div className={cn(alertVariants({ variant }), className)} ref={ref} role="alert" {...props}>
+        <Icon className="h-4 w-4" />
+        {children}
+      </div>
+    );
+  },
 );
 Alert.displayName = "Alert";
 
@@ -36,4 +61,4 @@ const AlertDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttrib
 );
 AlertDescription.displayName = "AlertDescription";
 
-export { Alert, AlertDescription, AlertTitle };
+export { Alert, AlertTitle, AlertDescription };

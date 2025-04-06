@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { getI18n } from "locales/server";
 import { auth } from "@/lib/auth/helper";
 
 import { SignUpCredentialsForm } from "./SignUpCredentialsForm";
@@ -11,6 +12,7 @@ export const metadata = {
 
 export default async function AuthSignUpPage() {
   const user = await auth();
+  const t = await getI18n();
 
   if (user) {
     redirect("/");
@@ -19,21 +21,21 @@ export default async function AuthSignUpPage() {
   return (
     <div className="container max-w-lg mx-auto py-8 px-4">
       <div className="mb-8 space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Créer un compte</h1>
-        <p className="text-muted-foreground">Entrez vos informations ci-dessous pour créer votre compte</p>
+        <h1 className="text-3xl font-bold tracking-tight">{t("register_title")}</h1>
+        <p className="text-muted-foreground">{t("register_description")}</p>
       </div>
 
       <SignUpCredentialsForm />
 
       <div className="mt-6 text-center text-sm text-muted-foreground">
         <p>
-          En vous inscrivant, vous acceptez nos{" "}
+          {t("register_terms")}{" "}
           <a className="font-medium text-primary underline-offset-4 hover:underline" href="/terms">
-            Conditions d&apos;utilisation
+            {t("register_privacy")}
           </a>{" "}
-          et notre{" "}
+          {t("register_privacy_link")}{" "}
           <a className="font-medium text-primary underline-offset-4 hover:underline" href="/privacy">
-            Politique de confidentialité
+            {t("register_privacy_link_2")}
           </a>
           .
         </p>

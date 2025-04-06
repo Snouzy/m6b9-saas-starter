@@ -1,5 +1,6 @@
 import { stripe } from "@/lib/stripe";
 import { resend } from "@/lib/mail/resend";
+import { displayFullName } from "@/lib/format/displayName";
 import { env } from "@/env";
 
 import type { User } from "next-auth";
@@ -9,9 +10,11 @@ export const setupStripeCustomer = async (user: Omit<User, "id">) => {
     return;
   }
 
+  const { firstName, lastName } = user;
+
   const customer = await stripe.customers.create({
     email: user.email,
-    name: user.name ?? undefined,
+    name: displayFullName({ firstName, lastName }),
   });
 
   return customer.id;
@@ -29,7 +32,8 @@ export const setupResendCustomer = async (user: Omit<User, "id">) => {
   const contact = await resend.contacts.create({
     audienceId: env.RESEND_AUDIENCE_ID,
     email: user.email,
-    firstName: user.name ?? "",
+    firstName: user.firstName ?? "",
+    lastName: user.lastName ?? "",
     unsubscribed: false,
   });
 

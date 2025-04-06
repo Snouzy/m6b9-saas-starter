@@ -29,6 +29,13 @@ const authOptions: NextAuthOptions = {
     Google({
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
+      profile: (profile) => ({
+        id: profile.sub,
+        firstName: profile.given_name,
+        lastName: profile.family_name,
+        email: profile.email,
+        image: profile.picture,
+      }),
     }),
     EmailProvider({
       from: SiteConfig.email.from,

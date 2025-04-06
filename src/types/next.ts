@@ -35,7 +35,7 @@ export type PageParams<T extends Record<string, string> = {}> = {
  * ```
  */
 export type LayoutParams<T extends Record<string, string> = {}> = {
-  params: T;
+  params: Promise<T>;
   children?: ReactNode | undefined;
 };
 

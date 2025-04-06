@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 
 import AuthBg from "@public/images/auth-bg.svg";
@@ -11,7 +12,9 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <div className="flex h-16 items-center justify-between md:h-20">
             {/* Site branding */}
             <div className="mr-4 shrink-0">
-              <LogoSvg className="w-32" />
+              <Link href="/">
+                <LogoSvg className="w-32" />
+              </Link>
             </div>
           </div>
         </div>
