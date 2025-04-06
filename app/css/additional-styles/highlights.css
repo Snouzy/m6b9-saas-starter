@@ -24,9 +24,10 @@
   
   /* Variante 4: Highlight marqueur style brutaliste */
   .highlight-marker {
-    background: linear-gradient(to bottom, transparent 40%, var(--color-accent) 40%, var(--color-accent) 90%, transparent 90%);
-    padding: 0 0.1em;
+    background: linear-gradient(to bottom, transparent 30%, var(--color-accent) 30%, var(--color-accent) 90%, transparent 90%);
     font-weight: 600;
+    padding: 0.45em 0.1em;
+    padding-bottom: 0.2em;
   }
   
   /* Variante 5: Highlight encadré */

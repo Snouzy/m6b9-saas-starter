@@ -6,6 +6,7 @@ import Avatar04 from "@public/images/avatar-04.jpg";
 import Avatar03 from "@public/images/avatar-03.jpg";
 import Avatar02 from "@public/images/avatar-02.jpg";
 import Avatar01 from "@public/images/avatar-01.jpg";
+import { Button } from "@/components/ui/moving-border";
 
 export function NewHero() {
   return (
@@ -78,14 +79,25 @@ export function NewHero() {
               </p>
               {/* Buttons */}
               <div
-                className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4"
+                className="flex-col max-w-xs mx-auto sm:max-w-none sm:flex justify-start space-y-4 sm:space-y-0 sm:space-x-4"
                 data-aos="fade-right"
                 data-aos-delay="300"
               >
-                <div>
-                  <Link className="btn text-white bg-blue-500 hover:bg-blue-600 group shadow-xs" href="/subscribe">
-                    {"Je m'inscris pour 0€"}{" "}
+                <div className="flex flex-col items-center justify-center">
+                  <Link
+                    className="w-full flex text-md font-semibold leading-6 text-white hover:cursor-pointer"
+                    href="https://app.fitdistance.io/register"
+                  >
+                    <Button
+                      borderRadius="30px"
+                      className="py-7 group w-full bg-gradient-to-r from-primary to-primary px-10 border justify-center"
+                    >
+                      <span className="font-inter font-bold text-2xl">
+                        S&apos;inscrire pour 0€ <span className={"inline-block transition-transform duration-300 ease-out"}>🚀</span>
+                      </span>
+                    </Button>
                   </Link>
+
                   <p className="text-xs text-center text-slate-400 mt-1" data-aos="fade-right" data-aos-delay="200">
                     et sans carte.
                   </p>

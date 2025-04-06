@@ -12,6 +12,12 @@
   strategy: base;
 }
 
+@property --border-angle {
+  inherits: false;
+  initial-value: 0deg;
+  syntax: '<angle>';
+}
+
 :root {
   --radius: 0.5rem;
 }
@@ -35,8 +41,6 @@
   --color-secondary: #f3f4f6; /* gris clair, un peu brut */
   --color-secondary-foreground: #111827;
 
-
-  
   --color-muted: #e5e7eb;
   --color-muted-foreground: #6b7280;
 
@@ -163,6 +167,17 @@
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-caret-blink: caret-blink 1.25s ease-out infinite;
 
+  --animate-disco: disco 1s ease-out infinite;
+  --animate-disco2s: disco 2s ease-out infinite;
+  --animate-disco3s: disco 3s ease-out infinite;
+
+  --background-gradient-conic: conic-gradient(from var(--angle), var(--tw-gradient-stops));
+
+  @keyframes disco {
+    0% { transform: translateY(-50%) rotate(0deg) },
+    100% { transform: translateY(-50%) rotate(360deg) }
+  }
+  
   @keyframes accordion-up {
     from {
       height: 0;
@@ -180,6 +195,13 @@
       height: 0;
     }
   }
+
+  @keyframes carret-blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: calc(var(--radius) + 2px);
   --radius-lg: calc(var(--radius) + 4px);

@@ -8,7 +8,7 @@ import { FAQSection } from "@/features/landing/FAQSection";
 import { ConvertSection } from "@/features/landing/ConvertSection";
 import { BusinessCategories } from "@/features/landing/business-categories";
 import { BentoSection } from "@/features/landing/BentoSection";
-
+import { Button } from "@/components/ui/moving-border";
 export default function HomePage() {
   return (
     <div className="relative flex h-fit flex-col bg-background text-foreground">
@@ -19,6 +19,7 @@ export default function HomePage() {
       <PromoteSection />
       <ConvertSection />
       <BentoSection />
+      <Button>Click me</Button>
       <FAQSection />
       <Footer />
     </div>

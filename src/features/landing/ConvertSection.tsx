@@ -85,8 +85,8 @@ export const ConvertSection = () => {
                     data-aos-delay="100"
                   >
                     Fais parler ton image de marque
-                    <span className="relative inline-block">
-                      <strong className="highlight-box text-accent">immédiatement</strong> 🚀
+                    <span className="relative inline-block rotate-[-2deg]">
+                      <strong className="highlight-marker text-white">immédiatement</strong> 🚀
                     </span>
                   </p>
                 </div>

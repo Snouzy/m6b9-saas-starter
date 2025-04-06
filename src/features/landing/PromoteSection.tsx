@@ -104,8 +104,8 @@ export const PromoteSection = () => {
                   data-aos-anchor="[data-aos-id-2]"
                   data-aos-delay="100"
                 >
-                  {"Obtiens plus d'engagement et de confiance"}
-                  <span className="relative inline-block">
+                  {"Obtiens plus d'engagement et de confiance "}
+                  <span className="relative inline-block rotate-[-2deg]">
                     <strong className="highlight highlight-primary after:-rotate-2">instantanément ⭐️</strong>
                   </span>
                 </p>
