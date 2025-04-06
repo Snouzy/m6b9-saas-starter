@@ -6,6 +6,7 @@ import Avatar04 from "@public/images/avatar-04.jpg";
 import Avatar03 from "@public/images/avatar-03.jpg";
 import Avatar02 from "@public/images/avatar-02.jpg";
 import Avatar01 from "@public/images/avatar-01.jpg";
+import Particles from "@/components/ui/particles";
 import { Button } from "@/components/ui/moving-border";
 
 export function NewHero() {
@@ -88,6 +89,7 @@ export function NewHero() {
                     className="w-full flex text-md font-semibold leading-6 text-white hover:cursor-pointer justify-center"
                     href="https://app.fitdistance.io/register"
                   >
+                    <Particles className="absolute inset-0 z-10" quantity={10} />
                     <Button
                       borderRadius="50px"
                       className="py-7 group w-full bg-gradient-to-r from-primary to-primary px-10 border justify-center"

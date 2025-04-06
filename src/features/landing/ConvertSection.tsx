@@ -63,7 +63,7 @@ export const ConvertSection = () => {
             {/* Section content */}
             <div className="relative max-w-xl mx-auto xl:max-w-none text-center xl:text-left flex flex-col xl:flex-row items-center">
               {/* Content */}
-              <div className="w-[512px] max-w-full shrink-0 hidden xl:block">
+              <div className="w-[512px] max-w-full shrink-0">
                 <div className="max-w-full shrink-0 order-2 relative">
                   {/* Decorative geometric element - Apple style */}
                   <div aria-hidden="true" className="absolute -left-10 -top-15 pointer-events-none opacity-20">

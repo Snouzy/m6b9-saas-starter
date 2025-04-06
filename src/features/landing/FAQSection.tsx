@@ -41,15 +41,15 @@ const defaultData: FAQItem[] = [
 
 export function FAQSection() {
   return (
-    <section className="mt-0 md:mt-20 flex justify-center items-center w-full">
+    <section className="my-16 md:my-30 flex justify-center items-center w-full">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
         <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
           <div>
             <FaqAccordion
-              answerClassName="text-xl"
+              answerClassName="text-md md:text-xl"
               className="max-w-[700px]"
               data={defaultData}
-              questionClassName="text-2xl text-left px-4"
+              questionClassName="text-lg md:text-2xl text-left px-4"
             />
           </div>
         </div>
