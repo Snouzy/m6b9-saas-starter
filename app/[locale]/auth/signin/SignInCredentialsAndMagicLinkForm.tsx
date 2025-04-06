@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { useLocalStorage } from "usehooks-ts";
+import { toast } from "sonner";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 
@@ -29,11 +30,23 @@ export const SignInCredentialsAndMagicLinkForm = () => {
 
   async function onSubmit(values: LoginCredentialsFormType) {
     if (isUsingCredentials) {
-      await signIn("credentials", {
+      const result = await signIn("credentials", {
         email: values.email,
         password: values.password,
         callbackUrl: searchParams.get("callbackUrl") ?? undefined,
+        redirect: false,
       });
+
+      if (!result) {
+        toast.error(t("error.invalid_credentials"));
+      }
+
+      if (result?.error) {
+        const translated = t(`next_auth_errors.${result.error}` as keyof typeof t);
+        toast.error(translated);
+      }
+
+      // TODO: handle the OK
     } else {
       await signIn("resend", {
         email: values.email,
@@ -93,7 +106,7 @@ export const SignInCredentialsAndMagicLinkForm = () => {
 
       {isUsingCredentials && (
         <Typography className="text-center text-gray-400" variant="small">
-          Mot de passe oublié ?{" "}
+          {t("password_forgot")}{" "}
           <Typography
             as="button"
             className="text-gray-400"

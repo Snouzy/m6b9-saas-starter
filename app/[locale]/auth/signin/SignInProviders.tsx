@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 
+import { useI18n } from "locales/client";
 import { Typography } from "@/components/ui/typography";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Divider } from "@/components/ui/divider";
@@ -11,6 +12,8 @@ import { SignInCredentialsAndMagicLinkForm } from "./SignInCredentialsAndMagicLi
 import { ProviderButton } from "./ProviderButton";
 
 export const SignInProviders = () => {
+  const t = useI18n();
+
   const { data: providers, isPending } = useQuery({
     queryFn: () => fetch("/api/auth/providers").then((res) => res.json()),
     queryKey: ["providers"],
@@ -21,7 +24,7 @@ export const SignInProviders = () => {
       <div className="flex flex-col gap-4">
         <Skeleton className="h-3 w-12" />
         <Skeleton className="h-9" />
-        <Divider>ou</Divider>
+        <Divider>{t("or")}</Divider>
         <Skeleton className="h-11" />
       </div>
     );
@@ -34,7 +37,7 @@ export const SignInProviders = () => {
   return (
     <div className="flex flex-col gap-4">
       <SignInCredentialsAndMagicLinkForm />
-      <Divider>ou</Divider>
+      <Divider>{t("or")}</Divider>
 
       <div className="flex flex-col gap-2">
         <ProviderButton providerId="google" variant="accent" />

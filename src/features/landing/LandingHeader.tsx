@@ -1,11 +1,15 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import { Menu } from "lucide-react";
 import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
+import { User } from "@prisma/client";
 
+import { useI18n } from "locales/client";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { LogoSvg } from "@/components/svg/LogoSvg";
 
 import { SignInButton } from "../auth/SignInButton";
@@ -42,10 +46,10 @@ function useBoundedScroll(threshold: number) {
   return { scrollYBounded, scrollYBoundedProgress };
 }
 
-export function LandingHeader() {
+export function LandingHeader({ user }: { user: User | null }) {
   const { scrollYBoundedProgress } = useBoundedScroll(400);
   const scrollYBoundedProgressDelayed = useTransform(scrollYBoundedProgress, [0, 0.75, 1], [0, 0, 1]);
-
+  const t = useI18n();
   return (
     <motion.header
       className="fixed inset-x-0 z-50 flex h-10 w-screen shadow backdrop-blur-md"
@@ -123,7 +127,18 @@ export function LandingHeader() {
             opacity: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.8]),
           }}
         >
-          <SignInButton variant="ghost" />
+          {user ? (
+            <Link className={buttonVariants({ variant: "outline" })} href="/dashboard">
+              <Avatar className="mr-2 size-6">
+                <AvatarFallback>{user.email ? user.email.slice(0, 2) : "??"}</AvatarFallback>
+                {user.image && <AvatarImage src={user.image} />}
+              </Avatar>
+              <span className="max-lg:hidden">{user.name}</span>
+              {t("open_app")}
+            </Link>
+          ) : (
+            <SignInButton variant="ghost" />
+          )}
         </motion.nav>
       </div>
     </motion.header>

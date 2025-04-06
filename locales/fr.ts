@@ -8,6 +8,53 @@ export default {
   "invoice_count#one": "1 facture",
   "invoice_count#other": "{count} factures",
   use_password: "Se connecter avec mot de passe",
+  or: "ou",
+  password_forgot: "Mot de passe oublié ?",
+  open_app: "Ouvrir l'app",
+  next_auth_errors: {
+    AccountNotLinked:
+      "Ton email est déjà utilisé avec un autre compte. Veuillez vous connecter avec le compte originalement lié à cet email.",
+    AdapterError: "Une erreur technique est survenue lors du traitement de ta demande. Veuillez réessayer plus tard.",
+    AuthError: "Une erreur générale d'authentification est survenue. Veuillez réessayer ou contacter le support si le problème persiste.",
+    AuthorizedCallbackError: "Nous n'avons pas pu te connecter. Veuillez vérifier tes identifiants et réessayer.",
+    CallbackRouteError:
+      "La connexion a échouée à cause d'une erreur technique. Veuillez réessayer ou contacter le support pour obtenir de l'aide.",
+    CredentialsSignin: "Identifiants invalides. Veuillez vérifier tes informations et réessayer.",
+    DuplicateConditionalUI: "Une erreur de configuration est survenue. Veuillez contacter le support pour obtenir de l'aide.",
+    EmailSignInError: "Une erreur est survenue lors du processus de connexion avec ton email. Veuillez vérifier ton email et réessayer.",
+    ErrorPageLoop: "Une erreur de configuration a empêché la page d'erreur de s'afficher correctement. Veuillez contacter le support.",
+    EventError: "Une erreur technique est survenue lors du traitement de ta demande. Veuillez réessayer plus tard.",
+    ExperimentalFeatureNotEnabled: "Cette fonctionnalité n'est pas disponible. Veuillez contacter le support pour plus d'informations.",
+    InvalidCallbackUrl: "L'URL fournie est invalide. Veuillez réessayer avec une URL valide.",
+    InvalidCheck: "Une vérification de sécurité a échouée. Veuillez réessayer ou contacter le support si le problème persiste.",
+    InvalidEndpoints: "Une erreur de configuration technique est survenue. Veuillez contacter le support pour obtenir de l'aide.",
+    InvalidProvider:
+      "La méthode de connexion sélectionnée n'est pas supportée. Veuillez choisir une autre méthode ou contacter le support.",
+    JWTSessionError: "Une erreur de session est survenue. Veuillez vous reconnecter.",
+    MissingAdapter: "Une configuration technique est manquante. Veuillez contacter le support pour obtenir de l'aide.",
+    MissingAdapterMethods: "Une partie de la configuration est manquante. Veuillez contacter le support pour obtenir de l'aide.",
+    MissingAuthorize: "La méthode de connexion est incorrectement configurée. Veuillez contacter le support pour obtenir de l'aide.",
+    MissingCSRF: "Une erreur de sécurité est survenue. Veuillez rafraîchir la page et réessayer.",
+    MissingSecret: "Une erreur de configuration du serveur est survenue. Veuillez contacter le support.",
+    MissingWebAuthnAutocomplete: "Une erreur de configuration est survenue avec WebAuthn. Veuillez contacter le support.",
+    OAuthAccountNotLinked: "Ton email est lié à un autre compte. Veuillez utiliser le compte originalement lié à cet email.",
+    OAuthCallbackError: "La connexion avec le service externe a échouée. Veuillez réessayer ou choisir une autre méthode de connexion.",
+    OAuthProfileParseError:
+      "Nous n'avons pas pu récupérer ton profil depuis le service externe. Veuillez réessayer ou contacter le support.",
+    OAuthSignInError: "Une erreur est survenue lors du processus de connexion. Veuillez réessayer ou contacter le support.",
+    SessionTokenError: "Nous n'avons pas pu récupérer tes informations de session. Veuillez vous reconnecter.",
+    SignOutError: "Une erreur est survenue lors de la déconnexion. Veuillez réessayer.",
+    UnknownAction: "Cette action n'est pas supportée. Veuillez vérifier ta demande et réessayer.",
+    UnsupportedStrategy: "Cette méthode de connexion n'est pas supportée. Veuillez choisir une autre méthode.",
+    UntrustedHost:
+      "L'essai de connexion provient d'une source non fiable. Veuillez vous assurer que vous accédez au site depuis un emplacement sûr.",
+    Verification: "La vérification a échouée. Veuillez vérifier ton email et ton jeton, et réessayer.",
+    WebAuthnVerificationError:
+      "La vérification avec WebAuthn a échouée. Veuillez réessayer ou utiliser une autre méthode d'authentification.",
+  },
+  error: {
+    invalid_credentials: "Identifiants invalides ou compte inexistant",
+  },
   commons: {
     your_feminine: "ta",
     password: "Mot de passe",
