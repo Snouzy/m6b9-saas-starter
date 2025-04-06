@@ -9,6 +9,7 @@ import Avatar02 from "@public/images/avatar-02.jpg";
 import Avatar01 from "@public/images/avatar-01.jpg";
 import Particles from "@/components/ui/particles";
 import { Button } from "@/components/ui/moving-border";
+
 export async function NewHero() {
   const t = await getI18n();
 
@@ -106,7 +107,7 @@ export async function NewHero() {
                     </Link>
 
                     <p className="text-xs text-center text-slate-400 mt-1" data-aos="fade-right" data-aos-delay="200">
-                      et sans carte.
+                      {t("hero_without_card")}
                     </p>
                   </div>
                   <div className="flex justify-center items-center space-y-2 spacex-x-2 sm:space-x-3 lg:mb-0">

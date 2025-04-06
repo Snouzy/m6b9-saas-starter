@@ -61,7 +61,7 @@ interface RootLayoutProps {
 
 export default async function RootLayout({ params, children, modal }: RootLayoutProps) {
   const { locale } = await params;
-  console.log("locale in layout.tsx:", locale);
+
   return (
     <>
       <html className="h-full" lang="en" suppressHydrationWarning>
