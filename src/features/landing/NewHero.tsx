@@ -48,7 +48,7 @@ export function NewHero() {
             </div>
 
             {/* Content */}
-            <div className="md:w-[640px] py-12 md:py-20 md:min-h-[450px] z-10">
+            <div className="md:w-[640px] py-12 md:py-20 md:min-h-[450px] z-10 md:pb-16">
               {/* Copy */}
               <h1 className="h1 font-hkgrotesk text-slate-100 mb-6" data-aos="fade-right" data-aos-delay="100">
                 Convertis tes prospects en clients depuis{" "}
@@ -83,13 +83,13 @@ export function NewHero() {
                 data-aos="fade-right"
                 data-aos-delay="300"
               >
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center mb-4">
                   <Link
-                    className="w-full flex text-md font-semibold leading-6 text-white hover:cursor-pointer"
+                    className="w-full flex text-md font-semibold leading-6 text-white hover:cursor-pointer justify-center"
                     href="https://app.fitdistance.io/register"
                   >
                     <Button
-                      borderRadius="30px"
+                      borderRadius="50px"
                       className="py-7 group w-full bg-gradient-to-r from-primary to-primary px-10 border justify-center"
                     >
                       <span className="font-inter font-bold text-2xl">
@@ -102,7 +102,7 @@ export function NewHero() {
                     et sans carte.
                   </p>
                 </div>
-                <div className="sm:flex sm:items-start sm:justify-center space-y-2 sm:space-y-0 sm:space-x-3">
+                <div className="sm:flex sm:justify-center items-center space-y-2 sm:space-y-0 sm:space-x-3">
                   <div className="inline-flex -space-x-3 -ml-0.5">
                     <Image
                       alt="Avatar 01"
@@ -133,7 +133,7 @@ export function NewHero() {
                       width={28}
                     />
                   </div>
-                  <div className="text-xs text-slate-500 font-medium">+120K</div>
+                  <div className="text-xs text-slate-500 font-medium">+2K</div>
                 </div>
               </div>
               {/* Press logos */}
