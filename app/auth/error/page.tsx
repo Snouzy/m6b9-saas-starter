@@ -8,10 +8,9 @@ import { buttonVariants } from "@/components/ui/button";
 
 import { getError } from "./auth-error-mapping";
 
-import type { PageParams } from "@/types/next";
-
-export default async function AuthErrorPage(props: PageParams<{}>) {
-  const { errorMessage, error } = getError(props.searchParams.error);
+export default async function AuthErrorPage({ params }: { params: Promise<{ error: string }> }) {
+  const { error } = await params;
+  const { errorMessage, error: errorCode } = getError(error);
 
   return (
     <div className="flex h-full flex-col">
@@ -23,7 +22,7 @@ export default async function AuthErrorPage(props: PageParams<{}>) {
         <LayoutContent>
           <Card variant="error">
             <CardHeader>
-              <CardDescription>{error}</CardDescription>
+              <CardDescription>{errorCode}</CardDescription>
               <CardTitle>{errorMessage}</CardTitle>
             </CardHeader>
             <CardFooter className="flex items-center gap-2">

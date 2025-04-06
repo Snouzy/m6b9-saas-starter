@@ -1,56 +1,66 @@
-import { Suspense } from "react";
 import { redirect } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
 
-import { SiteConfig } from "@/site-config";
 import { auth } from "@/lib/auth/helper";
-import { Typography } from "@/components/ui/typography";
-import { Loader } from "@/components/ui/loader";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-import { SignUpCredentialsForm } from "./SignUpCredentialsForm";
+export const metadata = {
+  title: "Sign Up - Simple",
+  description: "Page description",
+};
 
-export default async function AuthSignInPage() {
+export default async function AuthSignUpPage() {
   const user = await auth();
 
   if (user) {
     redirect("/");
   }
 
-  if (!SiteConfig.auth.password) {
-    redirect("/auth/signin");
-  }
-
   return (
-    <div className="flex h-full flex-col">
-      <header className="sticky top-0 z-40 w-full border-b bg-background">
-        <div className="container flex h-16 items-center gap-2">
-          <Image alt="app logo" height={32} src={SiteConfig.appIcon} width={32} />
-          <Link className="text-xl font-bold" href="/">
-            {SiteConfig.title}
-          </Link>
-        </div>
-      </header>
-      <div className="flex flex-1 items-center justify-center">
-        <Card className="w-full max-w-md">
-          <CardHeader className="flex flex-col items-center justify-center">
-            <CardTitle>Sign up</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Suspense fallback={<Loader />}>
-              <SignUpCredentialsForm />
-            </Suspense>
-
-            <Typography className="mt-4" variant="small">
-              You already have an account?{" "}
-              <Typography as={Link} href="/auth/signin" variant="link">
-                Sign in
-              </Typography>
-            </Typography>
-          </CardContent>
-        </Card>
+    <>
+      <div className="mb-10">
+        <h1 className="text-4xl font-bold">Créer un compte</h1>
       </div>
-    </div>
+      {/* Form */}
+      <form>
+        <div className="space-y-4">
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700" htmlFor="email">
+              Email
+            </label>
+            <input className="form-input w-full py-2" id="email" placeholder="corybarker@email.com" required type="email" />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700" htmlFor="password">
+              Password
+            </label>
+            <input autoComplete="on" className="form-input w-full py-2" id="password" placeholder="••••••••" required type="password" />
+          </div>
+        </div>
+        <div className="mt-6 space-y-3">
+          <button className="btn w-full bg-linear-to-t from-blue-600 to-blue-500 bg-[length:100%_100%] bg-[bottom] text-white shadow-sm hover:bg-[length:100%_150%]">
+            Register
+          </button>
+          <div className="text-center text-sm text-gray-400">Ou</div>
+          <button className="btn w-full bg-linear-to-t from-gray-900 to-gray-700 bg-[length:100%_100%] bg-[bottom] text-white shadow-sm hover:bg-[length:100%_150%]">
+            Continue with GitHub
+          </button>
+        </div>
+      </form>
+
+      {/* Bottom link */}
+      <div className="mt-6 text-center">
+        <p className="text-xs text-gray-500">
+          By signing up, you agree to the{" "}
+          <a className="whitespace-nowrap font-medium text-gray-700 underline hover:no-underline" href="#0">
+            Terms
+          </a>{" "}
+          and{" "}
+          <a className="whitespace-nowrap font-medium text-gray-700 underline hover:no-underline" href="#0">
+            Privacy Policy
+          </a>
+          .
+        </p>
+      </div>
+    </>
   );
 }

@@ -1,11 +1,13 @@
 import Google from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 
 import { SiteConfig } from "@/site-config";
 import { prisma } from "@/lib/prisma";
 import { sendEmail } from "@/lib/mail/sendEmail";
 import { logger } from "@/lib/logger";
+import { hashStringWithSalt } from "@/lib/auth/credentials-provider";
 import { env } from "@/env";
 
 import MagicLinkMail from "../../../emails/MagicLinkEmail";
@@ -24,6 +26,37 @@ const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(prisma),
   providers: [
+    CredentialsProvider({
+      name: "credentials",
+      credentials: {
+        email: { label: "Email", type: "text", placeholder: "Your email" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) return null;
+
+        // Add logic here to look up the user from the credentials supplied
+        const passwordHash = hashStringWithSalt(String(credentials.password), env.NEXTAUTH_SECRET);
+
+        const user = await prisma.user.findUnique({
+          where: {
+            email: credentials.email,
+            passwordHash: passwordHash,
+          },
+        });
+
+        if (user) {
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            image: user.image,
+          };
+        } else {
+          return null;
+        }
+      },
+    }),
     Google({
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
