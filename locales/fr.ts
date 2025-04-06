@@ -1,4 +1,9 @@
 export default {
+  page_404: {
+    title: "Page non trouvée",
+    description: "Oops! Cette page n'existe pas. Veuillez vérifier l'URL et réessayer.",
+    cta: "Retour à l'accueil",
+  },
   hero_title: "Convertis tes prospects en clients depuis",
   hero_title_highlight: "bio",
   hero_subtitle: "Un seul lien pour mettre en lumière tes conseils, tes créations, ton expertise",

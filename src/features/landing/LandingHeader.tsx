@@ -50,6 +50,7 @@ export function LandingHeader({ user }: { user: User | null }) {
   const { scrollYBoundedProgress } = useBoundedScroll(400);
   const scrollYBoundedProgressDelayed = useTransform(scrollYBoundedProgress, [0, 0.75, 1], [0, 0, 1]);
   const t = useI18n();
+
   return (
     <motion.header
       className="fixed inset-x-0 z-50 flex h-10 w-screen shadow backdrop-blur-md"

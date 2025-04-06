@@ -11,7 +11,7 @@ type PolymorphicAsProp<E extends ElementType> = {
 
 type PolymorphicProps<E extends ElementType> = PropsWithChildren<Omit<ComponentPropsWithoutRef<E>, "as"> & PolymorphicAsProp<E>>;
 
-const typographyVariants = cva("hover:cursor-pointer", {
+const typographyVariants = cva("", {
   variants: {
     variant: {
       h1: "scroll-m-20 font-caption text-4xl font-extrabold tracking-tight lg:text-5xl",

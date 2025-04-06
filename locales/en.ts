@@ -1,4 +1,9 @@
 export default {
+  page_404: {
+    title: "Page not found",
+    description: "Oops! This link seems to be broken. Let&apos;s get you back to creating your perfect link in bio page.",
+    cta: "Go back home",
+  },
   hero_title: "Convert your prospects into clients from your",
   hero_title_highlight: "bio",
   hero_subtitle: "A single link to highlight your advice, creations, and expertise",

@@ -80,7 +80,7 @@ export default async function RootLayout({ params, children, modal }: RootLayout
           suppressHydrationWarning
         >
           <Providers locale={locale}>
-            <NextTopLoader color="hsl(var(--primary))" delay={100} showSpinner={false} />
+            <NextTopLoader color="#FF5722" delay={100} showSpinner={false} />
             <div className="h-full">
               {children}
               {modal}

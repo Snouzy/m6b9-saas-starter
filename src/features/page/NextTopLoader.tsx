@@ -75,7 +75,7 @@ const isAnchorOfCurrentUrl = (currentUrl: string, newUrl: string) => {
 };
 
 export const NextTopLoader = ({
-  color = "#29d",
+  color = "#FF5722",
   height = 3,
   showSpinner = true,
   crawl = true,

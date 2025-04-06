@@ -20,12 +20,12 @@ const buttonVariants = cva(
         minimal: "bg-transparent text-primary border border-transparent hover:bg-primary/5",
       },
       size: {
-        default: "h-10 px-4 py-2 rounded-lg",
-        sm: "h-8 px-3 py-1 rounded-md text-xs",
-        md: "h-11 px-5 py-2.5 rounded-lg",
-        lg: "h-12 px-6 py-3 rounded-xl text-base",
-        icon: "h-10 w-10 rounded-full p-2",
-        pill: "h-10 px-5 py-2 rounded-full",
+        default: "h-9 px-3 py-1.5 sm:h-10 sm:px-4 sm:py-2 rounded-lg text-[13px] sm:text-sm",
+        sm: "h-7 px-2 py-1 sm:h-8 sm:px-3 sm:py-1 rounded-md text-xs",
+        md: "h-10 px-4 py-2 sm:h-11 sm:px-5 sm:py-2.5 rounded-lg text-sm",
+        lg: "h-11 px-5 py-2.5 sm:h-12 sm:px-6 sm:py-3 rounded-xl text-[15px] sm:text-base",
+        icon: "h-9 w-9 sm:h-10 sm:w-10 rounded-full p-1.5 sm:p-2",
+        pill: "h-9 px-4 py-1.5 sm:h-10 sm:px-5 sm:py-2 rounded-full text-[13px] sm:text-sm",
       },
     },
     defaultVariants: {
