@@ -6,21 +6,7 @@ import { useTheme } from "next-themes";
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme();
 
-  return (
-    <Sonner
-      className="toaster group"
-      position="top-center"
-      style={
-        {
-          "--normal-bg": "var(--popover)",
-          "--normal-text": "var(--popover-foreground)",
-          "--normal-border": "var(--border)",
-        } as React.CSSProperties
-      }
-      theme={theme as ToasterProps["theme"]}
-      {...props}
-    />
-  );
+  return <Sonner className="toaster group" position="top-center" theme={theme as ToasterProps["theme"]} {...props} />;
 };
 
 export { Toaster };

@@ -69,9 +69,17 @@ const authOptions: NextAuthOptions = {
 
       if (!typedParams.user) return typedParams.session;
 
-      typedParams.user.passwordHash = null;
-
-      return typedParams.session;
+      return {
+        ...typedParams.session,
+        user: {
+          ...typedParams.session.user,
+          id: typedParams.user.id,
+          firstName: typedParams.user.firstName,
+          lastName: typedParams.user.lastName,
+          email: typedParams.user.email,
+          image: typedParams.user.image,
+        },
+      };
     },
   },
   events: {

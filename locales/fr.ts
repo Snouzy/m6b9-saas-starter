@@ -1,4 +1,5 @@
 export default {
+  profile: "Profil",
   my_account: "Mon compte",
   register_title: "Créer un compte",
   register_description: "Entrez vos informations ci-dessous pour créer votre compte",
