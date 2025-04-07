@@ -16,18 +16,18 @@ const queryClient = new QueryClient();
 
 export const Providers = ({ children, locale }: PropsWithChildren<{ locale: string }>) => {
   return (
-    <I18nProviderClient locale={locale}>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <PlausibleProvider domain={SiteConfig.domain}>
-          <SessionProvider>
-            <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <I18nProviderClient locale={locale}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <PlausibleProvider domain={SiteConfig.domain}>
+            <SessionProvider>
               <Toaster />
               <DialogRenderer />
               {children}
-            </QueryClientProvider>
-          </SessionProvider>
-        </PlausibleProvider>
-      </ThemeProvider>
-    </I18nProviderClient>
+            </SessionProvider>
+          </PlausibleProvider>
+        </ThemeProvider>
+      </I18nProviderClient>
+    </QueryClientProvider>
   );
 };

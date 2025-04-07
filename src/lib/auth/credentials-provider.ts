@@ -38,7 +38,6 @@ export const getCredentialsProvider = () => {
     async authorize(credentials) {
       if (!credentials?.email || !credentials?.password) return null;
 
-      // Add logic here to look up the user from the credentials supplied
       const passwordHash = hashStringWithSalt(String(credentials.password), env.NEXTAUTH_SECRET);
 
       const user = await prisma.user.findFirst({

@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { getI18n } from "locales/server";
 import { requiredAuth } from "@/lib/auth/helper";
 import { MobileDropdownMenu } from "@/features/navigation/MobileDropdownMenu";
 import { DesktopVerticalMenu } from "@/features/navigation/DesktopVerticalMenu";
@@ -15,6 +16,7 @@ import type { PropsWithChildren } from "react";
 
 export default async function DashboardLayout(props: PropsWithChildren) {
   const user = await requiredAuth();
+  const t = await getI18n();
 
   return (
     <div className="flex h-full flex-col lg:flex-row lg:overflow-hidden">
@@ -26,7 +28,7 @@ export default async function DashboardLayout(props: PropsWithChildren) {
           </Link>
         </div>
         <div className="h-10" />
-        <DesktopVerticalMenu links={DASHBOARD_LINKS} />
+        <DesktopVerticalMenu links={DASHBOARD_LINKS(t)} />
         <div className="flex-1" />
         <LoggedInButton user={user} />
       </div>
@@ -36,7 +38,7 @@ export default async function DashboardLayout(props: PropsWithChildren) {
         <header className="w-full border-b bg-background max-lg:sticky max-lg:top-0 max-lg:z-40 px-2">
           <div className="flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
             <div className="flex items-center gap-2 lg:hidden">
-              <MobileDropdownMenu links={DASHBOARD_LINKS} />
+              <MobileDropdownMenu links={DASHBOARD_LINKS(t)} />
               <LogoSvg className="h-6 w-24" />
             </div>
 

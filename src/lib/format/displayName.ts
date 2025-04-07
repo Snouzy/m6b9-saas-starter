@@ -6,8 +6,8 @@ type User = {
 
 export function displayName(user: User): string {
   console.log("user:", user);
-  return user.firstName || user.lastName
-    ? displayFullName({ firstName: user.firstName ?? "", lastName: user.lastName ?? "" })
+  return user.firstName
+    ? user.firstName
     : user.email
         .split("@")[0]
         .replaceAll(".", " ")

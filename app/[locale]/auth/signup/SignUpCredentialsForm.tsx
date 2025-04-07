@@ -5,8 +5,10 @@ import { signIn } from "next-auth/react";
 import { useMutation } from "@tanstack/react-query";
 
 import { useI18n } from "locales/client";
+import { ProviderButton } from "app/[locale]/auth/ProviderButton";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, useZodForm } from "@/components/ui/form";
+import { Divider } from "@/components/ui/divider";
 import { Button } from "@/components/ui/button";
 
 import { LoginCredentialsFormScheme } from "./signup.schema";
@@ -33,8 +35,7 @@ export const SignUpCredentialsForm = () => {
       await signIn("credentials", {
         email: values.email,
         password: values.password,
-
-        callbackUrl: `${window.location.origin}/`,
+        callbackUrl: `${window.location.origin}/dashboard`,
       });
     },
   });
@@ -133,6 +134,11 @@ export const SignUpCredentialsForm = () => {
       <Button className="w-full" type="submit">
         {t("commons.submit")}
       </Button>
+
+      <Divider>{t("or")}</Divider>
+      <div className="flex flex-col gap-2">
+        <ProviderButton action="signup" providerId="google" variant="accent" />
+      </div>
     </Form>
   );
 };

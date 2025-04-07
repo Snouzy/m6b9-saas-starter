@@ -7,10 +7,15 @@ export default {
   register_privacy: "Terms of Service",
   register_privacy_link: "and our",
   register_privacy_link_2: "Privacy Policy",
+
+  signup_with: "Sign up with {provider}",
   signin_with: "Sign in with {provider}",
   signin_error_subtitle: "Please check your information and try again.",
   signin_title: "Sign in to your account",
+  success_feedback: "Your feedback has been sent. Thanks you.",
   dashboard: "Dashboard",
+  my_website: "My website",
+  my_links: "My links",
   page_404: {
     title: "Page not found",
     description: "Oops! This link seems to be broken. Let&apos;s get you back to creating your perfect link in bio page.",

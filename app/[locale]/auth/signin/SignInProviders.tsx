@@ -9,7 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Divider } from "@/components/ui/divider";
 
 import { SignInCredentialsAndMagicLinkForm } from "./SignInCredentialsAndMagicLinkForm";
-import { ProviderButton } from "./ProviderButton";
+import { ProviderButton } from "../ProviderButton";
 
 export const SignInProviders = () => {
   const t = useI18n();

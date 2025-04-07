@@ -4,6 +4,7 @@ import { Fragment, cloneElement } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
+import { useI18n } from "locales/client";
 import { cn } from "@/lib/utils";
 import { Typography } from "@/components/ui/typography";
 import { Separator } from "@/components/ui/separator";
@@ -32,6 +33,7 @@ const useCurrentPath = (links: NavigationLinkGroups[]) => {
 
 export const DesktopVerticalMenu = ({ links, className }: { links: NavigationLinkGroups[]; className?: string }) => {
   const currentPath = useCurrentPath(links);
+  const t = useI18n();
 
   return (
     <nav className={cn("flex flex-col gap-4", className)}>
@@ -64,7 +66,7 @@ export const DesktopVerticalMenu = ({ links, className }: { links: NavigationLin
               );
             })}
           </div>
-          {index < DASHBOARD_LINKS.length - 1 ? <Separator /> : null}
+          {index < DASHBOARD_LINKS(t).length - 1 ? <Separator /> : null}
         </Fragment>
       ))}
     </nav>

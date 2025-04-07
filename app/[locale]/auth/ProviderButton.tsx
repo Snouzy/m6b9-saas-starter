@@ -39,6 +39,7 @@ export const ProviderButton = (props: ProviderButtonProps) => {
 
   const data = ProviderData[props.providerId];
 
+  const traduction = props.action === "signin" ? t("signin_with", { provider: data.name }) : t("signup_with", { provider: data.name });
   return (
     <Button
       onClick={() => {
@@ -48,7 +49,7 @@ export const ProviderButton = (props: ProviderButtonProps) => {
       variant="outline"
     >
       {signInMutation.isPending ? <Loader size={16} /> : data.icon}
-      <span className="ml-2 text-base">{t("signin_with", { provider: data.name })}</span>
+      <span className="ml-2 text-base">{traduction}</span>
     </Button>
   );
 };
