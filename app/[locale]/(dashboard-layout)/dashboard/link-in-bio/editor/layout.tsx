@@ -4,9 +4,8 @@ import { useState } from "react";
 import { LayoutList, ThumbsUp, User2, Paintbrush, Search, Settings } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { Button } from "@/components/ui/button";
 
 interface EditorLayoutProps {
   children: React.ReactNode;
