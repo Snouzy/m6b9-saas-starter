@@ -4,9 +4,12 @@ import { SiteConfig } from "@/site-config";
 import { Typography } from "@/components/ui/typography";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-import type { PageParams } from "@/types/next";
+interface VerifyRequestPageParams {
+  params: Promise<Record<string, string>>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
 
-export default async function AuthVerifyRequestPage(_: PageParams) {
+export default async function AuthVerifyRequestPage({ params: _p, searchParams: _s }: VerifyRequestPageParams) {
   return (
     <div className="h-full">
       <header className="flex items-center gap-2 px-4 pt-4">

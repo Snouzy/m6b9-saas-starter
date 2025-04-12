@@ -4,9 +4,13 @@ import { Layout, LayoutContent, LayoutHeader, LayoutTitle } from "@/features/pag
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 
-import type { PageParams } from "@/types/next";
+// interface PageProps {
+//   params: {
+//     locale: string;
+//   };
+// }
 
-export default async function RoutePage(props: PageParams<{}>) {
+export default async function RoutePage() {
   return (
     <Layout>
       <LayoutHeader>

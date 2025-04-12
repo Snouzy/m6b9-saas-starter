@@ -5,9 +5,7 @@ import { Screens } from "@/constants/screen";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 
-import type { PageParams } from "@/types/next";
-
-export default async function LinkInBioEditorPage(props: PageParams<{}>) {
+export default async function LinkInBioEditorPage() {
   return (
     <Layout>
       <LayoutHeader>

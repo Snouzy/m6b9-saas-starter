@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 import { getI18n } from "locales/server";
 import { auth } from "@/lib/auth/helper";
@@ -30,13 +31,13 @@ export default async function AuthSignUpPage() {
       <div className="mt-6 text-center text-sm text-muted-foreground">
         <p>
           {t("register_terms")}{" "}
-          <a className="font-medium text-primary underline-offset-4 hover:underline" href="/terms">
+          <Link className="font-medium text-primary underline-offset-4 hover:underline" href="/terms">
             {t("register_privacy")}
-          </a>{" "}
+          </Link>{" "}
           {t("register_privacy_link")}{" "}
-          <a className="font-medium text-primary underline-offset-4 hover:underline" href="/privacy">
+          <Link className="font-medium text-primary underline-offset-4 hover:underline" href="/privacy">
             {t("register_privacy_link_2")}
-          </a>
+          </Link>
           .
         </p>
       </div>

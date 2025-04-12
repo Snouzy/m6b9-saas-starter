@@ -31,13 +31,13 @@ export const EmailForm = ({
 
   const submit = useMutation({
     mutationFn: async ({ email }: EmailActionSchemaType) => {
-      const { serverError, data } = await addEmailAction({ email });
+      const action = await addEmailAction({ email });
       plausible("Email+Submit");
 
-      if (data) {
-        return data;
+      if (action?.data) {
+        return action.data;
       } else {
-        throw new Error(serverError);
+        throw new Error(action?.serverError ?? "An error occurred while subscribing to the newsletter.");
       }
     },
   });
@@ -96,7 +96,7 @@ export const EmailForm = ({
               </LoadingButton>
             </div>
             {submit.isError && (
-              <Alert variant="destructive">
+              <Alert variant="error">
                 <AlertCircle size={20} />
                 <AlertTitle>{submit.error.message}</AlertTitle>
                 <AlertDescription>Try another email address or contact us.</AlertDescription>

@@ -10,7 +10,6 @@ import { getCredentialsProvider } from "@/lib/auth/credentials-provider";
 import { env } from "@/env";
 
 import MagicLinkMail from "../../../emails/MagicLinkEmail";
-import { setupResendCustomer, setupStripeCustomer } from "./auth-config-setup";
 
 import type { NextAuthOptions, Session } from "next-auth";
 import type { User } from "@prisma/client";
@@ -90,16 +89,16 @@ const authOptions: NextAuthOptions = {
         return;
       }
 
-      const stripeCustomerId = await setupStripeCustomer(user);
-      const resendContactId = await setupResendCustomer(user);
+      // const stripeCustomerId = await setupStripeCustomer(user);
+      // const resendContactId = await setupResendCustomer(user);
 
       await prisma.user.update({
         where: {
           id: user.id,
         },
         data: {
-          stripeCustomerId,
-          resendContactId,
+          stripeCustomerId: "", // TODO: add stripe customer id
+          resendContactId: "", // TODO: add resend contact id
         },
       });
     },

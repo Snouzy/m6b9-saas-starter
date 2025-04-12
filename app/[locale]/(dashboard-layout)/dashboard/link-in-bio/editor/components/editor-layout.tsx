@@ -4,9 +4,8 @@ import { useState } from "react";
 import { LayoutList, ThumbsUp, User2, Paintbrush, Search, Settings } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { Button } from "@/components/ui/button";
 
 interface EditorLayoutProps {
   children: React.ReactNode;
@@ -27,7 +26,7 @@ const navigationItems: NavigationItem[] = [
   { icon: Settings, label: "Settings", id: "settings" },
 ];
 
-export function EditorLayout({ children }: EditorLayoutProps) {
+export default function EditorLayout({ children }: EditorLayoutProps) {
   const [activeTab, setActiveTab] = useState("actions");
   const isMobile = useMediaQuery("(max-width: 768px)");
 

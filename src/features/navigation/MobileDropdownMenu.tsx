@@ -48,6 +48,8 @@ export const MobileDropdownMenu = ({ links, className }: { links: NavigationLink
                   variant="large"
                 >
                   {cloneElement(link.icon, {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-expect-error
                     className: "h-4 w-4",
                   })}
                   <span>{link.title}</span>

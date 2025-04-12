@@ -34,10 +34,10 @@ export const ContactSupportDialog = (props: ContactSupportDialogProps) => {
   });
 
   const onSubmit = async (values: ContactSupportSchemaType) => {
-    const { data, serverError } = await contactSupportAction(values);
+    const action = await contactSupportAction(values);
 
-    if (!data) {
-      toast.error(serverError);
+    if (!action || !action.data) {
+      toast.error(action?.serverError ?? "An error occurred while sending your message.");
       return;
     }
 

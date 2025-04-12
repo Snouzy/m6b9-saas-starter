@@ -26,7 +26,7 @@ const navigationItems: NavigationItem[] = [
   { icon: Settings, label: "Settings", id: "settings" },
 ];
 
-export function EditorLayout({ children }: EditorLayoutProps) {
+export default function EditorLayout({ children }: EditorLayoutProps) {
   const [activeTab, setActiveTab] = useState("actions");
   const isMobile = useMediaQuery("(max-width: 768px)");
 

@@ -49,7 +49,7 @@ export const findUserFromCustomer = async (stripeCustomer: string | Stripe.Custo
   const user = await prisma.user.create({
     data: {
       email,
-      name,
+      firstName: name ?? "",
       stripeCustomerId,
     },
   });

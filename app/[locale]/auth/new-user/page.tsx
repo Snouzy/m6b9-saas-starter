@@ -5,13 +5,16 @@ import { Layout, LayoutContent, LayoutDescription, LayoutHeader, LayoutTitle } f
 import { Header } from "@/features/layout/Header";
 import { buttonVariants } from "@/components/ui/button";
 
-import type { PageParams } from "@/types/next";
+interface NewUserPageParams {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
 
 /**
  * This page is show when a user loggin. You can add an onboarding process here.
  */
-export default function NewUserPage(props: PageParams) {
-  const callbackUrl = typeof props.searchParams.callbackUrl === "string" ? props.searchParams.callbackUrl : "/";
+export default async function NewUserPage({ searchParams }: NewUserPageParams) {
+  const resolvedParams = await searchParams;
+  const callbackUrl = typeof resolvedParams.callbackUrl === "string" ? resolvedParams.callbackUrl : "/";
 
   redirect(callbackUrl);
 

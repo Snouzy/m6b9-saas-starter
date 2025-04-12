@@ -13,7 +13,7 @@ import { SignInProviders } from "./SignInProviders";
 export default async function AuthSignInPage({ params }: { params: Promise<{ error: string }> }) {
   const t = await getI18n();
   const { error } = await params;
-  const { errorMessage, error: errorCode } = getError(error);
+  const { errorMessage, error: _error } = getError(error);
 
   const user = await auth();
 
