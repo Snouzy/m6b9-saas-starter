@@ -2,9 +2,9 @@
 
 import { useBoolean } from "usehooks-ts";
 import { toast } from "sonner";
-import { useSession } from "next-auth/react";
 import { Angry, Frown, Meh, SmilePlus } from "lucide-react";
 
+import { authClient } from "@/utils/auth-client";
 import { cn } from "@/lib/utils";
 import { InlineTooltip } from "@/components/ui/tooltip";
 import { Textarea } from "@/components/ui/textarea";
@@ -23,8 +23,8 @@ export type ContactFeedbackPopoverProps = PropsWithChildren<{}>;
 
 export const ContactFeedbackPopover = (props: ContactFeedbackPopoverProps) => {
   const open = useBoolean();
-  const session = useSession();
-  const email = session.data?.user.email ?? "";
+  const { data: session } = authClient.useSession();
+  const email = session?.user.email ?? "";
   const form = useZodForm({
     schema: ContactFeedbackSchema,
     defaultValues: {

@@ -1,7 +1,3 @@
-"use client";
-
-import { useIsClient } from "usehooks-ts";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { ArrowRightIcon } from "lucide-react";
 import { User } from "@prisma/client";
@@ -14,39 +10,14 @@ import { UserDropdown } from "./UserDropdown";
 
 import type { VariantProps } from "class-variance-authority";
 
-const useHref = () => {
-  const isClient = useIsClient();
-
-  if (!isClient) {
-    return "";
-  }
-
-  const href = `${window.location.href}/dashboard`;
-
-  return `${href}`;
-};
-
 export const SignInButton = (props: VariantProps<typeof buttonVariants>) => {
-  const href = useHref();
-
   return (
     <Button asChild Icon={ArrowRightIcon} iconPlacement="right" variant="outline">
-      <Link className={buttonVariants({ size: "sm", ...props })} href={`/auth/signin?callbackUrl=${href}`}>
+      <Link className={buttonVariants({ size: "sm", ...props })} href={"/auth/signin?callbackUrl=/dashboard"}>
         Se connecter
       </Link>
     </Button>
   );
-};
-
-export const AuthButtonClient = () => {
-  const session = useSession();
-
-  if (session.data?.user) {
-    const user = session.data.user as User;
-    return <LoggedInButton user={user} />;
-  }
-
-  return <SignInButton />;
 };
 
 export const LoggedInButton = ({ user, showName = true }: { user: User; showName?: boolean }) => {

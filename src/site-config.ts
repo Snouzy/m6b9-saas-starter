@@ -12,8 +12,8 @@ export const SiteConfig = {
     primary: "#007291",
   },
   email: {
-    from: "Fit'Links <frontfit.links@gmail.com>",
-    contact: "frontfit.links@gmail.com",
+    from: "Fit'Links <mat@fitlinks.coach>",
+    contact: "mat@fitlinks.coach",
   },
   maker: {
     image: "https://frontfit.links/images/me/twitter-en.jpg",

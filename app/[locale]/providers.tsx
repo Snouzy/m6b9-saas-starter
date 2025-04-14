@@ -2,7 +2,6 @@
 
 import { ThemeProvider } from "next-themes";
 import PlausibleProvider from "next-plausible";
-import { SessionProvider } from "next-auth/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { I18nProviderClient } from "locales/client";
@@ -20,11 +19,9 @@ export const Providers = ({ children, locale }: PropsWithChildren<{ locale: stri
       <I18nProviderClient locale={locale}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <PlausibleProvider domain={SiteConfig.domain}>
-            <SessionProvider>
-              <Toaster />
-              <DialogRenderer />
-              {children}
-            </SessionProvider>
+            <Toaster />
+            <DialogRenderer />
+            {children}
           </PlausibleProvider>
         </ThemeProvider>
       </I18nProviderClient>

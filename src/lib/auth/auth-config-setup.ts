@@ -3,14 +3,16 @@ import { resend } from "@/lib/mail/resend";
 import { displayFullName } from "@/lib/format/displayName";
 import { env } from "@/env";
 
-import type { User } from "next-auth";
+import type { DefaultUser, User } from "next-auth";
 
-export const setupStripeCustomer = async (user: Omit<User, "id"> & { firstName: string; lastName: string }) => {
+export const setupStripeCustomer = async (user: DefaultUser & { firstName: string; lastName: string }) => {
   if (!user.email) {
     return;
   }
 
   const { firstName, lastName } = user;
+  console.log("firstName:", firstName);
+  console.log("lastName:", lastName);
 
   const customer = await stripe.customers.create({
     email: user.email,

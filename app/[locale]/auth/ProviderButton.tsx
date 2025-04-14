@@ -1,10 +1,10 @@
 "use client";
 
-import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 
 import { useI18n } from "locales/client";
+import { authClient } from "@/utils/auth-client";
 import { getServerUrl } from "@/lib/server-url";
 import { Loader } from "@/components/ui/loader";
 import { Button, ButtonProps } from "@/components/ui/button";
@@ -31,10 +31,15 @@ export const ProviderButton = (props: ProviderButtonProps) => {
   const searchParams = useSearchParams();
 
   const signInMutation = useMutation({
-    mutationFn: () =>
-      signIn(props.providerId, {
-        callbackUrl: searchParams.get("callbackUrl") ?? `${getServerUrl()}/`,
-      }),
+    mutationFn: async () => {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: searchParams.get("callbackUrl") ?? `${getServerUrl()}/`,
+      });
+    },
+    // signIn(props.providerId, {
+    //   callbackUrl: searchParams.get("callbackUrl") ?? `${getServerUrl()}/`,
+    // }),
   });
 
   const data = ProviderData[props.providerId];

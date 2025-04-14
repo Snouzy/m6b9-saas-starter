@@ -1,11 +1,12 @@
 "use client";
 
-import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { LayoutDashboard, LogOut, User2 } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 
 import { useI18n } from "locales/client";
+import { authClient } from "@/utils/auth-client";
 import { Loader } from "@/components/ui/loader";
 import {
   DropdownMenu,
@@ -20,8 +21,16 @@ import {
 import type { PropsWithChildren } from "react";
 
 export const UserDropdown = ({ children }: PropsWithChildren) => {
+  const router = useRouter();
   const logout = useMutation({
-    mutationFn: () => signOut({ redirect: true, callbackUrl: "/" }),
+    mutationFn: async () =>
+      await authClient.signOut({
+        fetchOptions: {
+          onSuccess: () => {
+            router.replace("/"); // redirect to login page
+          },
+        },
+      }),
   });
 
   const t = useI18n();

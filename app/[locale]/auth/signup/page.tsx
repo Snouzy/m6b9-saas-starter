@@ -1,8 +1,6 @@
-import { redirect } from "next/navigation";
 import Link from "next/link";
 
 import { getI18n } from "locales/server";
-import { auth } from "@/lib/auth/helper";
 
 import { SignUpCredentialsForm } from "./SignUpCredentialsForm";
 
@@ -12,12 +10,7 @@ export const metadata = {
 };
 
 export default async function AuthSignUpPage() {
-  const user = await auth();
   const t = await getI18n();
-
-  if (user) {
-    redirect("/");
-  }
 
   return (
     <div className="container max-w-lg mx-auto py-8 px-4">

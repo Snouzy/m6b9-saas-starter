@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { headers } from "next/headers";
 
 import { getI18n } from "locales/server";
-import { requiredAuth } from "@/lib/auth/helper";
+import { auth } from "@/utils/auth";
 import { MobileDropdownMenu } from "@/features/navigation/MobileDropdownMenu";
 import { DesktopVerticalMenu } from "@/features/navigation/DesktopVerticalMenu";
 import { ContactFeedbackPopover } from "@/features/contact/feedback/ContactFeedbackPopover";
@@ -15,7 +16,8 @@ import { DASHBOARD_LINKS } from "./dashboard-links";
 import type { PropsWithChildren } from "react";
 
 export default async function DashboardLayout(props: PropsWithChildren) {
-  const user = await requiredAuth();
+  const session = await auth.api.getSession({ headers: await headers() });
+  const user = session?.user;
   const t = await getI18n();
 
   return (

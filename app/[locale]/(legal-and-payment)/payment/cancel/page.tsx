@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { Layout, LayoutContent, LayoutDescription, LayoutHeader, LayoutTitle } from "@/features/page/layout";
-import { ContactSupportDialog } from "@/features/contact/support/ContactSupportDialog";
 import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -23,7 +22,7 @@ export default function CancelPaymentPage() {
         <Link className={buttonVariants({ variant: "default" })} href="/">
           Home
         </Link>
-        <ContactSupportDialog />
+        {/* <ContactSupportDialog /> */}
       </LayoutContent>
     </Layout>
   );

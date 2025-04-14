@@ -1,10 +1,8 @@
 "use server";
 
+import { authClient } from "@/utils/auth-client";
 import { ActionError, action } from "@/lib/server-actions/safe-actions";
-import { prisma } from "@/lib/prisma";
-import { hashStringWithSalt, validatePassword } from "@/lib/auth/credentials-provider";
-import { setupResendCustomer, setupStripeCustomer } from "@/lib/auth/auth-config-setup";
-import { env } from "@/env";
+import { validatePassword } from "@/lib/auth/credentials-provider";
 
 import { LoginCredentialsFormScheme } from "./signup.schema";
 
@@ -15,23 +13,36 @@ export const signUpAction = action.schema(LoginCredentialsFormScheme).action(asy
   }
 
   try {
-    const userData = {
-      email: parsedInput.email,
-      passwordHash: hashStringWithSalt(parsedInput.password, env.NEXTAUTH_SECRET),
-      firstName: parsedInput.firstName,
-      lastName: parsedInput.lastName,
-    };
-
-    const stripeCustomerId = await setupStripeCustomer(userData);
-    const resendContactId = await setupResendCustomer(userData);
-
-    const user = await prisma.user.create({
-      data: {
-        ...userData,
-        stripeCustomerId,
-        resendContactId,
+    const user = await authClient.signUp.email(
+      {
+        email: parsedInput.email,
+        password: parsedInput.password,
+        name: parsedInput.firstName,
+        callbackURL: "/dashboard",
       },
-    });
+      {
+        onRequest: () => {},
+        onSuccess: () => {},
+        onError: () => {},
+      },
+    );
+    // const userData = {
+    //   email: parsedInput.email,
+    //   passwordHash: hashStringWithSalt(parsedInput.password, env.NEXTAUTH_SECRET),
+    //   firstName: parsedInput.firstName,
+    //   lastName: parsedInput.lastName,
+    // };
+
+    // const stripeCustomerId = await setupStripeCustomer(userData);
+    // const resendContactId = await setupResendCustomer(userData);
+
+    // const user = await prisma.user.create({
+    //   data: {
+    //     ...userData,
+    //     stripeCustomerId,
+    //     resendContactId,
+    //   },
+    // });
 
     return user;
   } catch (error) {

@@ -1,5 +1,6 @@
 import Google from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
+import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 
 import { SiteConfig } from "@/site-config";
@@ -14,8 +15,8 @@ import MagicLinkMail from "../../../emails/MagicLinkEmail";
 import type { NextAuthOptions, Session } from "next-auth";
 import type { User } from "@prisma/client";
 
-const authOptions: NextAuthOptions = {
-  debug: false,
+export const authOptions: NextAuthOptions = {
+  debug: true,
   pages: {
     signIn: "/auth/signin",
     signOut: "/auth/signout",
@@ -59,6 +60,7 @@ const authOptions: NextAuthOptions = {
   secret: env.NEXTAUTH_SECRET,
   callbacks: {
     session(params) {
+      console.log("params:", params);
       if (params.newSession) return params.session;
 
       const typedParams = params as unknown as {
@@ -83,26 +85,23 @@ const authOptions: NextAuthOptions = {
   },
   events: {
     createUser: async (message) => {
+      console.log("message:", message);
       const user = message.user;
-
       if (!user.email) {
         return;
       }
-
-      // const stripeCustomerId = await setupStripeCustomer(user);
-      // const resendContactId = await setupResendCustomer(user);
 
       await prisma.user.update({
         where: {
           id: user.id,
         },
         data: {
-          stripeCustomerId: "", // TODO: add stripe customer id
-          resendContactId: "", // TODO: add resend contact id
+          stripeCustomerId: "",
+          resendContactId: "",
         },
       });
     },
   },
 };
 
-export { authOptions };
+export const auth = NextAuth(authOptions);

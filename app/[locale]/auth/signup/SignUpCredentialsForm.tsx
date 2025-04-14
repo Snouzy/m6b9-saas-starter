@@ -1,7 +1,6 @@
 "use client";
 
 import { toast } from "sonner";
-import { signIn } from "next-auth/react";
 import { useMutation } from "@tanstack/react-query";
 
 import { useI18n } from "locales/client";
@@ -32,11 +31,11 @@ export const SignUpCredentialsForm = () => {
         return;
       }
 
-      await signIn("credentials", {
-        email: values.email,
-        password: values.password,
-        callbackUrl: `${window.location.origin}/dashboard`,
-      });
+      // await signIn("credentials", {
+      //   email: values.email,
+      //   password: values.password,
+      //   callbackUrl: `${window.location.origin}/dashboard`,
+      // });
     },
   });
 

@@ -34,6 +34,8 @@ export const getCredentialsProvider = () => {
     credentials: {
       email: { label: "Email", type: "text", placeholder: "Your email" },
       password: { label: "Password", type: "password" },
+      firstName: { label: "First Name", type: "text", placeholder: "Your first name" },
+      lastName: { label: "Last Name", type: "text", placeholder: "Your last name" },
     },
     async authorize(credentials) {
       if (!credentials?.email || !credentials?.password) return null;
@@ -46,6 +48,7 @@ export const getCredentialsProvider = () => {
           passwordHash: passwordHash,
         },
       });
+      console.log("user:", user);
 
       if (user) {
         return {

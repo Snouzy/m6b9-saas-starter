@@ -1,72 +1,23 @@
-"use client";
-
-import { useEffect } from "react";
 import Link from "next/link";
 import { Menu } from "lucide-react";
-import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 import { User } from "@prisma/client";
 
-import { useI18n } from "locales/client";
+import { getI18n } from "locales/server";
+import { AuthButtonServer } from "@/features/auth/AuthButtonServer";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { LogoSvg } from "@/components/svg/LogoSvg";
 
-import { SignInButton } from "../auth/SignInButton";
-
-function useBoundedScroll(threshold: number) {
-  const { scrollY } = useScroll();
-  const scrollYBounded = useMotionValue(0);
-  const scrollYBoundedProgress = useTransform(scrollYBounded, [0, threshold], [0, 1]);
-
-  useEffect(() => {
-    const onChange = (current: number) => {
-      const previous = scrollY.getPrevious() ?? 0;
-      const diff = current - previous;
-      const newScrollYBounded = scrollYBounded.get() + diff;
-
-      scrollYBounded.set(clamp(newScrollYBounded, 0, threshold));
-    };
-
-    const deleteEvent = scrollY.on("change", onChange);
-
-    const listener = () => {
-      const currentScroll = window.scrollY;
-      onChange(currentScroll);
-    };
-
-    window.addEventListener("scroll", listener);
-
-    return () => {
-      deleteEvent();
-      window.removeEventListener("scroll", listener);
-    };
-  }, [threshold, scrollY, scrollYBounded]);
-
-  return { scrollYBounded, scrollYBoundedProgress };
-}
-
-export function LandingHeader({ user }: { user: User | null }) {
-  const { scrollYBoundedProgress } = useBoundedScroll(400);
-  const scrollYBoundedProgressDelayed = useTransform(scrollYBoundedProgress, [0, 0.75, 1], [0, 0, 1]);
-  const t = useI18n();
+export async function LandingHeader({ user }: { user: User | null }) {
+  const t = await getI18n();
 
   return (
-    <motion.header
-      className="fixed inset-x-0 z-50 flex h-10 w-screen shadow backdrop-blur-md"
-      style={{
-        height: useTransform(scrollYBoundedProgressDelayed, [0, 1], [55, 50]),
-      }}
-    >
+    <header className="fixed inset-x-0 z-50 flex h-10 w-screen shadow backdrop-blur-md">
       <div className="max-w-8xl mx-auto flex w-full items-center justify-between px-4 lg:px-8">
         <div className="flex items-center gap-2">
           {/* Mobile Navigation Trigger - Now placed first */}
-          <motion.div
-            className="md:hidden"
-            style={{
-              opacity: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.8]),
-            }}
-          >
+          <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>
                 <Button size="icon" variant="ghost">
@@ -90,21 +41,16 @@ export function LandingHeader({ user }: { user: User | null }) {
                 </div>
               </SheetContent>
             </Sheet>
-          </motion.div>
+          </div>
 
           {/* Logo - Now second */}
-          <motion.div className="flex items-center gap-1">
+          <div className="flex items-center gap-1">
             <LogoSvg className="h-8 w-24 md:w-32" />
-          </motion.div>
+          </div>
         </div>
 
         {/* Desktop Navigation */}
-        <motion.nav
-          className="hidden items-center gap-4 text-sm font-medium text-muted-foreground md:flex"
-          style={{
-            opacity: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.8]),
-          }}
-        >
+        <nav className="hidden items-center gap-4 text-sm font-medium text-muted-foreground md:flex">
           <Button asChild className="font-semibold" variant="ghost">
             <a href="#">FAQ</a>
           </Button>
@@ -114,15 +60,10 @@ export function LandingHeader({ user }: { user: User | null }) {
           <Button asChild className="font-semibold" variant="ghost">
             <a href="#">Contact</a>
           </Button>
-        </motion.nav>
+        </nav>
 
         {/* Auth and Theme */}
-        <motion.nav
-          className="flex items-center gap-4"
-          style={{
-            opacity: useTransform(scrollYBoundedProgressDelayed, [0, 1], [1, 0.8]),
-          }}
-        >
+        <nav className="flex items-center gap-4">
           {user ? (
             <Link className={buttonVariants({ variant: "outline" })} href="/dashboard">
               <Avatar className="mr-2 size-6">
@@ -132,11 +73,11 @@ export function LandingHeader({ user }: { user: User | null }) {
               {t("open_app")}
             </Link>
           ) : (
-            <SignInButton variant="ghost" />
+            <AuthButtonServer />
           )}
-        </motion.nav>
+        </nav>
       </div>
-    </motion.header>
+    </header>
   );
 }
 
