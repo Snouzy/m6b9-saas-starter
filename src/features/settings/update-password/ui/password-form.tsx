@@ -1,6 +1,5 @@
 "use client";
 import { z } from "zod";
-import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { LockKeyhole, LockKeyholeOpen } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,6 +8,7 @@ import { useI18n } from "locales/client";
 import { Input } from "@/fitlinks/components/ui/input";
 import { Button } from "@/fitlinks/components/ui/button";
 import { updatePasswordAction } from "@/features/settings/update-password/model/update-password.action";
+import { brandedToast } from "@/components/ui/toast";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 const passwordFormSchema = z
@@ -41,14 +41,14 @@ export function PasswordForm() {
       const result = await updatePasswordAction(values);
 
       if (result?.serverError) {
-        toast.error(t(result?.serverError as keyof typeof t), { position: "bottom-center" });
+        brandedToast({ title: t(result?.serverError as keyof typeof t), variant: "error" });
         return;
       }
 
-      toast.success(t("password_updated_successfully"), { position: "bottom-center" });
+      brandedToast({ title: t("password_updated_successfully"), variant: "success" });
       form.reset();
     } catch (error) {
-      toast.error("Failed to update password");
+      brandedToast({ title: t("generic_error"), variant: "error" });
       console.error(error);
     }
   };

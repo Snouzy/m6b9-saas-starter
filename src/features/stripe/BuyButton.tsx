@@ -1,8 +1,10 @@
 "use client";
 
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
+
+import { useI18n } from "locales/client";
+import { brandedToast } from "@/components/ui/toast";
 
 import { Button } from "../../components/ui/button";
 import { buyButtonAction } from "./buy-button.action";
@@ -26,6 +28,7 @@ export type BuyButtonProps = {
  * @returns
  */
 export const BuyButton = ({ priceId, ...props }: BuyButtonProps) => {
+  const t = useI18n();
   const router = useRouter();
   const mutation = useMutation({
     mutationFn: async () => {
@@ -38,7 +41,7 @@ export const BuyButton = ({ priceId, ...props }: BuyButtonProps) => {
         return;
       }
 
-      toast.error(action?.serverError ?? "Something went wrong");
+      brandedToast({ title: action?.serverError ?? t("generic_error"), variant: "error" });
     },
   });
 

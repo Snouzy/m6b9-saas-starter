@@ -1,13 +1,13 @@
 "use client";
 
 import { useBoolean } from "usehooks-ts";
-import { toast } from "sonner";
 
 import { useI18n } from "locales/client";
 import { ReviewInput } from "@/features/contact-feedback/ui/ReviewInput";
 import { ContactFeedbackSchema, ContactFeedbackSchemaType } from "@/features/contact-feedback/model/contact-feedback.schema";
 import { contactFeedbackAction } from "@/features/contact-feedback/model/contact-feedback.action";
 import { useCurrentSession } from "@/entities/user/model/useCurrentSession";
+import { brandedToast } from "@/components/ui/toast";
 import { Textarea } from "@/components/ui/textarea";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
@@ -34,16 +34,16 @@ export const ContactFeedbackPopover = (props: ContactFeedbackPopoverProps) => {
     const result = await contactFeedbackAction(values);
 
     if (!result) {
-      toast.error(t("generic_error"));
+      brandedToast({ title: t("generic_error"), variant: "error" });
       return;
     }
 
     if (result.serverError) {
-      toast.error(result.serverError);
+      brandedToast({ title: t(result.serverError as keyof typeof t), variant: "error" });
       return;
     }
 
-    toast.success(t("feedback_sent"));
+    brandedToast({ title: t("feedback_sent"), variant: "success" });
     form.reset();
     open.setFalse();
   };

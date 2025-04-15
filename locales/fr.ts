@@ -1,4 +1,6 @@
 export default {
+  reset_password_success: "Votre mot de passe a été réinitialisé. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
+  email_sent: "Ton message a été envoyé. Merci.",
   change_profile_picture: "Changer l'image de profil",
   profile_image_hint: "PNG ou JPG, max 2Mo",
   IMAGE_PROCESSING_ERROR: "Erreur lors du traitement de l'image",

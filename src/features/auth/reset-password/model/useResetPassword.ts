@@ -1,12 +1,12 @@
 "use client";
 
-import { toast } from "sonner";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { useI18n } from "locales/client";
 import { paths } from "@/shared/constants/paths";
 import { authClient } from "@/features/auth/lib/auth-client";
-
+import { brandedToast } from "@/components/ui/toast";
 interface UseResetPasswordResult {
   isLoading: boolean;
   hasToken: boolean;
@@ -16,7 +16,7 @@ interface UseResetPasswordResult {
 export const useResetPassword = (): UseResetPasswordResult => {
   const router = useRouter();
   const searchParams = useSearchParams();
-
+  const t = useI18n();
   const [isLoading, setIsLoading] = useState(false);
 
   const token = searchParams.get("token") ?? "";
@@ -32,14 +32,15 @@ export const useResetPassword = (): UseResetPasswordResult => {
       const { error } = await authClient.resetPassword({ token, newPassword: password });
 
       if (error) {
-        toast.error("Une erreur est survenue lors de la réinitialisation du mot de passe.");
+        brandedToast({ title: t("generic_error"), variant: "error" });
         return;
       }
 
+      brandedToast({ title: t("reset_password_success"), variant: "success" });
       router.push(`/${paths.signIn}?reset=success`);
     } catch (e) {
       console.error(e);
-      toast.error("Une erreur inconnue est survenue.");
+      brandedToast({ title: t("generic_error"), variant: "error" });
     } finally {
       setIsLoading(false);
     }

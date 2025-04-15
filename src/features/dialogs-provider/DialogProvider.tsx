@@ -1,7 +1,9 @@
 "use client";
 
 import { create } from "zustand";
-import { toast } from "sonner";
+
+import { useI18n } from "locales/client";
+import { brandedToast } from "@/components/ui/toast";
 
 import { ProviderConfirmationDialog } from "./DialogProviderDialog";
 
@@ -22,7 +24,6 @@ const useDialogStore = create<DialogStore>((set, get) => ({
   addDialog: (dialog) => {
     const id = Math.random().toString(36).slice(2, 9);
     const { removeDialog } = get();
-
     const newDialog: DialogType = {
       ...dialog,
       cancel: {
@@ -35,6 +36,8 @@ const useDialogStore = create<DialogStore>((set, get) => ({
       action: {
         label: dialog.action?.label ?? "",
         onClick: () => {
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          const t = useI18n();
           // check if it's a promise
           const onClickReturn = dialog.action?.onClick();
           if (onClickReturn instanceof Promise) {
@@ -53,9 +56,7 @@ const useDialogStore = create<DialogStore>((set, get) => ({
                 removeDialog(id);
               })
               .catch((e) => {
-                toast.error("Some error occurred", {
-                  description: e.message,
-                });
+                brandedToast({ title: t("generic_error"), variant: "error" });
               });
           } else {
             dialog.action?.onClick();

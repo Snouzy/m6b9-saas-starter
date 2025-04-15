@@ -1,4 +1,6 @@
 export default {
+  reset_password_success: "Your password has been reset. You can now sign in with your new password.",
+  email_sent: "Your message has been sent.",
   change_profile_picture: "Change profile picture",
   profile_image_hint: "PNG or JPG, max 2Mo",
   IMAGE_PROCESSING_ERROR: "Image processing error",

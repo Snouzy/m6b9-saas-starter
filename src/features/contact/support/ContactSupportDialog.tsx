@@ -1,12 +1,12 @@
 "use client";
 
-import { toast } from "sonner";
 import { useState } from "react";
 import Link from "next/link";
 
 import { useI18n } from "locales/client";
 import { SiteConfig } from "@/shared/config/site-config";
 import { useCurrentSession } from "@/entities/user/model/useCurrentSession";
+import { brandedToast } from "@/components/ui/toast";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, useZodForm } from "@/components/ui/form";
@@ -40,11 +40,11 @@ export const ContactSupportDialog = (props: ContactSupportDialogProps) => {
     const action = await contactSupportAction(values);
 
     if (!action || !action.data) {
-      toast.error(action?.serverError ?? "An error occurred while sending your message.");
+      brandedToast({ title: action?.serverError ?? t("generic_error"), variant: "error" });
       return;
     }
 
-    toast.success("Your message has been sent.");
+    brandedToast({ title: t("email_sent"), variant: "success" });
     form.reset();
     setOpen(false);
   };

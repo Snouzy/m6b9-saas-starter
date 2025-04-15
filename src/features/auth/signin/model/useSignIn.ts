@@ -1,9 +1,8 @@
-import { toast } from "sonner";
-
 import { useI18n } from "locales/client";
 import { paths } from "@/shared/constants/paths";
 import { LoginSchema } from "@/features/auth/signin/schema/signin.schema";
 import { authClient } from "@/features/auth/lib/auth-client";
+import { brandedToast } from "@/components/ui/toast";
 
 export const useSignIn = () => {
   const t = useI18n();
@@ -16,7 +15,7 @@ export const useSignIn = () => {
     });
 
     if (response?.error) {
-      toast.error(t("INVLID_EMAIL_OR_PASSWORD"), { position: "bottom-center" });
+      brandedToast({ title: t("INVLID_EMAIL_OR_PASSWORD"), variant: "error" });
       return;
     }
   };
