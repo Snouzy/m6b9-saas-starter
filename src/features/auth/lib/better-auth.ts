@@ -2,15 +2,13 @@ import { customSession } from "better-auth/plugins";
 import { nextCookies } from "better-auth/next-js";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { betterAuth } from "better-auth";
-import { PrismaClient } from "@prisma/client";
 
 import VerifyEmail from "@emails/VerifyEmail";
 import ResetPasswordEmail from "@emails/ResetPasswordEmail";
+import { prisma } from "@/shared/lib/prisma";
 import { sendEmail } from "@/shared/lib/mail/sendEmail";
 import { hashStringWithSalt } from "@/features/settings/update-password/lib/hash";
 import { env } from "@/env";
-
-const prisma = new PrismaClient();
 
 export const auth = betterAuth({
   plugins: [
@@ -27,6 +25,9 @@ export const auth = betterAuth({
           name: true,
           firstName: true,
           lastName: true,
+          accounts: {
+            select: { providerId: true },
+          },
         },
       });
 

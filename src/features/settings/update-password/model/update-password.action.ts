@@ -7,21 +7,17 @@ import { UpdatePasswordSchema } from "@/features/settings/update-password/model/
 import { validatePassword } from "@/features/settings/update-password/lib/validate-password";
 import { hashStringWithSalt } from "@/features/settings/update-password/lib/hash";
 import { env } from "@/env";
-import { serverRequiredUser } from "@/entities/user/model/get-server-user";
+import { serverRequiredUser } from "@/entities/user/model/get-server-session-user";
 
 export const updatePasswordAction = actionClient
   .schema(UpdatePasswordSchema)
   .action(async ({ parsedInput: { confirmPassword, currentPassword, newPassword } }) => {
-    console.log("newPassword:", newPassword);
-    console.log("currentPassword:", currentPassword);
-    console.log("confirmPassword:", confirmPassword);
     const user = await serverRequiredUser();
 
     const { password, id } = await prisma.account.findFirstOrThrow({
       where: { userId: user.id },
       select: { password: true, id: true },
     });
-    console.log("newPassword !== confirmPassword:", newPassword !== confirmPassword);
 
     if (newPassword !== confirmPassword) {
       throw new ActionError(ERROR_MESSAGES.PASSWORDS_DO_NOT_MATCH);

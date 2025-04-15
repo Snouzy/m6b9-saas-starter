@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 
 import Sidebar from "@/features/layout/sidebar";
 import { AuthenticatedHeader } from "@/features/layout/authenticated-header";
-import { serverAuth } from "@/entities/user/model/get-server-user";
+import { serverAuth } from "@/entities/user/model/get-server-session-user";
 
 import type { PropsWithChildren } from "react";
 

@@ -44,8 +44,9 @@ export function PasswordForm() {
         toast.error(t(result?.serverError as keyof typeof t), { position: "bottom-center" });
         return;
       }
-      //   toast.success("Password updated successfully");
-      //   form.reset();
+
+      toast.success(t("password_updated_successfully"), { position: "bottom-center" });
+      form.reset();
     } catch (error) {
       toast.error("Failed to update password");
       console.error(error);
@@ -60,10 +61,10 @@ export function PasswordForm() {
           name="currentPassword"
           render={({ field }) => (
             <FormItem className="space-y-2.5">
-              <FormLabel className="font-semibold leading-tight">Current password</FormLabel>
+              <FormLabel className="font-semibold leading-tight">{t("current_password")}</FormLabel>
               <div className="relative">
                 <FormControl>
-                  <Input {...field} className="ltr:pl-9 rtl:pr-9" placeholder="Enter current password" type="password" />
+                  <Input {...field} className="ltr:pl-9 rtl:pr-9" placeholder={t("current_password_placeholder")} type="password" />
                 </FormControl>
                 <LockKeyhole className="absolute top-3 size-4 ltr:left-3 rtl:right-3" />
               </div>
@@ -77,10 +78,10 @@ export function PasswordForm() {
           name="newPassword"
           render={({ field }) => (
             <FormItem className="space-y-2.5">
-              <FormLabel className="font-semibold leading-tight">New password</FormLabel>
+              <FormLabel className="font-semibold leading-tight">{t("new_password")}</FormLabel>
               <div className="relative">
                 <FormControl>
-                  <Input {...field} className="ltr:pl-9 rtl:pr-9" placeholder="Enter new password" type="password" />
+                  <Input {...field} className="ltr:pl-9 rtl:pr-9" placeholder={t("new_password_placeholder")} type="password" />
                 </FormControl>
                 <LockKeyholeOpen className="absolute top-3 size-4 ltr:left-3 rtl:right-3" />
               </div>
@@ -94,10 +95,10 @@ export function PasswordForm() {
           name="confirmPassword"
           render={({ field }) => (
             <FormItem className="space-y-2.5">
-              <FormLabel className="font-semibold leading-tight">Confirm new password</FormLabel>
+              <FormLabel className="font-semibold leading-tight">{t("confirm_password")}</FormLabel>
               <div className="relative">
                 <FormControl>
-                  <Input {...field} className="ltr:pl-9 rtl:pr-9" placeholder="Confirm new password" type="password" />
+                  <Input {...field} className="ltr:pl-9 rtl:pr-9" placeholder={t("confirm_password_placeholder")} type="password" />
                 </FormControl>
                 <LockKeyholeOpen className="absolute top-3 size-4 ltr:left-3 rtl:right-3" />
               </div>

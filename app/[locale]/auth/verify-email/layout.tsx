@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 
 import { getServerUrl } from "@/shared/lib/server-url";
 import { paths } from "@/shared/constants/paths";
-import { serverRequiredUser } from "@/entities/user/model/get-server-user";
+import { serverRequiredUser } from "@/entities/user/model/get-server-session-user";
 
 interface RootLayoutProps {
   params: Promise<{ locale: string }>;

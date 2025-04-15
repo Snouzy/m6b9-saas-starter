@@ -1,6 +1,6 @@
 import { createSafeActionClient } from "next-safe-action";
 
-import { serverAuth } from "@/entities/user/model/get-server-user";
+import { serverAuth } from "@/entities/user/model/get-server-session-user";
 
 import type { User } from "@prisma/client";
 

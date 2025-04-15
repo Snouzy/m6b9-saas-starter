@@ -4,7 +4,7 @@ import { Typography } from "@/components/ui/typography";
 import type { ComponentPropsWithoutRef } from "react";
 
 export const Layout = (props: ComponentPropsWithoutRef<"div">) => {
-  return <div {...props} className={cn("m-auto mt-4 flex w-full max-w-4xl flex-wrap gap-4 px-4", props.className)} />;
+  return <div {...props} className={cn("", props.className)} />;
 };
 
 export const LayoutHeader = (props: ComponentPropsWithoutRef<"div">) => {

@@ -3,14 +3,13 @@ import { headers } from "next/headers";
 
 import { auth } from "@/features/auth/lib/better-auth";
 import { SessionUser } from "@/entities/user/types/session-user";
-
 export class AuthError extends Error {
   constructor(message: string) {
     super(message);
   }
 }
 
-export const serverAuth = async (): Promise<SessionUser | null> => {
+export const serverAuth = async (): Promise<(SessionUser & { accounts: { providerId: string }[] }) | null> => {
   const session = await auth.api.getSession({ headers: await headers() });
 
   if (session && session.user) {

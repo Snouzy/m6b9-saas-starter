@@ -4,7 +4,7 @@ import { z } from "zod";
 
 import { stripe } from "@/shared/lib/stripe";
 import { getServerUrl } from "@/shared/lib/server-url";
-import { serverAuth } from "@/entities/user/model/get-server-user";
+import { serverAuth } from "@/entities/user/model/get-server-session-user";
 import { ActionError, actionClient } from "@/shared/api/safe-actions";
 
 const BuyButtonSchema = z.object({

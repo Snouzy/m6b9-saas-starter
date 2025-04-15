@@ -1,26 +1,31 @@
 import Link from "next/link";
 
-import { getI18n } from "locales/server";
+import { buttonVariants } from "@/components/ui/button";
 
-import { Typography } from "../../components/ui/typography";
-import { buttonVariants } from "../../components/ui/button";
-
-export async function Page404() {
-  const t = await getI18n();
-
+export function Page404() {
   return (
-    <main className="flex flex-col items-center gap-8">
-      <div className="space-y-3 text-center">
-        <Typography variant="code">404</Typography>
-        <Typography variant="h1">{t("page_404.title")}</Typography>
-        <Typography variant="base">{t("page_404.description")}</Typography>
+    <section className="font-serif flex min-h-screen items-center justify-center bg-white">
+      <div className="container mx-auto">
+        <div className="flex justify-center">
+          <div className="w-full text-center sm:w-10/12 md:w-8/12">
+            <div
+              aria-hidden="true"
+              className="h-[250px] bg-[url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif)] bg-contain bg-center bg-no-repeat sm:h-[350px] md:h-[400px]"
+            >
+              <h1 className="pt-6 text-center text-6xl text-black sm:pt-8 sm:text-7xl md:text-8xl">404</h1>
+            </div>
+
+            <div className="mt-[-50px]">
+              <h3 className="mb-4 text-2xl font-bold text-black sm:text-3xl">Look like you&apos;re lost</h3>
+              <p className="mb-6 text-black sm:mb-5">The page you are looking for is not available!</p>
+
+              <Link className={buttonVariants({ variant: "black" })} href="/">
+                Go to Home
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="flex items-center gap-4">
-        <Link className={buttonVariants({ variant: "default" })} href="/">
-          {t("page_404.cta")}
-        </Link>
-        {/* <ContactSupportDialog /> */}
-      </div>
-    </main>
+    </section>
   );
 }

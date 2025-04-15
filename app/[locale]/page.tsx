@@ -8,7 +8,7 @@ import { FAQSection } from "@/features/landing/FAQSection";
 import { ConvertSection } from "@/features/landing/ConvertSection";
 import { BusinessCategories } from "@/features/landing/business-categories";
 import { BentoSection } from "@/features/landing/BentoSection";
-import { serverAuth } from "@/entities/user/model/get-server-user";
+import { serverAuth } from "@/entities/user/model/get-server-session-user";
 
 export default async function HomePage() {
   const user = await serverAuth();
