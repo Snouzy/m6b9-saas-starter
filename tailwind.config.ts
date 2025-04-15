@@ -24,6 +24,9 @@ const config: Config = {
       sans: ["var(--font-sans)"],
     },
     extend: {
+      fontSize: {
+        "1sm": "0.80rem",
+      },
       colors: {
         popover: {
           DEFAULT: "#FFF",

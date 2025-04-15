@@ -1,4 +1,11 @@
 export default {
+  IMAGE_PROCESSING_ERROR: "Image processing error",
+  NO_FILE_UPLOADED: "No file uploaded",
+  FILE_TOO_LARGE: "File too large",
+  INVALID_FILE_TYPE: "Invalid file type",
+  upload_success: "Upload success",
+  upload_failed: "Upload failed",
+  profile_updated_successfully: "Your profile has been updated successfully",
   support: "Support",
   contact_support: "Contact support",
   contact_support_subtitle: "Fill the form bellow or send an email to",
@@ -144,5 +151,6 @@ export default {
     change: "Change",
     subject: "Subject",
     message: "Message",
+    saving: "Saving...",
   },
 } as const;

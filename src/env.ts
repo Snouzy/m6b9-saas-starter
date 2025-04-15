@@ -19,6 +19,10 @@ export const env = createEnv({
     NODE_ENV: z.enum(["development", "production", "test"]),
     STRIPE_WEBHOOK_SECRET: z.string().optional(),
     NEXTAUTH_SECRET: z.string().min(1),
+    CLOUDFLARE_R2_ENDPOINT: z.string().url(),
+    CLOUDFLARE_R2_ACCESS_KEY_ID: z.string().min(1),
+    CLOUDFLARE_R2_ACCOUNT_ID: z.string().min(1),
+    CLOUDFLARE_R2_SECRET_ACCESS_KEY: z.string().min(1),
   },
   /**
    * If you add `client` environment variables, you need to add them to
@@ -26,8 +30,10 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().min(1),
+    NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_URL: z.string().url(),
   },
   experimental__runtimeEnv: {
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+    NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_URL: process.env.NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_URL,
   },
 });

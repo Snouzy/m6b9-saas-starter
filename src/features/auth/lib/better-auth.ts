@@ -25,6 +25,7 @@ export const auth = betterAuth({
           name: true,
           firstName: true,
           lastName: true,
+          image: true,
           accounts: {
             select: { providerId: true },
           },

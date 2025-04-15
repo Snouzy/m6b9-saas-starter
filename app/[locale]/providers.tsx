@@ -6,9 +6,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { I18nProviderClient } from "locales/client";
 import { SiteConfig } from "@/shared/config/site-config";
 import { DialogRenderer } from "@/features/dialogs-provider/DialogProvider";
+import { ToastSonner } from "@/components/ui/ToastSonner";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/ui/theme-provider";
-import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 
 import type { PropsWithChildren } from "react";
 
@@ -21,7 +21,7 @@ export const Providers = ({ children, locale }: PropsWithChildren<{ locale: stri
         <ThemeProvider attribute="class" defaultTheme="system" disableTransitionOnChange enableSystem>
           <PlausibleProvider domain={SiteConfig.domain}>
             <Toaster />
-            <SonnerToaster />
+            <ToastSonner />
             <DialogRenderer />
             {children}
           </PlausibleProvider>

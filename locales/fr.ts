@@ -1,4 +1,11 @@
 export default {
+  IMAGE_PROCESSING_ERROR: "Erreur lors du traitement de l'image",
+  NO_FILE_UPLOADED: "Aucun fichier téléchargé",
+  FILE_TOO_LARGE: "Fichier trop lourd",
+  INVALID_FILE_TYPE: "Type de fichier invalide",
+  upload_success: "Téléchargement réussi",
+  upload_failed: "Erreur lors de l'envoi de l'image",
+  profile_updated_successfully: "Ton profil a été mis à jour avec succès",
   support: "Support",
   contact_support: "Contacter le support",
   contact_support_subtitle: "Remplis le formulaire ci-dessous ou envoie un email à",
@@ -149,5 +156,6 @@ export default {
     change: "Changer",
     subject: "Sujet",
     message: "Message",
+    saving: "Enregistrement...",
   },
 } as const;

@@ -1,11 +1,13 @@
 "use client";
 
+import { toast } from "sonner";
 import * as React from "react";
-import { X } from "lucide-react";
+import { X, CheckCircle2, AlertTriangle, Info, XCircle } from "lucide-react";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 
 import { cn } from "@/shared/lib/utils";
+import { LogoSvg } from "@/components/svg/LogoSvg";
 
 const ToastProvider = ToastPrimitives.Provider;
 
@@ -101,6 +103,58 @@ type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>;
 
 type ToastActionElement = React.ReactElement<typeof ToastAction>;
 
+type BrandedToastVariant = "default" | "success" | "error" | "info" | "warning";
+
+const variantStyles: Record<BrandedToastVariant, { icon: React.ReactNode; color: string }> = {
+  default: {
+    icon: <Info className="h-4 w-4 text-primary" />,
+    color: "bg-primary/5 border-primary",
+  },
+  success: {
+    icon: <CheckCircle2 className="h-4 w-4 text-green-600" />,
+    color: "bg-green-50 border-green-600",
+  },
+  error: {
+    icon: <XCircle className="h-4 w-4 text-danger" />,
+    color: "bg-danger/10 border-danger",
+  },
+  info: {
+    icon: <Info className="h-4 w-4 text-blue-600" />,
+    color: "bg-blue-50 border-blue-600",
+  },
+  warning: {
+    icon: <AlertTriangle className="h-4 w-4 text-yellow-600" />,
+    color: "bg-yellow-50 border-yellow-600",
+  },
+};
+
+interface BrandedToastOptions {
+  title: string;
+  subtitle?: string;
+  variant?: BrandedToastVariant;
+}
+
+const BrandedToastContent = ({ title, subtitle, variant = "default" }: BrandedToastOptions) => {
+  const { icon, color } = variantStyles[variant];
+
+  return (
+    <ToastDescription className={"dark:bg-black-dark dark:text-white"}>
+      <div className={`-mt-0.5 flex items-center gap-2 border-b px-4 py-3 ${color}`}>
+        <LogoSvg className="h-4 w-12" />
+      </div>
+      <div className="flex items-center p-4">
+        {icon}
+        <p className="text-1sm pl-2 font-sans text-black dark:text-white">{title}</p>
+      </div>
+      {subtitle && <p className="!text-xs/20 p-4 pt-0 font-sans text-black/50 dark:text-white">{subtitle}</p>}
+    </ToastDescription>
+  );
+};
+
+function brandedToast(options: BrandedToastOptions) {
+  toast(<BrandedToastContent {...options} />);
+}
+
 export {
   type ToastProps,
   type ToastActionElement,
@@ -112,4 +166,5 @@ export {
   ToastClose,
   ToastIcon,
   ToastAction,
+  brandedToast,
 };
