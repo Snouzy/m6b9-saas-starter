@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -25,10 +26,14 @@ import {
   SquareKanban,
   TableProperties,
   UserCog,
+  Camera,
 } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
 
 import { useI18n } from "locales/client";
 import ProfilePicture from "@public/images/profile.png";
+import { cn } from "@/shared/lib/utils";
+import { toR2PublicUrl } from "@/shared/lib/storage/to-R2-public-url";
 import { paths } from "@/shared/constants/paths";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/fitlinks/components/ui/hover-card";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/fitlinks/components/ui/dropdown-menu";
@@ -37,11 +42,161 @@ import { useSidebarToggle } from "@/features/layout/useSidebarToggle";
 import NavLink from "@/features/layout/nav-link";
 import { ContactFeedbackPopover } from "@/features/contact-feedback/ui/contact-feedback-popover";
 import { useLogout } from "@/features/auth/model/useLogout";
+import { env } from "@/env";
 import { useCurrentUser } from "@/entities/user/model/useCurrentUser";
 import { displayFirstNameAndFirstLetterLastName } from "@/entities/user/lib/display-name";
+import { brandedToast } from "@/components/ui/toast";
+import { Skeleton } from "@/components/ui/skeleton";
 import { LogoSvg } from "@/components/svg/LogoSvg";
 
-// import { useLogout, useUser } from "@/fitlinks/lib/auth";
+interface UploadProfileImageParams {
+  file: File;
+}
+
+interface UploadProfileImageResult {
+  url: string;
+}
+
+export function useProfileImageUpload() {
+  const t = useI18n();
+
+  return useMutation<UploadProfileImageResult, Error, UploadProfileImageParams>({
+    mutationFn: async ({ file }) => {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      console.log("res:", res);
+
+      if (!res.ok) {
+        const data = await res.json();
+
+        if (res.status === 415) {
+          brandedToast({ title: t("INVALID_FILE_TYPE"), variant: "error" });
+        }
+
+        if (res.status === 413) {
+          brandedToast({ title: t("FILE_TOO_LARGE"), variant: "error" });
+        }
+
+        if (res.status === 400) {
+          brandedToast({ title: t("NO_FILE_UPLOADED"), variant: "error" });
+        }
+
+        if (res.status === 500) {
+          brandedToast({ title: t("IMAGE_PROCESSING_ERROR"), variant: "error" });
+        }
+
+        throw new Error(data.error || t("upload_failed"));
+      }
+
+      return res.json();
+    },
+  });
+}
+
+export function ProfileImageUploadForm({ isDisabled }: { isDisabled: boolean }) {
+  const t = useI18n();
+  const [isUploading, setIsUploading] = useState(false);
+  const user = useCurrentUser();
+  const initialUrl = user?.image ? toR2PublicUrl(user.image, env.NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_URL) : null;
+  const [preview, setPreview] = useState<string | null>(initialUrl);
+  const uploadMutation = useProfileImageUpload();
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  console.log("[ProfileImageUploadForm] mounted:", mounted);
+  console.log("[ProfileImageUploadForm] user:", user);
+  console.log("[ProfileImageUploadForm] preview:", preview);
+
+  const handleUpload = (file: File) => {
+    if (isDisabled) return;
+    setIsUploading(true);
+    uploadMutation.mutate(
+      { file },
+      {
+        onSuccess: () => {
+          setIsUploading(false);
+          brandedToast({ title: t("upload_success"), variant: "success" });
+        },
+        onError: (error) => {
+          setPreview(initialUrl);
+          setIsUploading(false);
+          console.error("error", error);
+        },
+      },
+    );
+  };
+
+  return (
+    <div className="flex flex-col items-center gap-2 py-4">
+      <div className="group relative">
+        <div
+          className={cn(
+            "flex size-[72px] items-center justify-center overflow-hidden rounded-full border-2 border-gray-200 bg-gray-100 transition-opacity",
+            (isUploading || isDisabled) && "opacity-60",
+          )}
+        >
+          {!mounted ? (
+            <>
+              {console.log("[ProfileImageUploadForm] Affichage skeleton (not mounted)")}
+              <Skeleton height={40} rounded="rounded-full" width={40} />
+            </>
+          ) : preview ? (
+            <>
+              {console.log("[ProfileImageUploadForm] Affichage image")}
+              <Image alt="Preview" className="h-full w-full object-cover" height={72} src={preview} width={72} />
+            </>
+          ) : (
+            <>
+              {console.log("[ProfileImageUploadForm] Affichage skeleton (pas de preview)")}
+              <Skeleton height={40} rounded="rounded-full" width={40} />
+            </>
+          )}
+          <label
+            className={cn(
+              "absolute inset-0 flex cursor-pointer items-center justify-center rounded-full bg-black/40 opacity-0 transition group-hover:bg-black/40 group-hover:opacity-100",
+              (isUploading || isDisabled) && "pointer-events-none",
+            )}
+            htmlFor="profileImage"
+            tabIndex={0}
+            title={t("change_profile_picture")}
+          >
+            <Camera className="size-7 text-white" />
+            <input
+              accept="image/png, image/jpeg"
+              className="hidden"
+              disabled={isUploading || isDisabled}
+              id="profileImage"
+              name="profileImage"
+              onChange={(e) => {
+                if (isDisabled) return;
+                const file = e.target.files?.[0];
+                if (file) {
+                  setPreview(URL.createObjectURL(file));
+                  handleUpload(file);
+                }
+              }}
+              type="file"
+            />
+          </label>
+          {(isUploading || isDisabled) && (
+            <div className="absolute inset-0 flex items-center justify-center rounded-full bg-white/60">
+              {isUploading ? <span className="h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-black" /> : null}
+            </div>
+          )}
+        </div>
+      </div>
+      <span className="text-xs text-gray-500">{t("profile_image_hint")}</span>
+    </div>
+  );
+}
 
 export const AuthenticatedHeader = () => {
   const t = useI18n();
@@ -49,6 +204,11 @@ export const AuthenticatedHeader = () => {
   const user = useCurrentUser();
   const { toggleSidebar } = useSidebarToggle();
   const logout = useLogout();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <header className="fixed top-0 z-30 w-full bg-white shadow-sm dark:bg-black-dark">
@@ -73,14 +233,26 @@ export const AuthenticatedHeader = () => {
                   <div className="size-8 shrink-0 overflow-hidden rounded-full">
                     <Image alt="Profile Img" className="h-full w-full object-cover" height={32} src={ProfilePicture} width={32} />
                   </div>
-                  {user && (
-                    <div className="hidden space-y-1 lg:block">
-                      <h5 className="line-clamp-1 text-[10px]/3 font-semibold dark:text-gray-500">{t("re_hello")}</h5>
-                      <h2 className="line-clamp-1 text-xs font-bold text-black dark:text-white">
-                        {displayFirstNameAndFirstLetterLastName(user)}
-                      </h2>
-                    </div>
-                  )}
+                  <div className="hidden min-w-[80px] space-y-1 lg:block">
+                    {!mounted ? (
+                      <>
+                        <div className="h-3 w-16 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
+                        <div className="h-4 w-20 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
+                      </>
+                    ) : user ? (
+                      <>
+                        <h5 className="line-clamp-1 text-[10px]/3 font-semibold dark:text-gray-500">{t("re_hello")}</h5>
+                        <h2 className="line-clamp-1 text-xs font-bold text-black dark:text-white">
+                          {displayFirstNameAndFirstLetterLastName(user)}
+                        </h2>
+                      </>
+                    ) : (
+                      <>
+                        <Skeleton height="0.75rem" width="4rem" />
+                        <Skeleton height="1rem" width="5rem" />
+                      </>
+                    )}
+                  </div>
                   <button
                     className="mt-auto text-black transition group-hover:opacity-70 ltr:-ml-1 rtl:-mr-1 dark:text-white"
                     type="button"

@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Image as ImageIcon, Camera } from "lucide-react";
+import { Camera } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 
 import { useI18n } from "locales/client";
@@ -11,6 +11,7 @@ import { toR2PublicUrl } from "@/shared/lib/storage/to-R2-public-url";
 import { env } from "@/env";
 import { useCurrentUser } from "@/entities/user/model/useCurrentUser";
 import { brandedToast } from "@/components/ui/toast";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface UploadProfileImageParams {
   file: File;
@@ -19,6 +20,7 @@ interface UploadProfileImageParams {
 interface UploadProfileImageResult {
   url: string;
 }
+
 export function useProfileImageUpload() {
   const t = useI18n();
 
@@ -68,6 +70,12 @@ export function ProfileImageUploadForm({ isDisabled }: { isDisabled: boolean }) 
   const [preview, setPreview] = useState<string | null>(initialUrl);
   const uploadMutation = useProfileImageUpload();
 
+  // Nouveau : state pour le montage côté client
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const handleUpload = (file: File) => {
     if (isDisabled) return;
     setIsUploading(true);
@@ -96,10 +104,21 @@ export function ProfileImageUploadForm({ isDisabled }: { isDisabled: boolean }) 
             (isUploading || isDisabled) && "opacity-60",
           )}
         >
-          {preview ? (
-            <Image alt="Preview" className="h-full w-full object-cover" height={72} src={preview} width={72} />
+          {!mounted ? (
+            <>
+              {console.log("[ProfileImageUploadForm] Affichage skeleton (not mounted)")}
+              <Skeleton height={40} rounded="rounded-full" width={40} />
+            </>
+          ) : preview ? (
+            <>
+              {console.log("[ProfileImageUploadForm] Affichage image")}
+              <Image alt="Preview" className="h-full w-full object-cover" height={72} src={preview} width={72} />
+            </>
           ) : (
-            <ImageIcon className="size-10 text-gray-600" />
+            <>
+              {console.log("[ProfileImageUploadForm] Affichage skeleton (pas de preview)")}
+              <Skeleton height={40} rounded="rounded-full" width={40} />
+            </>
           )}
           <label
             className={cn(

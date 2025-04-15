@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
-@import './additional-styles/utility-patterns.css';
-@import './additional-styles/highlights.css';
+@import "./additional-styles/utility-patterns.css";
+@import "./additional-styles/highlights.css";
 
 @tailwind base;
 @tailwind components;
@@ -9,42 +9,46 @@
 :root {
   --font-sans: "Plus Jakarta Sans", sans-serif;
   --text-xs: 0.75rem;
-    --text-xs--line-height: 1.5;
-    --text-sm: 0.875rem;
-    --text-sm--line-height: 1.5715;
-    --text-base: 1rem;
-    --text-base--line-height: 1.5;
-    --text-base--letter-spacing: -0.01em;
-    --text-lg: 1.125rem;
-    --text-lg--line-height: 1.5;
-    --text-lg--letter-spacing: -0.01em;
-    --text-xl: 1.25rem;
-    --text-xl--line-height: 1.5;
-    --text-xl--letter-spacing: -0.01em;
-    --text-2xl: 1.5rem;
-    --text-2xl--line-height: 1.415;
-    --text-2xl--letter-spacing: -0.01em;
-    --text-3xl: 1.875rem;
-    --text-3xl--line-height: 1.333;
-    --text-3xl--letter-spacing: -0.01em;
-    --text-4xl: 2.25rem;
-    --text-4xl--line-height: 1.277;
-    --text-4xl--letter-spacing: -0.01em;
-    --text-5xl: 3rem;
-    --text-5xl--line-height: 1;
-    --text-5xl--letter-spacing: -0.01em;
-    --text-6xl: 3.5rem;
-    --text-6xl--line-height: 1;
-    --text-6xl--letter-spacing: -0.01em;
-    --text-7xl: 4.5rem;
-    --text-7xl--line-height: 1;
-    --text-7xl--letter-spacing: -0.01em;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5715;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5;
+  --text-base--letter-spacing: -0.01em;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.5;
+  --text-lg--letter-spacing: -0.01em;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.5;
+  --text-xl--letter-spacing: -0.01em;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 1.415;
+  --text-2xl--letter-spacing: -0.01em;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 1.333;
+  --text-3xl--letter-spacing: -0.01em;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 1.277;
+  --text-4xl--letter-spacing: -0.01em;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1;
+  --text-5xl--letter-spacing: -0.01em;
+  --text-6xl: 3.5rem;
+  --text-6xl--line-height: 1;
+  --text-6xl--letter-spacing: -0.01em;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1;
+  --text-7xl--letter-spacing: -0.01em;
 
-      /* Highlight accent colors */
-    --color-primary: #335CFF;
-    --color-accent: #6683F8; 
-    --color-accent-pink: #FF7EB6;
-    --color-accent-orange: #FFEDD5;
+  /* Highlight accent colors */
+  --color-primary: #335cff;
+  --color-accent: #6683f8;
+  --color-accent-pink: #ff7eb6;
+  --color-accent-orange: #ffedd5;
+}
+
+.skeleton {
+  @apply animate-pulse bg-gray-200 dark:bg-gray-700;
 }
 
 @layer components {
@@ -149,7 +153,7 @@
   @apply rounded-lg;
 }
 .ql-editor {
-  @apply max-h-[300px] overflow-y-auto !break-all  text-sm !font-medium text-black dark:text-white;
+  @apply max-h-[300px] overflow-y-auto !break-all text-sm !font-medium text-black dark:text-white;
 }
 .ql-editor.ql-editor::before {
   @apply !text-sm/6 !font-medium !not-italic;
@@ -205,7 +209,7 @@
   @apply dark:!text-primary;
 }
 .ql-picker-options {
-  @apply dark:!bg-black-dark dark:!border-gray-700/50;
+  @apply dark:!border-gray-700/50 dark:!bg-black-dark;
 }
 .ql-formats button.ql-active {
   @apply !text-primary;
