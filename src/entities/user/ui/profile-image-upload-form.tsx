@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Image as ImageIcon } from "lucide-react";
+import { Image as ImageIcon, Camera } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 
 import { useI18n } from "locales/client";
+import { cn } from "@/shared/lib/utils";
 import { toR2PublicUrl } from "@/shared/lib/storage/to-R2-public-url";
-import { Input } from "@/fitlinks/components/ui/input";
 import { env } from "@/env";
 import { useCurrentUser } from "@/entities/user/model/useCurrentUser";
 import { brandedToast } from "@/components/ui/toast";
@@ -87,28 +87,49 @@ export function ProfileImageUploadForm() {
   };
 
   return (
-    <div className="flex items-center gap-3">
-      <div className="flex size-[50px] items-center justify-center overflow-hidden rounded-full bg-gray-200">
-        {preview ? (
-          <Image alt="Preview" className="h-full w-full object-cover" height={50} src={preview} width={50} />
-        ) : (
-          <ImageIcon className="text-gray-400" />
+    <div className="flex flex-col items-center gap-2 py-4">
+      <div className="group relative">
+        <div
+          className={cn(
+            "flex size-[72px] items-center justify-center overflow-hidden rounded-full border-2 border-gray-200 bg-gray-100 transition-opacity",
+            isUploading && "opacity-60",
+          )}
+        >
+          {preview ? (
+            <Image alt="Preview" className="h-full w-full object-cover" height={72} src={preview} width={72} />
+          ) : (
+            <ImageIcon className="size-10 text-gray-400" />
+          )}
+        </div>
+        <label
+          className="absolute bottom-0 right-0 flex size-8 cursor-pointer items-center justify-center rounded-full border-2 border-white bg-black/80 text-white shadow transition group-hover:scale-110"
+          htmlFor="profileImage"
+          title={t("change_profile_picture")}
+        >
+          <Camera className="size-4" />
+          <input
+            accept="image/png, image/jpeg"
+            className="hidden"
+            disabled={isUploading}
+            id="profileImage"
+            name="profileImage"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) {
+                setPreview(URL.createObjectURL(file));
+                handleUpload(file);
+              }
+            }}
+            type="file"
+          />
+        </label>
+        {isUploading && (
+          <div className="absolute inset-0 flex items-center justify-center rounded-full bg-white/60">
+            <span className="h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-black" />
+          </div>
         )}
       </div>
-      <Input
-        // accept="image/png, image/jpeg"
-        className="w-auto"
-        disabled={isUploading}
-        name="profileImage"
-        onChange={(e) => {
-          const file = e.target.files?.[0];
-          if (file) {
-            setPreview(URL.createObjectURL(file));
-            handleUpload(file);
-          }
-        }}
-        type="file"
-      />
+      <span className="text-xs text-gray-500">{t("profile_image_hint")}</span>
     </div>
   );
 }

@@ -1,4 +1,6 @@
 export default {
+  change_profile_picture: "Change profile picture",
+  profile_image_hint: "PNG or JPG, max 2Mo",
   IMAGE_PROCESSING_ERROR: "Image processing error",
   NO_FILE_UPLOADED: "No file uploaded",
   FILE_TOO_LARGE: "File too large",
