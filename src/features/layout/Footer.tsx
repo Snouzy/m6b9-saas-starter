@@ -77,7 +77,7 @@ export const Footer = () => {
   return (
     <footer className="bg-primary">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 pt-4 sm:pt-10 lg:px-8">
-        <nav aria-label="Footer" className="-mb-6 flex flex-col sm:flex-row text-center justify-center gap-x-12 gap-y-3 text-sm/6">
+        <nav aria-label="Footer" className="-mb-6 flex flex-col justify-center gap-x-12 gap-y-3 text-center text-sm/6 sm:flex-row">
           {navigation.main.map((item) => (
             <a className="text-gray-600 hover:text-gray-300" href={item.href} key={item.name}>
               <Typography variant="p">{item.name}</Typography>

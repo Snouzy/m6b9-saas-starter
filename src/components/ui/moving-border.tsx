@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import { motion, useAnimationFrame, useMotionTemplate, useMotionValue, useTransform } from "framer-motion";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 export function Button({
   borderRadius = "1.75rem",
@@ -33,7 +33,7 @@ export function Button({
       {...otherProps}
     >
       <MovingBorder duration={duration} rx="30%" ry="30%">
-        <div className={cn("h-20 w-30 bg-[radial-gradient(#ff5722_40%,transparent_60%)] opacity-[0.8]", borderClassName)} />
+        <div className={cn("w-30 h-20 bg-[radial-gradient(#ff5722_40%,transparent_60%)] opacity-[0.8]", borderClassName)} />
       </MovingBorder>
 
       <div

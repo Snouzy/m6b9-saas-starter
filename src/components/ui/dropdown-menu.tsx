@@ -4,7 +4,7 @@ import * as React from "react";
 import { Check, Circle } from "lucide-react";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 DropdownMenu.displayName = DropdownMenuPrimitive.Root.displayName;
@@ -27,7 +27,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
 >(({ className, inset, children, ...props }, ref) => (
   <DropdownMenuPrimitive.SubTrigger
     className={cn(
-      "flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm !outline-none focus:bg-accent data-[state=open]:bg-accent [&[data-state=open]>svg]:!rotate-180",
+      "focus:bg-accent data-[state=open]:bg-accent flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm !outline-none [&[data-state=open]>svg]:!rotate-180",
       inset && "pl-8",
       className,
     )}
@@ -61,7 +61,7 @@ const DropdownMenuContent = React.forwardRef<
   <DropdownMenuPrimitive.Portal>
     <DropdownMenuPrimitive.Content
       className={cn(
-        "shadow-3xl dark:bg-black-dark z-50 min-w-[300px] space-y-1.5 overflow-y-auto rounded-b-lg bg-white p-1.5 text-gray-700 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 dark:border dark:border-white/10 dark:text-gray-500 dark:shadow-sm",
+        "z-50 min-w-[300px] space-y-1.5 overflow-y-auto rounded-b-lg bg-white p-1.5 text-gray-700 shadow-3xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 dark:border dark:border-white/10 dark:bg-black-dark dark:text-gray-500 dark:shadow-sm",
         className,
       )}
       ref={ref}
@@ -80,7 +80,7 @@ const DropdownMenuItem = React.forwardRef<
 >(({ className, inset, ...props }, ref) => (
   <DropdownMenuPrimitive.Item
     className={cn(
-      "relative cursor-pointer select-none items-center rounded-lg px-3 py-2.5 text-sm/none font-medium outline-none transition-colors hover:bg-gray-400 hover:text-black focus:bg-accent focus:text-accent-foreground data-[disabled]:opacity-50 dark:hover:bg-gray-200/10 dark:hover:text-white",
+      "focus:bg-accent focus:text-accent-foreground relative cursor-pointer select-none items-center rounded-lg px-3 py-2.5 text-sm/none font-medium outline-none transition-colors hover:bg-gray-400 hover:text-black data-[disabled]:opacity-50 dark:hover:bg-gray-200/10 dark:hover:text-white",
       inset && "pl-8",
       className,
     )}
@@ -97,7 +97,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   <DropdownMenuPrimitive.CheckboxItem
     checked={checked}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-xs/tight outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "focus:bg-accent focus:text-accent-foreground relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-xs/tight outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
     ref={ref}
@@ -119,7 +119,7 @@ const DropdownMenuRadioItem = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <DropdownMenuPrimitive.RadioItem
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "focus:bg-accent focus:text-accent-foreground relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
     ref={ref}

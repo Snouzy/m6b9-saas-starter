@@ -4,7 +4,7 @@ import PlausibleProvider from "next-plausible";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { I18nProviderClient } from "locales/client";
-import { SiteConfig } from "@/site-config";
+import { SiteConfig } from "@/shared/config/site-config";
 import { DialogRenderer } from "@/features/dialogs-provider/DialogProvider";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/sonner";

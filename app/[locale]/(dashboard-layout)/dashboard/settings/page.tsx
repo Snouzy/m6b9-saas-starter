@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/fitlinks/components/
 import { Input } from "@/fitlinks/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/fitlinks/components/ui/card";
 import { Button } from "@/fitlinks/components/ui/button";
-import { PasswordForm } from "@/features/settings/password-form";
+import { PasswordForm } from "@/features/settings/update-password/ui/password-form";
 import PageHeading from "@/features/layout/page-heading";
 
 export default function SettingsPage() {

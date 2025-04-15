@@ -4,9 +4,9 @@ import { UserPlan } from "@prisma/client";
 import SuccessUpgradeEmail from "@emails/SuccessUpgradeEmail";
 import SubscribtionFailedEmail from "@emails/SubscriptionFailedEmail";
 import SubscribtionDowngradeEmail from "@emails/SubscriptionDowngradeEmail";
-import { stripe } from "@/lib/stripe";
-import { prisma } from "@/lib/prisma";
-import { sendEmail } from "@/lib/mail/sendEmail";
+import { stripe } from "@/shared/lib/stripe";
+import { prisma } from "@/shared/lib/prisma";
+import { sendEmail } from "@/shared/lib/mail/sendEmail";
 
 import type Stripe from "stripe";
 import type { User } from "@prisma/client";

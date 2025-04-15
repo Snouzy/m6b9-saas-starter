@@ -1,8 +1,8 @@
 import { Tailwind } from "@react-email/tailwind";
 import { Body, Container, Head, Hr, Html, Img, Link, Text } from "@react-email/components";
 
-import { SiteConfig } from "@/site-config";
-import { getServerUrl } from "@/lib/server-url";
+import { getServerUrl } from "@/shared/lib/server-url";
+import { SiteConfig } from "@/shared/config/site-config";
 
 import type { PropsWithChildren } from "react";
 

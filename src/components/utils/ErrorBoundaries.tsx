@@ -2,7 +2,7 @@
 
 import { Component } from "react";
 
-import { logger } from "@/lib/logger";
+import { logger } from "@/shared/lib/logger";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 

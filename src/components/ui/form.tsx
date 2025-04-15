@@ -4,7 +4,7 @@ import { TriangleAlert } from "lucide-react";
 import { Slot } from "@radix-ui/react-slot";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 import { Label } from "./label";
 

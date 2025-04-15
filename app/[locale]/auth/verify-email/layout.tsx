@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
 import { redirect } from "next/navigation";
 
-import { getServerUrl } from "@/lib/server-url";
-import { serverRequiredUser } from "@/lib/auth/helper";
-import { paths } from "@/config/paths";
+import { getServerUrl } from "@/shared/lib/server-url";
+import { paths } from "@/shared/constants/paths";
+import { serverRequiredUser } from "@/entities/user/model/get-server-user";
 
 interface RootLayoutProps {
   params: Promise<{ locale: string }>;

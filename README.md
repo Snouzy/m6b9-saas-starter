@@ -1,40 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 📁 Architecture du projet – Fitlinks
 
-## Getting Started
+Bienvenue dans le monorepo Fitlinks. Ce document vous guide sur la structure du code, les conventions d’architecture Feature-Sliced Design
+(FSD) appliquées avec Next.js App Router, et les bonnes pratiques à suivre.
 
-First, run the development server:
+## 🧱 Philosophie générale
+
+Ce projet suit les principes FSD (Feature-Sliced Design) :
+
+- **Focus fonctionnel** (features-driven)
+- **Isolation claire des domaines** : `shared`, `entities`, `features`, `widgets`, `app`
+- **Cohérence** entre logique métier, UI et data
+
+## 🗂 Structure du dossier `src/`
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+├── app/          # Pages, routes et layouts (Next.js App Router)
+│   └── (auth-layout)/ # Groupes de layout
+src/
+├── processes/    # Flows métiers (multi-features)
+├── widgets/      # UI composable avec logique (ex: Sidebar, Header)
+├── features/     # Unités métier (ex: auth, contact-feedback)
+├── entities/     # Représentation des entités du domaine (ex: user, workout)
+├── shared/       # Code transverse (UI, lib, config, constants, types)
+└── styles/       # Fichiers CSS globaux, thèmes
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔍 Détail par niveau
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### `app/`
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Contient les routes Next.js (app router).
+- Un layout représente une UI structurelle (ex: header, sidebar).
+- Les pages utilisent les composants des couches `features`, `widgets`, et `entities`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+### `processes/`
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Composition de plusieurs `features` dans un processus métier global.
+- Exemple : `registration-flow`, `booking-flow`.
 
-## Learn More
+### `widgets/`
 
-To learn more about Next.js, take a look at the following resources:
+- Composants UI riches contenant de la logique métier de haut niveau.
+- Exemple : `Sidebar`, `CalendarWidget`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+### `features/`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Chaque feature est indépendante, isolée et réutilisable.
+- Exemple de structure pour une feature `auth` :
+  ```bash
+  features/
+  └── signup/
+      ├── ui/     # Composants UI exposés (SignUpForm, AuthButton)
+      ├── model/  # Hooks, mutations, logique de formulaire (useSignUp, useLogout)
+      ├── lib/    # Fonctions utilitaires liées (display-name, token-helper)
+      └── api/    # Actions côté serveur ou appels API liés à auth
+  ```
 
-## Deploy on Vercel
+### `shared/`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Contient tout le code transverse :
+  ```bash
+  shared/
+  ├── lib/        # Fonctions génériques et helpers
+  ├── constants/  # Chemins, configs, valeurs globales
+  ├── config/     # Fichiers d’intégration (auth, stripe, mail, etc.)
+  ├── types/      # Types globaux TypeScript
+  └── ui/         # Composants UI design system (Button, Card, Alert…)
+  ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+## 🧩 Exemple d’usage des couches (layers)
+
+Une page comme `/auth/signup` :
+
+1.  Utilise `SignUpForm` de `features/auth/ui/`
+2.  Qui utilise `useSignUp()` de `features/auth/model/`
+3.  Qui appelle `signUpAction()` de `features/auth/api/`
+4.  Qui utilise `authClient` de `features/auth/lib/`
+
+## ✅ Bonnes pratiques
+
+- 🔁 **Réutilisabilité** : Les composants `features/` ou `entities/` ne doivent pas connaître `app/`.
+
+- 🔒 **Isolation stricte** : Ne jamais mélanger les rôles de chaque couche. Les dépendances doivent aller des couches supérieures vers les
+  couches inférieures (`app` -> `widgets` -> `features` -> `entities` -> `shared`).
+- 🗃️ **Nommer clairement** : Préférer des noms explicites comme `SignUpForm`, `useSignUp`, `authClient`, etc.
+
+## 📚 Ressources
+
+- [Feature-Sliced Design](https://feature-sliced.design/)
+- [Better Auth](https://github.com/ShellBear/better-auth)
+- [React Server](https://react.dev/reference/rsc/server-components)

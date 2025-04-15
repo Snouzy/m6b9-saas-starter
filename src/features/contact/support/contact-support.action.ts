@@ -1,8 +1,8 @@
 "use server";
 
-import { SiteConfig } from "@/site-config";
-import { sendEmail } from "@/lib/mail/sendEmail";
-import { actionClient } from "@/actions/safe-actions";
+import { sendEmail } from "@/shared/lib/mail/sendEmail";
+import { SiteConfig } from "@/shared/config/site-config";
+import { actionClient } from "@/shared/api/safe-actions";
 
 import { ContactSupportSchema } from "./contact-support.schema";
 

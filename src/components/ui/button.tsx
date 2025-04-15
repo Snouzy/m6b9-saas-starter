@@ -2,7 +2,7 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "@radix-ui/react-slot";
 
-import { cn } from "@/fitlinks/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 const buttonVariants = cva(
   "hover:scale-[0.98] inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-lg px-2.5 py-2 text-center text-xs/4 font-medium outline-none transition duration-300 disabled:pointer-events-none disabled:opacity-30 disabled:hover:cursor-not-allowed [&>svg]:size-4 [&>svg]:shrink-0",

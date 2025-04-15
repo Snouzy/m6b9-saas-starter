@@ -2,7 +2,7 @@
 
 import { Check } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 import { BuyButton } from "@/features/stripe/BuyButton";
 import { Typography } from "@/components/ui/typography";
 import { Separator } from "@/components/ui/separator";
@@ -29,9 +29,9 @@ export const PricingCard = (props: PricingCardProps) => {
   return (
     <Card
       className={cn(
-        "border-[0.5px] h-fit lg:rounded-3xl rounded-3xl flex-1 p-6 ring-1 ring-gray-900/10 sm:p-8",
+        "h-fit flex-1 rounded-3xl border-[0.5px] p-6 ring-1 ring-gray-900/10 sm:p-8 lg:rounded-3xl",
         {
-          "relative bg-background shadow-2xl": props.isPopular,
+          "bg-background relative shadow-2xl": props.isPopular,
           "bg-background/60 sm:mx-8 lg:mx-0": !props.isPopular,
         },
         props.className,

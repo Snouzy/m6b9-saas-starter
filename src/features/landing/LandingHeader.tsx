@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 
 import { getI18n } from "locales/server";
-import { SessionUser } from "@/utils/auth-client";
-import { AuthButtonServer } from "@/features/auth/AuthButtonServer";
+import { AuthButtonServer } from "@/features/auth/ui/AuthButtonServer";
+import { SessionUser } from "@/entities/user/types/session-user";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -50,7 +50,7 @@ export async function LandingHeader({ user }: { user: SessionUser | null }) {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-4 text-sm font-medium text-muted-foreground md:flex">
+        <nav className="text-muted-foreground hidden items-center gap-4 text-sm font-medium md:flex">
           <Button asChild className="font-semibold" variant="outline">
             <a href="#">FAQ</a>
           </Button>
@@ -80,4 +80,3 @@ export async function LandingHeader({ user }: { user: SessionUser | null }) {
     </header>
   );
 }
-

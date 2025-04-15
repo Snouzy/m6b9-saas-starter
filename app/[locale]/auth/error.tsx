@@ -2,11 +2,11 @@
 
 import { useEffect } from "react";
 
-import { logger } from "@/lib/logger";
+import { logger } from "@/shared/lib/logger";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-import type { ErrorParams } from "@/types/next";
+import type { ErrorParams } from "@/shared/types/next";
 
 export default function RouteError({ error, reset }: ErrorParams) {
   useEffect(() => {

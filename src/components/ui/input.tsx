@@ -4,7 +4,7 @@ import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "@radix-ui/react-slot";
 
-import { cn } from "@/fitlinks/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 const inputVariants = cva(
   "shadow-3xl relative w-full rounded-lg px-3.5 py-2.5 text-sm/[10px] font-medium text-black outline-none placeholder:font-normal placeholder:text-gray-500 focus:ring-1 focus:ring-black disabled:pointer-events-none disabled:opacity-30 dark:bg-white/5 dark:text-white dark:shadow-sm dark:ring-1 dark:ring-white/10 dark:placeholder:text-gray-500 dark:focus:ring-white ltr:text-left rtl:text-right",

@@ -1,6 +1,6 @@
 "use client";
 
-import { LayoutParams } from "@/types/next";
+import { LayoutParams } from "@/shared/types/next";
 import { Footer } from "@/features/layout/Footer";
 import { LandingHeader } from "@/features/landing/LandingHeader";
 
@@ -10,7 +10,7 @@ type LocaleParams = Record<string, string> & {
 
 export default function RouteLayout({ children, params: _ }: LayoutParams<LocaleParams>) {
   return (
-    <div className="relative flex flex-col bg-background text-foreground h-full">
+    <div className="bg-background text-foreground relative flex h-full flex-col">
       <div className="mt-16" />
       <LandingHeader user={null} />
 

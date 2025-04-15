@@ -25,7 +25,7 @@ export const MobileDropdownMenu = ({ links, className }: { links: NavigationLink
   return (
     <DropdownMenu onOpenChange={setOpen} open={open}>
       <DropdownMenuTrigger asChild>
-        <Button className={className} size="sm" variant="ghost">
+        <Button className={className} size="small" variant="outline-general">
           {open ? <X /> : <Menu />}
         </Button>
       </DropdownMenuTrigger>

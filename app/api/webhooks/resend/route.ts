@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { NextResponse } from "next/server";
 
-import { logger } from "@/lib/logger";
+import { logger } from "@/shared/lib/logger";
 
 import type { NextRequest } from "next/server";
 

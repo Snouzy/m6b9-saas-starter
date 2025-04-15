@@ -1,80 +1,130 @@
-Code Style and Structure:
+## 🧑‍💻 FitLinks Development Guidelines
 
-- Write concise, technical TypeScript code with accurate examples
-- Use functional and declarative programming patterns; avoid classes
-- Prefer iteration and modularization over code duplication
-- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError)
-- Structure files: exported component, subcomponents, helpers, static content, types
-- Use dependency inversion to avoid tight coupling between components.
-- Do not bind components directly to a specific data source; instead, rely on interfaces.
-- All external dependencies (e.g., API, localStorage, date) should be abstracted through interfaces.
-- Avoid direct calls to fetch, new Date(), or localStorage within React components.
+This project follows **Next.js (App Router)** and is structured using **Feature-Sliced Design (FSD)** for modularity, scalability, and clear
+separation of concerns.
 
-Naming Conventions:
+Use this prompt and coding standards to ensure consistency across the codebase:
 
-- Use lowercase with dashes for directories (e.g., components/auth-wizard)
-- Favor named exports for components
+---
 
-TypeScript Usage:
+### 🔧 Code Style and Structure
 
-- Use TypeScript for all code; prefer interfaces over types
-- Avoid enums; use maps instead
-- Use functional components with TypeScript interfaces
+- Write concise, expressive, and idiomatic **TypeScript**
+- Use **functional programming** patterns (avoid classes and side effects)
+- Prefer **composition** over inheritance, and modularization over duplication
+- Organize each `feature/`, `entity/`, or `widget/` with:
 
-Syntax and Formatting:
+  - model/ → logic (React Query, actions, hooks)
+  - schema/ → Zod schemas for validation ui/ → client components (TSX)
+  - lib/ → pure helper functions
+  - types/ → interfaces & TS types
 
-- Use the "function" keyword for pure functions
-- Use declarative JSX
+- All external dependencies (**API**, `localStorage`, `Date`) must be **abstracted** in `shared/lib/`
+- Avoid direct calls to:
+- `fetch` → use actions or `shared/api/`
+- `new Date()` → use `shared/lib/date` abstraction
+- `localStorage` → wrap in `shared/lib/storage`
 
-Error Handling and Validation:
+---
 
-- Prioritize error handling: handle errors and edge cases early
-- Use early returns and guard clauses
-- Implement proper error logging and user-friendly messages
-- Use Zod for form validation
-- Model expected errors as return values in Server Actions
-- Use error boundaries for unexpected errors
+### 🧠 Naming Conventions
 
-UI and Styling:
+- Use `kebab-case` for **directories** (e.g. `features/auth/signup`)
+- Use **named exports** (no default exports for components)
+- Use descriptive names with **auxiliary verbs** (e.g. `isLoading`, `hasError`, `canSubmit`)
+- Components:
+- Pure UI: `src/components/ui/`
+- Shared logic: `src/shared/lib/`
+- Composition: `src/widgets/`
 
-- Use Shadcn UI, Radix, and Tailwind Aria for components and styling (./src/components/\*)
-- Implement responsive design with Tailwind CSS; use a mobile-first approach.
-- Make the interface Modern and minimalist, inspired by Apple’s design system (with a slightly more vibrant and appealing color palette),
-  while remaining clean, consistent, and functional. The interface is designed for fitness coaches, so it must be highly visual, intuitive,
-  and accessible, with a touch of playfulness that still feels professional. Feel free to include slightly playful and engaging elements to
-  create a pleasant experience, without compromising clarity or professionalism.
+---
 
-Use simple, easy-to-understand icons (with `lucide-react`) that match a fluid and minimal style, without cluttering the interface. Avoid
-drop shadows, but use subtle borders and hover effects to guide the user. Animations should be elegant and smooth (e.g., CSS transitions or
-framer-motion), with a strong focus on performance optimization.
+### 📐 TypeScript Usage
 
-Navigation should be ultra-intuitive, responsive, and structured with a clear visual hierarchy. Follow a mobile-first approach to ensure
-perfect adaptability across all screen sizes, avoiding overlap or content overflow. Every interactive element (buttons, links, etc.) should
-provide immediate visual feedback (on hover, click, or form submission), with engaging micro-interactions to make the experience feel
-dynamic and immersive.
+- Use `interface` over `type` for objects
+- Avoid `enum`; use `as const` object maps instead
+- Use `infer` and `z.infer<typeof schema>` for accurate form types
+- Types live in `types/` or colocated with usage
 
-Incorporate visuals or graphics relevant to the fitness world (such as gauges, progress indicators, badges, or light illustrations) to help
-motivate users. Buttons and interactive elements should be attractive and intuitive, with clear messaging and a design that encourages
-action. The interface should guide the user while remaining simple and easy to understand, even for those less comfortable with technology.
-That said, it should not feel oversized or excessive.
+---
 
-All features must remain exactly the same, but feel free to reorganize, enhance, or redesign the layout to make it more UX-friendly. Apply
-UI/UX best practices to deliver a pleasant, engaging, and accessible experience across all devices and screen resolutions.
+### 📦 Feature Architecture
 
-Performance Optimization:
+**Keep React component logic inside the relevant feature:**
 
-- Minimize 'use client', 'useEffect', and 'setState'; favor React Server Components (RSC)
-- Wrap client components in Suspense with fallback
-- Use dynamic loading for non-critical components
-- Optimize images: use WebP format, include size data, implement lazy loading
+features/auth/signup/ ├── model/ → useSignUp.ts, signup.action.ts ├── schema/ → signup.schema.ts ├── ui/ → signup-form.tsx
 
-Key Conventions:
+If reusable between many features (e.g. `User`, `Link`, `Session`), move logic to `entities/`.
 
-- Use 'nuqs' for URL search parameter state management
-- Optimize Web Vitals (LCP, CLS, FID)
-- Limit 'use client':
-  - Favor server components and Next.js SSR
-  - Use only for Web API access in small components
-  - Avoid for data fetching or state management
+---
 
-Follow Next.js docs for Data Fetching, Rendering, and Routing
+### 🧪 Error Handling & Validation
+
+- Use **Zod** for schema validation
+- Prefer early returns & guard clauses
+- Use `ActionError` in server actions and handle them with `next-safe-action`
+- Wrap React components in `ErrorBoundary` (or `shared/ui/ErrorBoundaries.tsx`)
+- Display user-friendly errors via `toast()` or `<Alert />`
+
+---
+
+### 💅 UI & Styling
+
+- Use **Shadcn UI**, **Radix**, and **Tailwind CSS** with **mobile-first** responsive design
+- Design theme:
+
+  - **Minimal**, professional with a **slightly playful touch**
+  - Inspired by **Apple**, tailored to fitness coaches
+  - Emphasize visuals: badges, progress bars, illustrations
+  - Use `lucide-react` icons, subtle borders, hover feedback
+  - Avoid drop shadows; prefer light borders and soft hover effects
+
+- Animations:
+
+  - Elegant and performant (use `framer-motion` if needed)
+  - Use `transition`, `duration-xxx`, and `ease-xxx` from Tailwind
+
+- UX Principles:
+  - Clear hierarchy
+  - Responsive: no overflow, no overlap
+  - All buttons and interactive elements should provide feedback
+
+---
+
+### 🧱 Rendering & Performance
+
+- Favor **Server Components** (`RSC`) and SSR for pages and logic
+- Limit `'use client'` usage — only where needed:
+  - form states, event listeners, animations
+- Wrap all client components in `<Suspense />` with fallback
+- Use dynamic import for non-critical UI (e.g. `Dialog`, `Chart`)
+- Optimize media:
+  - Use **WebP** images with width/height
+  - Enable lazy loading where possible
+
+---
+
+### 🔍 Data, Forms, Actions
+
+- Use `@tanstack/react-query` for client state
+- Use `next-safe-action` for server mutations and queries
+- All actions should:
+  - Have clear schema (`schema/`)
+  - Model expected errors with `ActionError`
+  - Return typed output
+- Use `Form`, `FormField`, `FormMessage` from Shadcn for all forms
+
+---
+
+### 🧭 Routing & Navigation
+
+- All routes defined in `app/`, avoid logic here
+- Use constants in `shared/constants/paths.ts`
+- For search parameters, use `nuqs` (`useQueryState`) — never manipulate `router.query` directly
+- Follow Next.js App Router standards for layouts and segments
+
+---
+
+- [Feature-Sliced Design](https://feature-sliced.design/)
+- [Shadcn UI](https://ui.shadcn.com/)
+- [Zod](https://zod.dev/)

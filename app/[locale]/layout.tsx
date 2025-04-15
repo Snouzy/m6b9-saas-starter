@@ -4,18 +4,18 @@ import { Inter, Permanent_Marker } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 
-import { SiteConfig } from "@/site-config";
-import { cn } from "@/lib/utils";
-import { getServerUrl } from "@/lib/server-url";
+import { SiteConfig } from "@/shared/config/site-config";
+import { cn } from "@/shared/lib/utils";
+import { getServerUrl } from "@/shared/lib/server-url";
 import { NextTopLoader } from "@/features/page/NextTopLoader";
 import { TailwindIndicator } from "@/components/utils/TailwindIndicator";
 
 import { Providers } from "./providers";
 
-import type { ReactElement, ReactNode } from "react";
+import type { ReactElement } from "react";
 import type { Metadata } from "next";
 
-import "../css/globals.css";
+import "@/shared/styles/globals.css";
 
 export const metadata: Metadata = {
   title: SiteConfig.title,
@@ -56,10 +56,9 @@ export const preferredRegion = ["fra1", "sfo1", "iad1"];
 interface RootLayoutProps {
   params: Promise<{ locale: string }>;
   children: ReactElement;
-  modal?: ReactNode;
 }
 
-export default async function RootLayout({ params, children, modal }: RootLayoutProps) {
+export default async function RootLayout({ params, children }: RootLayoutProps) {
   const { locale } = await params;
 
   return (
@@ -81,10 +80,7 @@ export default async function RootLayout({ params, children, modal }: RootLayout
         >
           <Providers locale={locale}>
             <NextTopLoader color="#FF5722" delay={100} showSpinner={false} />
-            <div className="h-full">
-              {children}
-              {modal}
-            </div>
+            <div className="h-full">{children}</div>
             <TailwindIndicator />
             {/* <FloatingLegalFooter /> */}
           </Providers>

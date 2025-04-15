@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 import type { ComponentPropsWithoutRef } from "react";
 
@@ -39,7 +39,7 @@ export const SectionLayout = ({
         {
           "bg-background text-foreground": variant === "default",
           "bg-card text-card-foreground": variant === "card",
-          "bg-primary text-primary-foreground": variant === "primary",
+          "text-primary-foreground bg-primary": variant === "primary",
           "bg-foreground text-background": variant === "invert",
           "text-foreground backdrop-blur-sm backdrop-brightness-75": variant === "image",
         },

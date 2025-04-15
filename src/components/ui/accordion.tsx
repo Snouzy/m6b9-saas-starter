@@ -5,7 +5,7 @@ import { X } from "lucide-react";
 import clsx from "clsx";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 const Accordion = AccordionPrimitive.Root;
 
@@ -22,7 +22,7 @@ const AccordionTrigger = React.forwardRef<
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       className={cn(
-        "group flex flex-1 items-center justify-between py-4 text-left font-mono text-black transition-colors hover:underline",
+        "font-mono group flex flex-1 items-center justify-between py-4 text-left text-black transition-colors hover:underline",
         "data-[state=open]:bg-accent/40",
         className,
       )}
@@ -32,7 +32,7 @@ const AccordionTrigger = React.forwardRef<
       <span>{children}</span>
       <X
         className={clsx(
-          "ml-2 size-5 text-black transition-transform duration-200 ease-linear group-data-[state=open]:rotate-45 group-data-[state=closed]:rotate-0",
+          "ml-2 size-5 text-black transition-transform duration-200 ease-linear group-data-[state=closed]:rotate-0 group-data-[state=open]:rotate-45",
         )}
       />
     </AccordionPrimitive.Trigger>
@@ -46,14 +46,14 @@ const AccordionContent = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     className={cn(
-      "overflow-hidden transition-[max-height,padding] duration-200 ease-in-out data-[state=open]:pt-2 data-[state=closed]:pt-0",
-      "data-[state=open]:max-h-[300px] data-[state=closed]:max-h-0",
+      "overflow-hidden transition-[max-height,padding] duration-200 ease-in-out data-[state=closed]:pt-0 data-[state=open]:pt-2",
+      "data-[state=closed]:max-h-0 data-[state=open]:max-h-[300px]",
       className,
     )}
     ref={ref}
     {...props}
   >
-    <div className="pb-4 text-sm text-muted-foreground font-mono">{children}</div>
+    <div className="text-muted-foreground font-mono pb-4 text-sm">{children}</div>
   </AccordionPrimitive.Content>
 ));
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;

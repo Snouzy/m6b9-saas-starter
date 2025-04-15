@@ -1,14 +1,14 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 import { Typography } from "@/components/ui/typography";
 
 import type { ComponentPropsWithoutRef } from "react";
 
 export const Layout = (props: ComponentPropsWithoutRef<"div">) => {
-  return <div {...props} className={cn("max-w-4xl flex-wrap w-full flex gap-4 m-auto px-4 mt-4", props.className)} />;
+  return <div {...props} className={cn("m-auto mt-4 flex w-full max-w-4xl flex-wrap gap-4 px-4", props.className)} />;
 };
 
 export const LayoutHeader = (props: ComponentPropsWithoutRef<"div">) => {
-  return <div {...props} className={cn("flex items-start gap-2 flex-col w-full md:flex-1 min-w-[200px]", props.className)} />;
+  return <div {...props} className={cn("flex w-full min-w-[200px] flex-col items-start gap-2 md:flex-1", props.className)} />;
 };
 
 export const LayoutTitle = (props: ComponentPropsWithoutRef<"h1">) => {

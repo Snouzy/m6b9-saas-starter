@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 interface IProp {
   className?: string;
@@ -58,7 +58,7 @@ export default function NavLink({
           <div
             className={cn("size-[5px] rounded-full bg-gray-700/50 dark:bg-gray-600", pathName === href && "bg-primary dark:bg-[#6683F8]")}
           ></div>
-          <div className="dark:bg-gray h-[26px] w-px rounded-full bg-gray-300"></div>
+          <div className="h-[26px] w-px rounded-full bg-gray-300 dark:bg-gray"></div>
         </div>
       )}
 
@@ -67,7 +67,7 @@ export default function NavLink({
           <div
             className={`size-[5px] rounded-full bg-gray-700/50 dark:bg-gray-600 ${pathName === href && "bg-primary dark:bg-[#6683F8]"}`}
           ></div>
-          <div className="dark:bg-gray h-6 w-px rounded-full bg-gray-300"></div>
+          <div className="h-6 w-px rounded-full bg-gray-300 dark:bg-gray"></div>
         </div>
       )}
     </Link>

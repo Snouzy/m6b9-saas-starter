@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-import { SiteConfig } from "@/site-config";
+import { SiteConfig } from "@/shared/config/site-config";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, useZodForm } from "@/components/ui/form";

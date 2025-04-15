@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 
 type PageHeadingProps = {

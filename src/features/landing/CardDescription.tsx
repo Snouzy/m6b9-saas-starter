@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 import { Typography } from "@/components/ui/typography";
 
 export const CardDescription = ({ className }: { className: string }) => {
@@ -31,9 +31,9 @@ export const CardDescription = ({ className }: { className: string }) => {
   };
 
   return (
-    <section className={cn("brutal-grid-bg border-t-4 border-b-4 border-black py-20", className)} ref={ref}>
+    <section className={cn("brutal-grid-bg border-b-4 border-t-4 border-black py-20", className)} ref={ref}>
       <div className="container mx-auto px-4">
-        <div className="mb-10 text-center lg:max-w-xl mx-auto">
+        <div className="mx-auto mb-10 text-center lg:max-w-xl">
           {cardDescriptionContent.heading.subTitle && (
             <motion.span
               className="mb-3 inline-block text-[13px] uppercase tracking-widest text-black"
@@ -51,7 +51,7 @@ export const CardDescription = ({ className }: { className: string }) => {
               viewport={{ once: true }}
               whileInView={{ opacity: 1, y: 0, transition: { delay: 0.3, duration: 0.5 } }}
             >
-              <Typography className="uppercase text-black text-4xl font-extrabold" variant="h2">
+              <Typography className="text-4xl font-extrabold uppercase text-black" variant="h2">
                 {cardDescriptionContent.heading.title}
               </Typography>
             </motion.h2>
@@ -74,7 +74,7 @@ export const CardDescription = ({ className }: { className: string }) => {
               >
                 <Image
                   alt="Andy profile"
-                  className="!h-[400px] !w-full object-cover object-center border-4 border-black rounded-none shadow-brutal"
+                  className="shadow-brutal !h-[400px] !w-full rounded-none border-4 border-black object-cover object-center"
                   height={400}
                   src={cardDescriptionContent.content.img}
                   width={600}
@@ -94,7 +94,7 @@ export const CardDescription = ({ className }: { className: string }) => {
                     transition: { delay: 0.2 + index * 0.2, duration: 0.4 },
                   }}
                 >
-                  <Typography className="mb-6 text-[17px] font-mono text-black leading-relaxed" variant="p">
+                  <Typography className="font-mono mb-6 text-[17px] leading-relaxed text-black" variant="p">
                     {description}
                   </Typography>
                 </motion.div>

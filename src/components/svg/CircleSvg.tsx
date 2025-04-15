@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 import type { ComponentPropsWithoutRef } from "react";
 
@@ -6,7 +6,7 @@ export const CircleSvg = ({ className, ...props }: ComponentPropsWithoutRef<"svg
   return (
     <svg
       aria-hidden="true"
-      className={cn("absolute -z-10 w-[calc(100%+1rem)] top-0 left-0 fill-foreground", className)}
+      className={cn("fill-foreground absolute left-0 top-0 -z-10 w-[calc(100%+1rem)]", className)}
       height="62"
       preserveAspectRatio="none"
       viewBox="0 0 223 62"

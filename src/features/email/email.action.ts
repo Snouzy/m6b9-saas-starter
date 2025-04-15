@@ -1,6 +1,6 @@
 "use server";
 
-import { actionClient } from "@/actions/safe-actions";
+import { actionClient } from "@/shared/api/safe-actions";
 
 import { EmailActionSchema } from "./email.schema";
 

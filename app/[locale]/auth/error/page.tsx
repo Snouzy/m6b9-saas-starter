@@ -17,13 +17,13 @@ export default async function AuthErrorPage({ params }: { params: Promise<{ erro
           <LayoutTitle>Authentification Error</LayoutTitle>
         </LayoutHeader>
         <LayoutContent>
-          <Card variant="error">
+          <Card>
             <CardHeader>
               <CardDescription>{errorCode}</CardDescription>
               <CardTitle>{errorMessage}</CardTitle>
             </CardHeader>
             <CardFooter className="flex items-center gap-2">
-              <Link className={buttonVariants({ size: "sm" })} href="/">
+              <Link className={buttonVariants({ size: "small" })} href="/">
                 Home
               </Link>
               {/* <ContactSupportDialog /> */}

@@ -1,9 +1,9 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 import { Typography } from "./typography";
 
 export const BentoGrid = ({ className, children }: { className?: string; children?: React.ReactNode }) => {
-  return <div className={cn("grid md:auto-rows-[13rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto ", className)}>{children}</div>;
+  return <div className={cn("mx-auto grid max-w-7xl grid-cols-1 gap-4 md:auto-rows-[13rem] md:grid-cols-3", className)}>{children}</div>;
 };
 
 export const BentoGridItem = ({
@@ -22,7 +22,7 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        "row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 bg-card border-border border justify-between flex flex-col space-y-4",
+        "group/bento shadow-input bg-card border-border row-span-1 flex flex-col justify-between space-y-4 rounded-xl border p-4 transition duration-200 hover:shadow-xl dark:shadow-none",
         className,
       )}
     >

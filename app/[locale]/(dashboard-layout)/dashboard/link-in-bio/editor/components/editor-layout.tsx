@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { LayoutList, ThumbsUp, User2, Paintbrush, Search, Settings } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { Button } from "@/components/ui/button";
 
@@ -35,17 +35,17 @@ export default function EditorLayout({ children }: EditorLayoutProps) {
       {/* Navigation Menu - Vertical on desktop, horizontal on mobile */}
       <nav
         className={cn(
-          "flex transition-all duration-200 bg-background border-r",
-          isMobile ? "fixed bottom-0 left-0 right-0 h-16 flex-row border-t border-r-0" : "w-20 flex-col h-full",
+          "bg-background flex border-r transition-all duration-200",
+          isMobile ? "fixed bottom-0 left-0 right-0 h-16 flex-row border-r-0 border-t" : "h-full w-20 flex-col",
         )}
       >
-        <div className={cn("flex gap-1 p-2", isMobile ? "flex-row w-full overflow-x-auto" : "flex-col")}>
+        <div className={cn("flex gap-1 p-2", isMobile ? "w-full flex-row overflow-x-auto" : "flex-col")}>
           {navigationItems.map((item) => (
             <Button
-              className={cn("flex flex-col items-center justify-center gap-1 h-auto py-3", isMobile ? "flex-1 min-w-[4rem]" : "w-full")}
+              className={cn("flex h-auto flex-col items-center justify-center gap-1 py-3", isMobile ? "min-w-[4rem] flex-1" : "w-full")}
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              variant={activeTab === item.id ? "secondary" : "ghost"}
+              variant={activeTab === item.id ? "default" : "outline-general"}
             >
               <item.icon className="h-5 w-5" />
               <span className="text-xs font-medium">{item.label}</span>

@@ -1,4 +1,7 @@
 export default {
+  feedback_sent: "Ton feedback a été envoyé. Merci.",
+  auth_layout_title: "Affiche leur tout ton potentiel.",
+  auth_layout_subtitle: "Google Forms, Calendly, Instagram... Tous tes liens accessibles depuis une seule page, 24/7.",
   extremely_dissatisfied: "Extrêmement insatisfait",
   somewhat_dissatisfied: "Assez insatisfait",
   neutral: "Neutre",

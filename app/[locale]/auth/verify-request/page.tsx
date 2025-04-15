@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { SiteConfig } from "@/site-config";
+import { SiteConfig } from "@/shared/config/site-config";
 import { Typography } from "@/components/ui/typography";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 

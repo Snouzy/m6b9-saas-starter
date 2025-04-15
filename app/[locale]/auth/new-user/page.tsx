@@ -1,8 +1,8 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { Header } from "@radix-ui/react-accordion";
 
 import { Layout, LayoutContent, LayoutDescription, LayoutHeader, LayoutTitle } from "@/features/page/layout";
-import { Header } from "@/features/layout/_Header";
 import { buttonVariants } from "@/components/ui/button";
 
 interface NewUserPageParams {
@@ -27,7 +27,7 @@ export default async function NewUserPage({ searchParams }: NewUserPageParams) {
           <LayoutDescription>You can now use the app</LayoutDescription>
         </LayoutHeader>
         <LayoutContent>
-          <Link className={buttonVariants({ size: "lg" })} href="/">
+          <Link className={buttonVariants({ size: "large" })} href="/">
             Get Started
           </Link>
         </LayoutContent>

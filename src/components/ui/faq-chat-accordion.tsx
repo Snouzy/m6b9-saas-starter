@@ -5,7 +5,7 @@ import { Minus, Plus } from "lucide-react";
 import { motion } from "framer-motion";
 import * as Accordion from "@radix-ui/react-accordion";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 export interface FAQItem {
   id: number;
@@ -28,7 +28,7 @@ export function FaqAccordion({ data, className, timestamp = "Reçu à l'instant"
 
   return (
     <div className={cn("p-4", className)}>
-      {timestamp && <div className="mb-4 text-sm text-muted-foreground">{timestamp}</div>}
+      {timestamp && <div className="text-muted-foreground mb-4 text-sm">{timestamp}</div>}
 
       <Accordion.Root collapsible onValueChange={(value) => setOpenItem(value)} type="single" value={openItem || ""}>
         {data.map((item) => (
@@ -71,8 +71,8 @@ export function FaqAccordion({ data, className, timestamp = "Reçu à l'instant"
                   collapsed: { opacity: 0, height: 0 },
                 }}
               >
-                <div className="ml-7 mt-1 md:ml-16 flex justify-end">
-                  <div className={cn("relative max-w-md rounded-2xl bg-primary px-4 py-2 text-primary-foreground", answerClassName)}>
+                <div className="ml-7 mt-1 flex justify-end md:ml-16">
+                  <div className={cn("text-primary-foreground relative max-w-md rounded-2xl bg-primary px-4 py-2", answerClassName)}>
                     {item.answer}
                   </div>
                 </div>

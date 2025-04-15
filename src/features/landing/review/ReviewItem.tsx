@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 import { Typography } from "@/components/ui/typography";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -30,7 +30,7 @@ export const ReviewItem = ({ className, ...props }: ReviewItemProps) => {
       <CardHeader>
         <Typography className="citation">{props.review}</Typography>
       </CardHeader>
-      <CardContent className="flex items-center gap-2 rounded-lg bg-background pt-6">
+      <CardContent className="bg-background flex items-center gap-2 rounded-lg pt-6">
         <div>
           <Avatar>
             <AvatarFallback>{props.name[0]}</AvatarFallback>

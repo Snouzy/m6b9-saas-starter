@@ -2,10 +2,10 @@
 
 import { z } from "zod";
 
-import { stripe } from "@/lib/stripe";
-import { getServerUrl } from "@/lib/server-url";
-import { serverAuth } from "@/lib/auth/helper";
-import { ActionError, actionClient } from "@/actions/safe-actions";
+import { stripe } from "@/shared/lib/stripe";
+import { getServerUrl } from "@/shared/lib/server-url";
+import { serverAuth } from "@/entities/user/model/get-server-user";
+import { ActionError, actionClient } from "@/shared/api/safe-actions";
 
 const BuyButtonSchema = z.object({
   priceId: z.string(),

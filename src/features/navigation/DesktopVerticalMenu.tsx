@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 import { useI18n } from "locales/client";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 import { Typography } from "@/components/ui/typography";
 import { Separator } from "@/components/ui/separator";
 

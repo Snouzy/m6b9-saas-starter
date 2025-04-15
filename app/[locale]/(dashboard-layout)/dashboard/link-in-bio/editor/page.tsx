@@ -1,7 +1,7 @@
 import Link from "next/link";
 
+import { paths } from "@/shared/constants/paths";
 import { Layout, LayoutContent, LayoutHeader, LayoutTitle } from "@/features/page/layout";
-import { Screens } from "@/constants/screen";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 
@@ -19,8 +19,8 @@ export default async function LinkInBioEditorPage() {
             </CardHeader>
             <CardContent className="flex gap-2">
               <Link
-                className={buttonVariants({ size: "sm", variant: "outline" })}
-                href={`/${Screens.dashboard}/${Screens.linkInBio}/${Screens.editor}`}
+                className={buttonVariants({ size: "small", variant: "outline" })}
+                href={`/${paths.dashboard}/${paths.linkInBio}/${paths.editor}`}
               >
                 Éditer mes liens
               </Link>

@@ -1,6 +1,6 @@
 import { Link, Preview, Section, Text } from "@react-email/components";
 
-import { SiteConfig } from "@/site-config";
+import { SiteConfig } from "@/shared/config/site-config";
 
 import { EmailLayout } from "./utils/EmailLayout";
 

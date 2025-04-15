@@ -1,6 +1,6 @@
 import { Preview, Section, Text } from "@react-email/components";
 
-import { SiteConfig } from "@/site-config";
+import { SiteConfig } from "@/shared/config/site-config";
 
 import { EmailLayout } from "./utils/EmailLayout";
 
@@ -16,7 +16,7 @@ export default function SuccessUpgradeEmail() {
         </Text>
         <Text className="text-lg leading-6">
           If you have any questions about customizing your link page or need assistance with any features, feel free to reach out to us.
-          We're here to help you make the most of your link in bio experience.
+          We&apos;re here to help you make the most of your link in bio experience.
         </Text>
         <Text className="text-lg leading-6">Happy linking,</Text>
       </Section>

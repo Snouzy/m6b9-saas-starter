@@ -6,12 +6,12 @@ import Image from "next/image";
 import { ChevronDown, MessageSquareText, Minus, Pencil, Phone, Rocket, Settings, X } from "lucide-react";
 
 import RectangleGrid from "@public/images/rectangle-gird.png";
+import { paths } from "@/shared/constants/paths";
 import { useMediaQuery } from "@/fitlinks/hooks/use-media-query";
 import NavLink from "@/fitlinks/features/layout/nav-link";
 import { Card } from "@/fitlinks/components/ui/card";
 import { Button } from "@/fitlinks/components/ui/button";
 import { Accordion } from "@/fitlinks/components/ui/accordion";
-import { paths } from "@/config/paths";
 import { LogoSvg } from "@/components/svg/LogoSvg";
 
 const Sidebar = () => {
