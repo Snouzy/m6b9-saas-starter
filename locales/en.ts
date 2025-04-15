@@ -1,4 +1,7 @@
 export default {
+  support: "Support",
+  contact_support: "Contact support",
+  contact_support_subtitle: "Fill the form bellow or send an email to",
   password_updated_successfully: "Your password has been updated successfully",
   current_password: "Current password",
   current_password_placeholder: "Enter current password",
@@ -139,5 +142,7 @@ export default {
     cancel: "Cancel",
     save_changes: "Save changes",
     change: "Change",
+    subject: "Subject",
+    message: "Message",
   },
 } as const;

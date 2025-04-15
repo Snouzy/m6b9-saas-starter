@@ -58,11 +58,13 @@ export const AuthenticatedHeader = () => {
         </Link>
 
         <div className="flex items-center gap-3 sm:gap-5">
-          <Link className="hidden duration-300 hover:opacity-80 lg:block dark:text-white" href="/chat">
-            <MessageSquareText className="h-5 w-5" />
-          </Link>
           <div className="order-2 inline-flex lg:order-none">
-            <ContactFeedbackPopover />
+            <ContactFeedbackPopover>
+              <Button variant="outline">
+                <MessageSquareText className="h-5 w-5" />
+                Feedback
+              </Button>
+            </ContactFeedbackPopover>
           </div>
           <div className="hidden lg:block">
             <DropdownMenu>

@@ -9,18 +9,25 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-white hover:bg-[#2A4DD7]",
-        black: "bg-black text-white hover:bg-[#3C3C3D] dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white",
-        outline: "bg-white text-primary shadow-sm ring-1 ring-inset ring-primary hover:bg-light-theme",
-        "outline-black": "bg-white text-black shadow-sm ring-1 ring-inset ring-black hover:bg-gray-200",
+        default: "bg-primary text-white hover:bg-primary/90", // Simplified hover
+        destructive: "bg-red-600 text-white hover:bg-red-600/90", // Destructive variant
+        secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700", // Secondary variant
+        ghost: "hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100", // Ghost variant
+        link: "text-primary underline-offset-4 hover:underline", // Link variant
+        black: "bg-black text-white hover:bg-black/90 dark:bg-white dark:text-black dark:hover:bg-white/90", // Adjusted hover for black
+        outline: "border border-primary bg-transparent text-primary shadow-sm hover:bg-primary/5", // Adjusted outline
+        "outline-black":
+          "border border-black bg-transparent text-black shadow-sm hover:bg-black/5 dark:border-white dark:text-white dark:hover:bg-white/5", // Adjusted outline-black
         "outline-general":
-          "bg-white text-black shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-200 dark:bg-black-dark dark:text-white dark:ring-gray dark:hover:bg-black",
+          "border border-gray-300 bg-transparent text-black shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800", // Adjusted outline-general
       },
       size: {
-        default: "text-md",
-        small: "",
+        default: "text-md px-3 py-1",
+        extraSmall: "h-8 rounded-md px-2.5 text-xs",
+        small: "h-9 rounded-md px-3 text-xs",
         large: "text-md px-3 py-2",
         extralarge: "text-md rounded-[10px] px-3.5 py-[11px] font-semibold [&>svg]:size-[18px]",
+        icon: "h-10 w-10",
       },
     },
     defaultVariants: {

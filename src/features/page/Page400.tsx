@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { ContactSupportDialog } from "@/features/contact/support/ContactSupportDialog";
+
 import { Typography } from "../../components/ui/typography";
 
 export function Page400() {
@@ -16,7 +18,7 @@ export function Page400() {
       </div>
       <div className="flex items-center gap-4">
         <Link href="/">Go back home</Link>
-        {/* <ContactSupportDialog /> */}
+        <ContactSupportDialog />
       </div>
     </main>
   );

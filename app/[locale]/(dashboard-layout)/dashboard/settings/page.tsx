@@ -32,12 +32,6 @@ export default async function SettingsPage() {
                   {t("commons.password")}
                 </TabsTrigger>
               )}
-              <TabsTrigger className="leading-3 data-[state=active]:bg-black data-[state=active]:text-white" value="billing">
-                {t("billing")}
-              </TabsTrigger>
-              <TabsTrigger className="leading-3 data-[state=active]:bg-black data-[state=active]:text-white" value="notifications">
-                {t("notifications")}
-              </TabsTrigger>
             </div>
           </TabsList>
           <TabsContent className="mx-auto w-full max-w-[566px] font-medium text-black dark:text-white" value="my-profile">

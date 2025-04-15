@@ -2,10 +2,11 @@
 
 import { toast } from "sonner";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 
+import { useI18n } from "locales/client";
 import { SiteConfig } from "@/shared/config/site-config";
+import { useCurrentSession } from "@/entities/user/model/useCurrentSession";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, useZodForm } from "@/components/ui/form";
@@ -20,12 +21,14 @@ import type { ContactSupportSchemaType } from "./contact-support.schema";
 
 export type ContactSupportDialogProps = PropsWithChildren<{
   email?: string;
+  className?: string;
 }>;
 
 export const ContactSupportDialog = (props: ContactSupportDialogProps) => {
   const [open, setOpen] = useState(false);
-  const session = useSession();
-  const email = session.data?.user?.email ?? "";
+  const session = useCurrentSession();
+  const t = useI18n();
+  const email = session?.user?.email ?? "";
   const form = useZodForm({
     schema: ContactSupportSchema,
     defaultValues: {
@@ -48,12 +51,14 @@ export const ContactSupportDialog = (props: ContactSupportDialogProps) => {
 
   return (
     <Dialog onOpenChange={(v) => setOpen(v)} open={open}>
-      <DialogTrigger>{props.children ? props.children : <Button variant="outline">Contact support</Button>}</DialogTrigger>
+      <DialogTrigger asChild>
+        {props.children ? props.children : <span className={props.className}>{t("contact_support")}</span>}
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Contact Support</DialogTitle>
+          <DialogTitle>{t("contact_support")}</DialogTitle>
           <DialogDescription>
-            Fill the form bellow or send an email to{" "}
+            {t("contact_support_subtitle")}{" "}
             <Link className="text-primary" href={`mailto:${SiteConfig.email.contact}`}>
               {SiteConfig.email.contact}
             </Link>
@@ -81,7 +86,7 @@ export const ContactSupportDialog = (props: ContactSupportDialogProps) => {
             name="subject"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Subject</FormLabel>
+                <FormLabel>{t("commons.subject")}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -94,7 +99,7 @@ export const ContactSupportDialog = (props: ContactSupportDialogProps) => {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Message</FormLabel>
+                <FormLabel>{t("commons.message")}</FormLabel>
                 <FormControl>
                   <Textarea {...field} />
                 </FormControl>
@@ -102,7 +107,7 @@ export const ContactSupportDialog = (props: ContactSupportDialogProps) => {
               </FormItem>
             )}
           />
-          <Button type="submit">Send</Button>
+          <Button type="submit">{t("commons.submit")}</Button>
         </Form>
       </DialogContent>
     </Dialog>

@@ -4,7 +4,7 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { betterAuth } from "better-auth";
 
 import VerifyEmail from "@emails/VerifyEmail";
-import ResetPasswordEmail from "@emails/ResetPasswordEmail";
+import { ResetPasswordEmail } from "@emails/ResetPasswordEmail";
 import { prisma } from "@/shared/lib/prisma";
 import { sendEmail } from "@/shared/lib/mail/sendEmail";
 import { hashStringWithSalt } from "@/features/settings/update-password/lib/hash";

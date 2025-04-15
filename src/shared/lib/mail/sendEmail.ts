@@ -23,7 +23,7 @@ export const sendEmail = async (...params: ResendParamsTypeWithConditionalFrom) 
     {
       ...params[0],
       from: params[0].from ?? SiteConfig.email.from,
-      to: env.NODE_ENV === "development" ? "mathiasnouzy@gmail.com" : params[0].to,
+      to: env.NODE_ENV === "development" ? "delivered@resend.dev" : params[0].to,
     } as ResendParamsType[0],
     params[1],
   ] satisfies ResendParamsType;

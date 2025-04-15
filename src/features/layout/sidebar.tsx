@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown, MessageSquareText, Minus, Pencil, Phone, Rocket, Settings, X } from "lucide-react";
+import { ChevronDown, MessageSquareText, Minus, Rocket, Settings, X } from "lucide-react";
 
+import { useI18n } from "locales/client";
 import RectangleGrid from "@public/images/rectangle-gird.png";
 import { paths } from "@/shared/constants/paths";
 import { useMediaQuery } from "@/fitlinks/hooks/use-media-query";
@@ -12,9 +13,11 @@ import NavLink from "@/fitlinks/features/layout/nav-link";
 import { Card } from "@/fitlinks/components/ui/card";
 import { Button } from "@/fitlinks/components/ui/button";
 import { Accordion } from "@/fitlinks/components/ui/accordion";
+import { ContactSupportDialog } from "@/features/contact/support/ContactSupportDialog";
 import { LogoSvg } from "@/components/svg/LogoSvg";
 
 const Sidebar = () => {
+  const t = useI18n();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathName = usePathname();
   const isTablet = useMediaQuery("(max-width: 1024px)");
@@ -137,10 +140,10 @@ const Sidebar = () => {
             <span>Tableau de bord</span>
           </NavLink>
 
-          <NavLink className={`nav-link ${pathName === `/${paths.linkInBio}` && "!text-black"}`} href={`/${paths.linkInBio}`}>
+          {/* <NavLink className={`nav-link ${pathName === `/${paths.linkInBio}` && "!text-black"}`} href={`/${paths.linkInBio}`}>
             <Pencil className="size-[18px] shrink-0" />
             <span>Modifier</span>
-          </NavLink>
+          </NavLink> */}
           {/* <h3 className="mt-2.5 whitespace-nowrap rounded-lg bg-gray-400 px-5 py-2.5 text-xs/tight font-semibold uppercase text-black dark:bg-gray-400/[6%] dark:text-white">
             <span>User Interface</span>
             <Minus className="text-gray hidden h-4 w-5" />
@@ -270,11 +273,12 @@ const Sidebar = () => {
             <Settings className="size-[18px] shrink-0" />
             <span>Paramètres</span>
           </NavLink>
-          <NavLink className={`nav-link ${pathName === "/contact-us" && "!text-black"}`} href="/contact-us">
-            <Phone className="size-[18px] shrink-0" />
-            <span>Nous contacter</span>
-          </NavLink>
         </Accordion>
+        <ContactSupportDialog>
+          <Button size="small" variant="link">
+            {t("support")}
+          </Button>
+        </ContactSupportDialog>
         <div className="upgrade-menu sticky bottom-0 rounded-[10px] bg-light-theme p-4 transition-all">
           <span className="absolute left-0 right-0 top-0 -z-[1]">
             <Image alt="rectangle-grid" className="h-full w-full rounded-[10px]" height={230} src={RectangleGrid} width={250} />
@@ -284,7 +288,7 @@ const Sidebar = () => {
           </span>
           <p className="mb-4 mt-3 font-semibold leading-5 text-black">Get detailed report, sales analysis, with pro plan</p>
           <Link href="https://sbthemes.lemonsqueezy.com/buy/69aeae3f-6c81-4804-a211-7b96e7e0e56a" target="_blank">
-            <Button type="button" variant={"default"}>
+            <Button size="large" type="button" variant={"default"}>
               Upgrade Now
             </Button>
           </Link>
