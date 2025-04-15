@@ -1,6 +1,5 @@
 "use server";
 
-import { uploadProfileImage } from "@/shared/lib/storage/upload-image";
 import { prisma } from "@/shared/lib/prisma";
 import { ERROR_MESSAGES } from "@/shared/constants/errors";
 import { actionClient, ActionError } from "@/shared/api/safe-actions";
@@ -8,10 +7,9 @@ import { editProfileFormSchema } from "@/features/settings/edit-profile/schema/e
 import { serverRequiredUser } from "@/entities/user/model/get-server-session-user";
 
 export const updateProfileAction = actionClient.schema(editProfileFormSchema).action(async ({ parsedInput }) => {
-  const { firstName, lastName, email, image } = parsedInput;
+  const { firstName, lastName, email } = parsedInput;
   const user = await serverRequiredUser();
 
-  // Vérifier si l'email est déjà utilisé par un autre utilisateur
   const existing = await prisma.user.findFirst({
     where: {
       email,
@@ -22,21 +20,12 @@ export const updateProfileAction = actionClient.schema(editProfileFormSchema).ac
     throw new ActionError(ERROR_MESSAGES.EMAIL_ALREADY_USED);
   }
 
-  let profileImageUrl: string | undefined = undefined;
-
-  // Gestion de l’upload d’image si présente
-  if (image) {
-    profileImageUrl = await uploadProfileImage(image);
-  }
-
   const updatedUser = await prisma.user.update({
     where: { id: user.id },
     data: {
       firstName,
       lastName,
       email,
-      image,
-      ...(profileImageUrl && { image: profileImageUrl }),
     },
   });
 
