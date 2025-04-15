@@ -30,7 +30,15 @@ export default async function SettingsPage() {
             </div>
           </TabsList>
           <TabsContent className="mx-auto w-full max-w-[566px] font-medium text-black dark:text-white" value="my-profile">
-            <EditProfileForm />
+            <Card>
+              <CardHeader className="space-y-1.5 rounded-t-lg border-b border-gray-300 bg-gray-100 px-5 py-4 text-base/5 font-semibold text-black dark:border-gray-700/50 dark:bg-black/30 dark:text-white">
+                <h3>{t("personal_info")}</h3>
+                <p className="text-sm/tight font-medium text-gray-700 dark:text-gray-600">{t("update_personal_info")}</p>
+              </CardHeader>
+              <CardContent>
+                <EditProfileForm />
+              </CardContent>
+            </Card>
           </TabsContent>
 
           {hasCredentialsAccount && (
