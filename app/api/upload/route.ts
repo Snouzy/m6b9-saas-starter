@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { uploadImageToR2 } from "@/shared/lib/storage/upload-image";
 import { deleteImageFromR2 } from "@/shared/lib/storage/delete-image";
-import { prisma } from "@/shared/lib/prisma";
 import { logger } from "@/shared/lib/logger";
 import { ERROR_MESSAGES } from "@/shared/constants/errors";
 import { env } from "@/env";
+import { updateProfileImage } from "@/entities/user/model/update-profile-image";
 import { serverRequiredUser } from "@/entities/user/model/get-server-session-user";
 
 const MAX_SIZE = 5 * 1024 * 1024; // 5MB
@@ -48,26 +48,16 @@ export const POST = async (req: NextRequest) => {
   const fileName = `profile-images/u-${user?.id}.jpg`;
 
   try {
-    const oldImageUrl = user?.image;
-
-    if (oldImageUrl && oldImageUrl.includes(env.CLOUDFLARE_R2_ENDPOINT)) {
-      const oldFileName = oldImageUrl.replace(`${env.CLOUDFLARE_R2_ENDPOINT}/`, "");
-      await deleteImageFromR2({ fileName: oldFileName, bucket: "public" });
-    }
-
-    const { url } = await uploadImageToR2({
-      fileBuffer: optimizedBuffer,
+    const { url } = await updateProfileImage({
+      userId: user.id,
+      oldImageUrl: user.image,
+      optimizedBuffer,
       fileName,
-      mimeType: "image/jpeg",
+      uploader: uploadImageToR2,
+      deleter: deleteImageFromR2,
       bucket: "public",
+      endpoint: env.CLOUDFLARE_R2_ENDPOINT,
     });
-
-    if (user) {
-      await prisma.user.update({
-        where: { id: user.id },
-        data: { image: url },
-      });
-    }
 
     return NextResponse.json({ url });
   } catch (e) {

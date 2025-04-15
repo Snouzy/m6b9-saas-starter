@@ -1,5 +1,3 @@
-// src/shared/lib/storage/upload-to-r2.ts
-
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
 import { env } from "@/env";
