@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Image as ImageIcon } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 
@@ -47,6 +48,10 @@ export function useProfileImageUpload() {
           brandedToast({ title: t("NO_FILE_UPLOADED"), variant: "error" });
         }
 
+        if (res.status === 500) {
+          brandedToast({ title: t("IMAGE_PROCESSING_ERROR"), variant: "error" });
+        }
+
         throw new Error(data.error || t("upload_failed"));
       }
 
@@ -59,9 +64,8 @@ export function ProfileImageUploadForm() {
   const t = useI18n();
   const [isUploading, setIsUploading] = useState(false);
   const user = useCurrentUser();
-  const [preview, setPreview] = useState<string | null>(
-    user?.image ? toR2PublicUrl(user.image, env.NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_URL) : null,
-  );
+  const initialUrl = user?.image ? toR2PublicUrl(user.image, env.NEXT_PUBLIC_CLOUDFLARE_R2_PUBLIC_URL) : null;
+  const [preview, setPreview] = useState<string | null>(initialUrl);
   const uploadMutation = useProfileImageUpload();
 
   const handleUpload = (file: File) => {
@@ -74,6 +78,7 @@ export function ProfileImageUploadForm() {
           brandedToast({ title: t("upload_success"), variant: "success" });
         },
         onError: (error) => {
+          setPreview(initialUrl);
           setIsUploading(false);
           console.error("error", error);
         },
@@ -84,7 +89,11 @@ export function ProfileImageUploadForm() {
   return (
     <div className="flex items-center gap-3">
       <div className="flex size-[50px] items-center justify-center overflow-hidden rounded-full bg-gray-200">
-        {preview ? <img alt="Preview" className="h-full w-full object-cover" src={preview} /> : <ImageIcon className="text-gray-400" />}
+        {preview ? (
+          <Image alt="Preview" className="h-full w-full object-cover" height={50} src={preview} width={50} />
+        ) : (
+          <ImageIcon className="text-gray-400" />
+        )}
       </div>
       <Input
         // accept="image/png, image/jpeg"
