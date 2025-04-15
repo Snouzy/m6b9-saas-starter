@@ -98,36 +98,37 @@ export function ProfileImageUploadForm() {
           {preview ? (
             <Image alt="Preview" className="h-full w-full object-cover" height={72} src={preview} width={72} />
           ) : (
-            <ImageIcon className="size-10 text-gray-400" />
+            <ImageIcon className="size-10 text-gray-600" />
+          )}
+          <label
+            className="absolute inset-0 flex cursor-pointer items-center justify-center rounded-full bg-black/40 opacity-0 transition group-hover:bg-black/40 group-hover:opacity-100"
+            htmlFor="profileImage"
+            tabIndex={0}
+            title={t("change_profile_picture")}
+          >
+            <Camera className="size-7 text-white" />
+            <input
+              accept="image/png, image/jpeg"
+              className="hidden"
+              disabled={isUploading}
+              id="profileImage"
+              name="profileImage"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  setPreview(URL.createObjectURL(file));
+                  handleUpload(file);
+                }
+              }}
+              type="file"
+            />
+          </label>
+          {isUploading && (
+            <div className="absolute inset-0 flex items-center justify-center rounded-full bg-white/60">
+              <span className="h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-black" />
+            </div>
           )}
         </div>
-        <label
-          className="absolute bottom-0 right-0 flex size-8 cursor-pointer items-center justify-center rounded-full border-2 border-white bg-black/80 text-white shadow transition group-hover:scale-110"
-          htmlFor="profileImage"
-          title={t("change_profile_picture")}
-        >
-          <Camera className="size-4" />
-          <input
-            accept="image/png, image/jpeg"
-            className="hidden"
-            disabled={isUploading}
-            id="profileImage"
-            name="profileImage"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) {
-                setPreview(URL.createObjectURL(file));
-                handleUpload(file);
-              }
-            }}
-            type="file"
-          />
-        </label>
-        {isUploading && (
-          <div className="absolute inset-0 flex items-center justify-center rounded-full bg-white/60">
-            <span className="h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-black" />
-          </div>
-        )}
       </div>
       <span className="text-xs text-gray-500">{t("profile_image_hint")}</span>
     </div>
