@@ -1,5 +1,6 @@
 import { Controller, FormProvider, useForm, useFormContext } from "react-hook-form";
 import * as React from "react";
+import { TriangleAlert } from "lucide-react";
 import { Slot } from "@radix-ui/react-slot";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -115,7 +116,7 @@ const FormDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttribu
   ({ className, ...props }, ref) => {
     const { formDescriptionId } = useFormField();
 
-    return <p className={cn("text-sm text-muted-foreground", className)} id={formDescriptionId} ref={ref} {...props} />;
+    return <p className={cn("text-muted-foreground text-sm", className)} id={formDescriptionId} ref={ref} {...props} />;
   },
 );
 FormDescription.displayName = "FormDescription";
@@ -124,15 +125,17 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<
   ({ className, children, ...props }, ref) => {
     const { error, formMessageId } = useFormField();
     const body = error ? String(error.message) : children;
+    console.log("body:", body);
 
     if (!body) {
       return null;
     }
 
     return (
-      <p className={cn("text-sm font-medium text-destructive", className)} id={formMessageId} ref={ref} {...props}>
-        {body}
-      </p>
+      <div className="!mt-2.5 flex items-center gap-2" id={formMessageId} ref={ref} {...props}>
+        <TriangleAlert className="size-[18px] shrink-0 text-danger dark:text-danger/70" />
+        <p className="text-xs/tight font-medium text-danger">{body}</p>
+      </div>
     );
   },
 );

@@ -1,6 +1,7 @@
 import React from "react";
 
-import { auth } from "@/lib/auth/helper";
+
+import { serverAuth } from "@/lib/auth/helper";
 import { Footer } from "@/features/layout/Footer";
 import { PromoteSection } from "@/features/landing/PromoteSection";
 import { NewHero } from "@/features/landing/NewHero";
@@ -11,7 +12,7 @@ import { BusinessCategories } from "@/features/landing/business-categories";
 import { BentoSection } from "@/features/landing/BentoSection";
 
 export default async function HomePage() {
-  const user = await auth();
+  const user = await serverAuth();
 
   return (
     <div className="relative flex h-fit flex-col bg-background text-foreground">

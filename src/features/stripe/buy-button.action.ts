@@ -4,15 +4,15 @@ import { z } from "zod";
 
 import { stripe } from "@/lib/stripe";
 import { getServerUrl } from "@/lib/server-url";
-import { ActionError, action } from "@/lib/server-actions/safe-actions";
-import { auth } from "@/lib/auth/helper";
+import { serverAuth } from "@/lib/auth/helper";
+import { ActionError, actionClient } from "@/actions/safe-actions";
 
 const BuyButtonSchema = z.object({
   priceId: z.string(),
 });
 
-export const buyButtonAction = action.schema(BuyButtonSchema).action(async ({ parsedInput: { priceId } }) => {
-  const user = await auth();
+export const buyButtonAction = actionClient.schema(BuyButtonSchema).action(async ({ parsedInput: { priceId } }) => {
+  const user = await serverAuth();
 
   const stripeCustomerId = user?.stripeCustomerId ?? undefined;
 

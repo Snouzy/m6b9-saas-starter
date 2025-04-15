@@ -1,8 +1,8 @@
 "use server";
 
 import { SiteConfig } from "@/site-config";
-import { action } from "@/lib/server-actions/safe-actions";
 import { sendEmail } from "@/lib/mail/sendEmail";
+import { actionClient } from "@/actions/safe-actions";
 
 import { ContactSupportSchema } from "./contact-support.schema";
 
@@ -16,7 +16,7 @@ import { ContactSupportSchema } from "./contact-support.schema";
 //   return { message: "Your message has been sent to support." };
 // });
 
-export const contactSupportAction = action.schema(ContactSupportSchema).action(async ({ parsedInput }) => {
+export const contactSupportAction = actionClient.schema(ContactSupportSchema).action(async ({ parsedInput }) => {
   await sendEmail({
     from: SiteConfig.email.from,
     to: SiteConfig.email.contact,

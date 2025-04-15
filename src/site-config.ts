@@ -4,6 +4,7 @@ export const SiteConfig = {
   prodUrl: "https://frontfit.links",
   domain: "frontfit.links",
   appIcon: "/images/logo4.jpg",
+  cdnIcon: "https://cdn.fitlinks.io/images/f23e29dd-a550-43dd-61a9-9d5abbc26c00/public",
   company: {
     name: "Fit'Links",
     address: "34 avenue des champ Elysée 75008 Paris, France",

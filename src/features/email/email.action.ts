@@ -1,6 +1,6 @@
 "use server";
 
-import { action } from "@/lib/server-actions/safe-actions";
+import { actionClient } from "@/actions/safe-actions";
 
 import { EmailActionSchema } from "./email.schema";
 
@@ -27,7 +27,7 @@ import { EmailActionSchema } from "./email.schema";
 //   }
 // });
 
-export const addEmailAction = action.schema(EmailActionSchema).action(async ({ parsedInput: { email } }) => {
+export const addEmailAction = actionClient.schema(EmailActionSchema).action(async ({ parsedInput: { email } }) => {
   console.log(email);
 
   return { email };

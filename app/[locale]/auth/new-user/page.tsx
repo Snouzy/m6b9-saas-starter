@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 
 import { Layout, LayoutContent, LayoutDescription, LayoutHeader, LayoutTitle } from "@/features/page/layout";
-import { Header } from "@/features/layout/Header";
+import { Header } from "@/features/layout/_Header";
 import { buttonVariants } from "@/components/ui/button";
 
 interface NewUserPageParams {

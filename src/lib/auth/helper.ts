@@ -1,9 +1,8 @@
-import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 
-import { authOptions } from "./auth";
-
-import type { User } from "@prisma/client";
+import { SessionUser } from "@/utils/auth-client";
+import { auth } from "@/utils/auth";
 
 export class AuthError extends Error {
   constructor(message: string) {
@@ -11,19 +10,18 @@ export class AuthError extends Error {
   }
 }
 
-export const auth = async () => {
-  const session = await getServerSession(authOptions);
+export const serverAuth = async (): Promise<SessionUser | null> => {
+  const session = await auth.api.getSession({ headers: await headers() });
 
-  if (session?.user) {
-    const user = session.user as User;
-    return user;
+  if (session && session.user) {
+    return session.user;
   }
 
   return null;
 };
 
-export const requiredAuth = async () => {
-  const user = await auth();
+export const serverRequiredUser = async () => {
+  const user = await serverAuth();
 
   if (!user) {
     notFound();

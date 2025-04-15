@@ -64,13 +64,13 @@ export default async function RootLayout({ params, children, modal }: RootLayout
 
   return (
     <>
-      <html className="h-full" lang="en" suppressHydrationWarning>
+      <html className="h-full" dir="ltr" lang="en" suppressHydrationWarning>
         <head>
           <PlausibleProvider domain={SiteConfig.domain} />
         </head>
         <body
           className={cn(
-            "h-full bg-background font-sans antialiased",
+            "bg-gray-400 text-sm/[22px] font-normal text-black antialiased dark:bg-black dark:text-gray-500",
             GeistMono.variable,
             GeistSans.variable,
             inter.variable,

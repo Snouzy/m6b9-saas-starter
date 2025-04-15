@@ -23,13 +23,7 @@ export const EmailLayout = ({ children }: PropsWithChildren) => {
             <table cellPadding={0} cellSpacing={0}>
               <tr>
                 <td className="pr-2">
-                  <Img
-                    alt={`${SiteConfig.title}'s logo`}
-                    className="inline"
-                    height={32}
-                    src={`${baseUrl}${SiteConfig.appIcon}`}
-                    width={32}
-                  />
+                  <Img alt={`${SiteConfig.title}'s logo`} className="inline" height={32} src={`${SiteConfig.cdnIcon}`} width={32} />
                 </td>
                 <td>
                   <Text className="text-xl font-bold">{SiteConfig.title}</Text>

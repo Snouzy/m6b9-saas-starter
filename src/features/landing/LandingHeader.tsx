@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { Menu } from "lucide-react";
-import { User } from "@prisma/client";
 
 import { getI18n } from "locales/server";
+import { SessionUser } from "@/utils/auth-client";
 import { AuthButtonServer } from "@/features/auth/AuthButtonServer";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { LogoSvg } from "@/components/svg/LogoSvg";
 
-export async function LandingHeader({ user }: { user: User | null }) {
+export async function LandingHeader({ user }: { user: SessionUser | null }) {
   const t = await getI18n();
 
   return (
@@ -20,7 +20,7 @@ export async function LandingHeader({ user }: { user: User | null }) {
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>
-                <Button size="icon" variant="ghost">
+                <Button size="small" variant="outline">
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
@@ -29,13 +29,13 @@ export async function LandingHeader({ user }: { user: User | null }) {
                   <SheetTitle>Menu</SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-4 py-4">
-                  <Button asChild className="justify-start" variant="ghost">
+                  <Button asChild className="justify-start" variant="outline">
                     <a href="#">FAQ</a>
                   </Button>
-                  <Button asChild className="justify-start" variant="ghost">
+                  <Button asChild className="justify-start" variant="outline">
                     <a href="#">Prix</a>
                   </Button>
-                  <Button asChild className="justify-start" variant="ghost">
+                  <Button asChild className="justify-start" variant="outline">
                     <a href="#">Contact</a>
                   </Button>
                 </div>
@@ -51,13 +51,13 @@ export async function LandingHeader({ user }: { user: User | null }) {
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-4 text-sm font-medium text-muted-foreground md:flex">
-          <Button asChild className="font-semibold" variant="ghost">
+          <Button asChild className="font-semibold" variant="outline">
             <a href="#">FAQ</a>
           </Button>
-          <Button asChild className="font-semibold" variant="ghost">
+          <Button asChild className="font-semibold" variant="outline">
             <a href="#">Prix</a>
           </Button>
-          <Button asChild className="font-semibold" variant="ghost">
+          <Button asChild className="font-semibold" variant="outline">
             <a href="#">Contact</a>
           </Button>
         </nav>
@@ -81,4 +81,3 @@ export async function LandingHeader({ user }: { user: User | null }) {
   );
 }
 
-const clamp = (number: number, min: number, max: number) => Math.min(Math.max(number, min), max);

@@ -3,7 +3,7 @@ import { authClient } from "@/utils/auth-client";
 
 import { LoggedInButton, SignInButton } from "./SignInButton";
 
-export const AuthButton = async () => {
+export const AuthButton = () => {
   const {
     data: session,
     isPending, //loading state

@@ -5,19 +5,15 @@ import * as TabsPrimitive from "@radix-ui/react-tabs";
 
 import { cn } from "@/lib/utils";
 
-const Tabs = TabsPrimitive.Root;
+const Tabs = React.forwardRef<React.ElementRef<typeof TabsPrimitive.Root>, React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root>>(
+  ({ className, ...props }, ref) => {
+    return <TabsPrimitive.Root className={cn("", className)} dir="ltr" ref={ref} {...props} />;
+  },
+);
+Tabs.displayName = TabsPrimitive.Root.displayName;
 
 const TabsList = React.forwardRef<React.ElementRef<typeof TabsPrimitive.List>, React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>>(
-  ({ className, ...props }, ref) => (
-    <TabsPrimitive.List
-      className={cn(
-        "inline-flex items-center justify-center rounded-md bg-muted p-1 text-muted-foreground hover:cursor-pointer",
-        className,
-      )}
-      ref={ref}
-      {...props}
-    />
-  ),
+  ({ className, ...props }, ref) => <TabsPrimitive.List className={cn("", className)} ref={ref} {...props} />,
 );
 TabsList.displayName = TabsPrimitive.List.displayName;
 
@@ -27,7 +23,7 @@ const TabsTrigger = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.Trigger
     className={cn(
-      "hover:cursor-pointer border border-transparent hover:border hover:border-primary inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm hover:bg-gradient-to-r hover:from-background hover:to-muted hover:text-foreground hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:scale-[1.02]",
+      "group flex items-center gap-1.5 whitespace-nowrap rounded-lg p-2.5 font-medium transition-all hover:bg-light-theme hover:text-black focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-light-theme data-[state=active]:text-black dark:hover:bg-black dark:hover:text-white dark:data-[state=active]:bg-black dark:data-[state=active]:text-white [&>svg]:size-[18px] [&>svg]:shrink-0 [&[data-state=active]>svg]:text-primary",
       className,
     )}
     ref={ref}
@@ -41,10 +37,7 @@ const TabsContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
 >(({ className, ...props }, ref) => (
   <TabsPrimitive.Content
-    className={cn(
-      "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-      className,
-    )}
+    className={cn("focus-visible:ring-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2", className)}
     ref={ref}
     {...props}
   />

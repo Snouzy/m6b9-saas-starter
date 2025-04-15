@@ -16,7 +16,7 @@ export function BentoSection() {
               {/* Higher traffic */}
               <BentoGridItem
                 className="bg-[#1e2b80] text-white"
-                title={<span className="font-bold text-2xl mt-auto">Plus de traffic sur tes liens affiliés.</span>}
+                title={<span className="font-bold text-2xl mt-auto text-white">Plus de traffic sur tes liens affiliés.</span>}
               />
 
               {/* Boosted revenue */}
@@ -29,7 +29,7 @@ export function BentoSection() {
               <BentoGridItem
                 className="md:col-span-2 bg-[#3f51b5] text-white"
                 title={
-                  <span className="font-bold text-2xl mt-auto">Une plus grande confiance et fidélité de la part de ta communauté.</span>
+                  <span className="text-white font-bold text-2xl mt-auto">Une plus grande confiance et fidélité de la part de ta communauté.</span>
                 }
               />
 
@@ -42,7 +42,7 @@ export function BentoSection() {
               {/* Better engagement */}
               <BentoGridItem
                 className="bg-black text-white"
-                title={<span className="font-bold text-2xl mt-auto">{"Plus d'engagement avec tes followers."}</span>}
+                title={<span className="font-bold text-2xl mt-auto text-white">{"Plus d'engagement avec tes followers."}</span>}
               />
             </BentoGrid>
           </div>

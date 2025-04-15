@@ -1,22 +1,93 @@
+"use client";
 import * as React from "react";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { Slot } from "@radix-ui/react-slot";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/fitlinks/lib/utils";
 
-export type InputProps = {} & React.InputHTMLAttributes<HTMLInputElement>;
+const inputVariants = cva(
+  "shadow-3xl relative w-full rounded-lg px-3.5 py-2.5 text-sm/[10px] font-medium text-black outline-none placeholder:font-normal placeholder:text-gray-500 focus:ring-1 focus:ring-black disabled:pointer-events-none disabled:opacity-30 dark:bg-white/5 dark:text-white dark:shadow-sm dark:ring-1 dark:ring-white/10 dark:placeholder:text-gray-500 dark:focus:ring-white ltr:text-left rtl:text-right",
+  {
+    variants: {
+      variant: {
+        default: "",
+        Search: "border border-gray-300 py-[7px] pl-8 pr-2 text-xs shadow-sm placeholder:text-black",
+        "input-form":
+          "pr-9 outline-offset-0 focus:outline-[4px] focus:outline-primary/20 focus:ring-1 focus:ring-primary dark:focus:ring-primary",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type, ...props }, ref) => {
-  return (
-    <input
-      className={cn(
-        "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-        className,
-      )}
-      ref={ref}
-      type={type}
-      {...props}
-    />
-  );
-});
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement>, VariantProps<typeof inputVariants> {
+  asChild?: boolean;
+  iconLeft?: React.ReactNode;
+  iconRight?: React.ReactNode;
+  small?: boolean;
+}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, variant, type, asChild = false, small = false, iconLeft = null, iconRight = null, ...props }, ref) => {
+    const Comp = asChild ? Slot : "input";
+    const [fieldType, setFieldType] = React.useState(type);
+    const isIconLeft = iconLeft ? "rtl:pr-9 ltr:pl-9" : "";
+    const isIconRight = iconLeft ? "rtl:pl-9 ltr:pr-9" : "";
+
+    return (
+      <div className="relative">
+        <Comp
+          className={cn(
+            inputVariants({
+              variant,
+              className,
+            }),
+            isIconLeft,
+            isIconRight,
+          )}
+          ref={ref}
+          type={fieldType}
+          {...props}
+        />
+        {!!iconLeft && (
+          <span
+            className={cn(
+              "text-grey peer-focus:text-dark pointer-events-none absolute top-0 flex h-9 w-9 items-center justify-center ltr:left-0 rtl:right-0",
+              small ? "h-[30px] w-[30px]" : "h-9 w-9",
+            )}
+          >
+            {iconLeft}
+          </span>
+        )}
+
+        {!!iconRight && (
+          <span
+            className={cn(
+              "text-grey peer-focus:text-dark pointer-events-none absolute top-0 flex items-center justify-center ltr:right-0 rtl:left-0",
+              small ? "h-[30px] w-[30px]" : "h-9 w-9",
+            )}
+          >
+            {iconRight}
+          </span>
+        )}
+
+        {type === "password" && (
+          <button
+            className="text-grey peer-focus:text-dark absolute top-0 flex h-9 w-9 items-center justify-center ltr:right-0 rtl:left-0"
+            onClick={() => setFieldType(fieldType === "password" ? "text" : "password")}
+            tabIndex={-1}
+            type="button"
+          >
+            {fieldType === "password" ? <EyeIcon height={18} width={18} /> : <EyeOffIcon className="text-grey" height={18} width={18} />}
+          </button>
+        )}
+      </div>
+    );
+  },
+);
 Input.displayName = "Input";
 
-export { Input };
+export { Input, inputVariants };

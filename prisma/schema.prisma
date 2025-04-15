@@ -11,7 +11,9 @@ datasource db {
 }
 
 model User {
-  id            String    @id
+  id            String      @id
+  firstName     String      @default("")
+  lastName      String      @default("")
   name          String
   email         String
   emailVerified Boolean
@@ -20,6 +22,7 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
+  feedbacks     Feedbacks[]
 
   @@unique([email])
   @@map("user")
@@ -68,4 +71,18 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+model Feedbacks {
+  id      String  @id @default(cuid())
+  review  Int
+  message String
+  email   String?
+  userId  String?
+  user    User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("feedbacks")
 }

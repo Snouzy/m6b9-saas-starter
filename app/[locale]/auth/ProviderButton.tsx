@@ -23,6 +23,7 @@ type ProviderButtonProps = {
   providerId: string;
   variant: ButtonProps["variant"];
   action: "signin" | "signup";
+  className?: string;
 };
 
 export const ProviderButton = (props: ProviderButtonProps) => {
@@ -47,10 +48,11 @@ export const ProviderButton = (props: ProviderButtonProps) => {
   const traduction = props.action === "signin" ? t("signin_with", { provider: data.name }) : t("signup_with", { provider: data.name });
   return (
     <Button
+      className={props.className}
       onClick={() => {
         signInMutation.mutate();
       }}
-      size="lg"
+      size="large"
       variant="outline"
     >
       {signInMutation.isPending ? <Loader size={16} /> : data.icon}

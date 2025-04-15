@@ -4,6 +4,7 @@ import { useBoolean } from "usehooks-ts";
 import { toast } from "sonner";
 import { Angry, Frown, Meh, SmilePlus } from "lucide-react";
 
+import { useI18n } from "locales/client";
 import { authClient } from "@/utils/auth-client";
 import { cn } from "@/lib/utils";
 import { InlineTooltip } from "@/components/ui/tooltip";
@@ -22,6 +23,7 @@ import type { ContactFeedbackSchemaType } from "./contact-feedback.schema";
 export type ContactFeedbackPopoverProps = PropsWithChildren<{}>;
 
 export const ContactFeedbackPopover = (props: ContactFeedbackPopoverProps) => {
+  const t = useI18n();
   const open = useBoolean();
   const { data: session } = authClient.useSession();
   const email = session?.user.email ?? "";
@@ -86,7 +88,7 @@ export const ContactFeedbackPopover = (props: ContactFeedbackPopoverProps) => {
               )}
             />
           </div>
-          <div className="flex w-full items-center justify-between  border-t border-secondary bg-secondary/50 p-2">
+          <div className="border-secondary bg-secondary/50 flex w-full items-center justify-between border-t p-2">
             <FormField
               control={form.control}
               name="review"
@@ -102,7 +104,7 @@ export const ContactFeedbackPopover = (props: ContactFeedbackPopoverProps) => {
               )}
             />
             <Button type="submit" variant="outline">
-              Send
+              {t("commons.submit")}
             </Button>
           </div>
         </Form>
@@ -111,37 +113,39 @@ export const ContactFeedbackPopover = (props: ContactFeedbackPopoverProps) => {
   );
 };
 
-const ReviewInputItems = [
-  {
-    value: "1",
-    icon: Angry,
-    tooltip: "Extremely Dissatisfied",
-  },
-  {
-    value: "2",
-    icon: Frown,
-    tooltip: "Somewhat Dissatisfied",
-  },
-  {
-    value: "3",
-    icon: Meh,
-    tooltip: "Neutral",
-  },
-  {
-    value: "4",
-    icon: SmilePlus,
-    tooltip: "Satisfied",
-  },
-];
-
 const ReviewInput = ({ onChange, value }: { onChange: (value: string) => void; value?: string }) => {
+  const t = useI18n();
+
+  const ReviewInputItems = [
+    {
+      value: "1",
+      icon: Angry,
+      tooltip: t("extremely_dissatisfied"),
+    },
+    {
+      value: "2",
+      icon: Frown,
+      tooltip: t("somewhat_dissatisfied"),
+    },
+    {
+      value: "3",
+      icon: Meh,
+      tooltip: t("neutral"),
+    },
+    {
+      value: "4",
+      icon: SmilePlus,
+      tooltip: t("satisfied"),
+    },
+  ];
+
   return (
     <>
       {ReviewInputItems.map((item) => (
         <InlineTooltip key={item.value} title={item.tooltip}>
           <button
-            className={cn("hover:rotate-12 hover:scale-110 transition", {
-              "text-primary scale-110": value === item.value,
+            className={cn("transition hover:rotate-12 hover:scale-110", {
+              "-rotate-[16deg] scale-[1.2] text-primary": value === item.value,
             })}
             onClick={() => {
               onChange(item.value);
