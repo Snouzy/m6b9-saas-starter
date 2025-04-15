@@ -60,7 +60,7 @@ export function useProfileImageUpload() {
   });
 }
 
-export function ProfileImageUploadForm() {
+export function ProfileImageUploadForm({ isDisabled }: { isDisabled: boolean }) {
   const t = useI18n();
   const [isUploading, setIsUploading] = useState(false);
   const user = useCurrentUser();
@@ -69,6 +69,7 @@ export function ProfileImageUploadForm() {
   const uploadMutation = useProfileImageUpload();
 
   const handleUpload = (file: File) => {
+    if (isDisabled) return;
     setIsUploading(true);
     uploadMutation.mutate(
       { file },
@@ -92,7 +93,7 @@ export function ProfileImageUploadForm() {
         <div
           className={cn(
             "flex size-[72px] items-center justify-center overflow-hidden rounded-full border-2 border-gray-200 bg-gray-100 transition-opacity",
-            isUploading && "opacity-60",
+            (isUploading || isDisabled) && "opacity-60",
           )}
         >
           {preview ? (
@@ -101,7 +102,10 @@ export function ProfileImageUploadForm() {
             <ImageIcon className="size-10 text-gray-600" />
           )}
           <label
-            className="absolute inset-0 flex cursor-pointer items-center justify-center rounded-full bg-black/40 opacity-0 transition group-hover:bg-black/40 group-hover:opacity-100"
+            className={cn(
+              "absolute inset-0 flex cursor-pointer items-center justify-center rounded-full bg-black/40 opacity-0 transition group-hover:bg-black/40 group-hover:opacity-100",
+              (isUploading || isDisabled) && "pointer-events-none",
+            )}
             htmlFor="profileImage"
             tabIndex={0}
             title={t("change_profile_picture")}
@@ -110,10 +114,11 @@ export function ProfileImageUploadForm() {
             <input
               accept="image/png, image/jpeg"
               className="hidden"
-              disabled={isUploading}
+              disabled={isUploading || isDisabled}
               id="profileImage"
               name="profileImage"
               onChange={(e) => {
+                if (isDisabled) return;
                 const file = e.target.files?.[0];
                 if (file) {
                   setPreview(URL.createObjectURL(file));
@@ -123,9 +128,9 @@ export function ProfileImageUploadForm() {
               type="file"
             />
           </label>
-          {isUploading && (
+          {(isUploading || isDisabled) && (
             <div className="absolute inset-0 flex items-center justify-center rounded-full bg-white/60">
-              <span className="h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-black" />
+              {isUploading ? <span className="h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-black" /> : null}
             </div>
           )}
         </div>

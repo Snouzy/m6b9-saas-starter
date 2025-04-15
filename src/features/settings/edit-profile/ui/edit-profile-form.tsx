@@ -1,5 +1,4 @@
 "use client";
-import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { Mail, User } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,17 +9,19 @@ import { Button } from "@/fitlinks/components/ui/button";
 import { editProfileFormSchema, EditProfileFormSchemaType } from "@/features/settings/edit-profile/schema/edit-profile.schema";
 import { updateProfileAction } from "@/features/settings/edit-profile/model/edit-profile.action";
 import { ProfileImageUploadForm } from "@/entities/user/ui/profile-image-upload-form";
+import { useCurrentUser } from "@/entities/user/model/useCurrentUser";
+import { brandedToast } from "@/components/ui/toast";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 export function EditProfileForm() {
   const t = useI18n();
-
+  const user = useCurrentUser();
   const form = useForm<EditProfileFormSchemaType>({
     resolver: zodResolver(editProfileFormSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
+      firstName: user?.firstName,
+      lastName: user?.lastName,
+      email: user?.email,
     },
   });
 
@@ -28,20 +29,19 @@ export function EditProfileForm() {
     try {
       const result = await updateProfileAction(values);
       if (result?.serverError) {
-        toast.error(t(result.serverError as keyof typeof t), { position: "bottom-center" });
+        brandedToast({ title: t(result.serverError as keyof typeof t), variant: "error" });
         return;
       }
-      toast.success(t("profile_updated_successfully"), { position: "bottom-center" });
-      form.reset();
+      brandedToast({ title: t("profile_updated_successfully"), variant: "success" });
     } catch (error) {
-      toast.error("Failed to update profile");
+      brandedToast({ title: "Failed to update profile", variant: "error" });
       console.error(error);
     }
   };
 
   return (
     <>
-      <ProfileImageUploadForm />
+      <ProfileImageUploadForm isDisabled={form.formState.isSubmitting} />
 
       <Form form={form} onSubmit={handleSubmit}>
         <div className="space-y-5 p-4">
