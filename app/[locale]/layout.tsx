@@ -4,9 +4,9 @@ import { Inter, Permanent_Marker } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 
-import { SiteConfig } from "@/shared/config/site-config";
 import { cn } from "@/shared/lib/utils";
 import { getServerUrl } from "@/shared/lib/server-url";
+import { SiteConfig } from "@/shared/config/site-config";
 import { NextTopLoader } from "@/features/page/NextTopLoader";
 import { TailwindIndicator } from "@/components/utils/TailwindIndicator";
 

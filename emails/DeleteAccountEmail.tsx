@@ -2,11 +2,11 @@ import { Link, Section, Text } from "@react-email/components";
 
 import { SiteConfig } from "@/shared/config/site-config";
 
-import { EmailLayout } from "./utils/EmailLayout";
+import { BaseEmailLayout } from "./utils/BaseEmailLayout";
 
 export default function DeleteAccountEmail({ email }: { email: string }) {
   return (
-    <EmailLayout>
+    <BaseEmailLayout previewText={"Your account has been deleted"}>
       <Section className="my-6">
         <Text className="text-lg leading-6">Hello,</Text>
         <Text className="text-lg leading-6">
@@ -23,6 +23,6 @@ export default function DeleteAccountEmail({ email }: { email: string }) {
         Best,
         <br />- {SiteConfig.maker.name} from {SiteConfig.title}
       </Text>
-    </EmailLayout>
+    </BaseEmailLayout>
   );
 }

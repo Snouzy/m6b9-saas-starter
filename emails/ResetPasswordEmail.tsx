@@ -9,7 +9,6 @@ interface ResetPasswordEmailProps {
   url: string;
 }
 
-// Consistent styling variables (can be defined here or imported from layout/config)
 const primaryColor = "#2563EB"; // Blue-600
 
 export const ResetPasswordEmail = ({ url }: ResetPasswordEmailProps) => (

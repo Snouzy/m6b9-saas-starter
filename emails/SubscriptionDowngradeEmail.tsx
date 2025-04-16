@@ -1,15 +1,14 @@
 import Link from "next/link";
-import { Preview, Section, Text } from "@react-email/components";
+import { Section, Text } from "@react-email/components";
 
 import { getServerUrl } from "@/shared/lib/server-url";
 import { SiteConfig } from "@/shared/config/site-config";
 
-import { EmailLayout } from "./utils/EmailLayout";
+import { BaseEmailLayout } from "./utils/BaseEmailLayout";
 
 export default function SubscribtionDowngradeEmail() {
   return (
-    <EmailLayout>
-      <Preview>Your Premium Access Has Been Paused</Preview>
+    <BaseEmailLayout previewText={"Your Premium Access Has Been Paused"}>
       <Section className="my-6">
         <Text className="text-lg leading-6">Hello,</Text>
         <Text className="text-lg leading-6">
@@ -34,6 +33,6 @@ export default function SubscribtionDowngradeEmail() {
         Best,
         <br />- {SiteConfig.maker.name} from {SiteConfig.title}
       </Text>
-    </EmailLayout>
+    </BaseEmailLayout>
   );
 }

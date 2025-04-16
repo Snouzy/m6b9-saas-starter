@@ -121,24 +121,22 @@ const FormDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttribu
 );
 FormDescription.displayName = "FormDescription";
 
-const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
-  ({ className, children, ...props }, ref) => {
-    const { error, formMessageId } = useFormField();
-    const body = error ? String(error.message) : children;
-    console.log("body:", body);
+const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(({ children, ...props }, ref) => {
+  const { error, formMessageId } = useFormField();
+  const body = error ? String(error.message) : children;
+  console.log("body:", body);
 
-    if (!body) {
-      return null;
-    }
+  if (!body) {
+    return null;
+  }
 
-    return (
-      <div className="!mt-2.5 flex items-center gap-2" id={formMessageId} ref={ref} {...props}>
-        <TriangleAlert className="size-[18px] shrink-0 text-danger dark:text-danger/70" />
-        <p className="text-xs/tight font-medium text-danger">{body}</p>
-      </div>
-    );
-  },
-);
+  return (
+    <div className="!mt-2.5 flex items-center gap-2" id={formMessageId} ref={ref} {...props}>
+      <TriangleAlert className="size-[18px] shrink-0 text-danger dark:text-danger/70" />
+      <p className="text-xs/tight font-medium text-danger">{body}</p>
+    </div>
+  );
+});
 FormMessage.displayName = "FormMessage";
 
 type UseZodFormProps<Z extends ZodSchema> = Exclude<UseFormProps<TypeOf<Z>>, "resolver"> & {

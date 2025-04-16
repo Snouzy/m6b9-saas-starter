@@ -9,7 +9,6 @@ interface VerifyEmailProps {
   url: string;
 }
 
-// Consistent styling variables
 const primaryColor = "#2563EB"; // Blue-600
 
 export const VerifyEmail = ({ url }: VerifyEmailProps) => (
@@ -50,5 +49,3 @@ export const VerifyEmail = ({ url }: VerifyEmailProps) => (
     {/* Footer is now handled by BaseEmailLayout */}
   </BaseEmailLayout>
 );
-
-export default VerifyEmail; // Keep export consistent

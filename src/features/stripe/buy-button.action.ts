@@ -4,8 +4,9 @@ import { z } from "zod";
 
 import { stripe } from "@/shared/lib/stripe";
 import { getServerUrl } from "@/shared/lib/server-url";
-import { serverAuth } from "@/entities/user/model/get-server-session-user";
 import { ActionError, actionClient } from "@/shared/api/safe-actions";
+import { serverAuth } from "@/entities/user/model/get-server-session-user";
+import { getServerSubscription } from "@/entities/subscription/model/get-server-subscription";
 
 const BuyButtonSchema = z.object({
   priceId: z.string(),
@@ -14,14 +15,14 @@ const BuyButtonSchema = z.object({
 export const buyButtonAction = actionClient.schema(BuyButtonSchema).action(async ({ parsedInput: { priceId } }) => {
   const user = await serverAuth();
 
-  const stripeCustomerId = user?.stripeCustomerId ?? undefined;
+  const subscription = await getServerSubscription(user?.id ?? "");
 
   const price = await stripe.prices.retrieve(priceId);
 
   const priceType = price.type;
 
   const session = await stripe.checkout.sessions.create({
-    customer: stripeCustomerId,
+    customer: subscription?.stripeCustomerId,
     mode: priceType === "one_time" ? "payment" : "subscription",
     payment_method_types: ["card", "link"],
     line_items: [

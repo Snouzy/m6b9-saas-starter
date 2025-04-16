@@ -3,6 +3,7 @@
 import { create } from "zustand";
 
 import { useI18n } from "locales/client";
+import { logger } from "@/shared/lib/logger";
 import { brandedToast } from "@/components/ui/toast";
 
 import { ProviderConfirmationDialog } from "./DialogProviderDialog";
@@ -56,6 +57,7 @@ const useDialogStore = create<DialogStore>((set, get) => ({
                 removeDialog(id);
               })
               .catch((e) => {
+                logger.error(e);
                 brandedToast({ title: t("generic_error"), variant: "error" });
               });
           } else {

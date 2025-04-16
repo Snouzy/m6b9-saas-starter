@@ -1,35 +1,27 @@
 "use client";
 
+import router from "next/router";
+
 import { Button } from "@/components/ui/button";
 
 export function NotFoundPage() {
   return (
-    <section className="bg-white font-serif min-h-screen flex items-center justify-center">
+    <section className="font-serif flex min-h-screen items-center justify-center bg-white">
       <div className="container mx-auto">
         <div className="flex justify-center">
-          <div className="w-full sm:w-10/12 md:w-8/12 text-center">
+          <div className="w-full text-center sm:w-10/12 md:w-8/12">
             <div
-              className="bg-[url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif)] h-[250px] sm:h-[350px] md:h-[400px] bg-center bg-no-repeat bg-contain"
               aria-hidden="true"
+              className="h-[250px] bg-[url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif)] bg-contain bg-center bg-no-repeat sm:h-[350px] md:h-[400px]"
             >
-              <h1 className="text-center text-black text-6xl sm:text-7xl md:text-8xl pt-6 sm:pt-8">
-                404
-              </h1>
+              <h1 className="pt-6 text-center text-6xl text-black sm:pt-8 sm:text-7xl md:text-8xl">404</h1>
             </div>
 
             <div className="mt-[-50px]">
-              <h3 className="text-2xl text-black sm:text-3xl font-bold mb-4">
-                Look like you're lost
-              </h3>
-              <p className="mb-6 text-black sm:mb-5">
-                The page you are looking for is not available!
-              </p>
+              <h3 className="mb-4 text-2xl font-bold text-black sm:text-3xl">{"Look like you're lost"}</h3>
+              <p className="mb-6 text-black sm:mb-5">The page you are looking for is not available!</p>
 
-              <Button
-                variant="default"
-                onClick={() => router.push("/")}
-                className="my-5 bg-green-600 hover:bg-green-700 "
-              >
+              <Button className="my-5 bg-green-600 hover:bg-green-700" onClick={() => router.push("/")} variant="default">
                 Go to Home
               </Button>
             </div>

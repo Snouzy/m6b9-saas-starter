@@ -1,15 +1,14 @@
 import Link from "next/link";
-import { Preview, Section, Text } from "@react-email/components";
+import { Section, Text } from "@react-email/components";
 
 import { getServerUrl } from "@/shared/lib/server-url";
 import { SiteConfig } from "@/shared/config/site-config";
 
-import { EmailLayout } from "./utils/EmailLayout";
+import { BaseEmailLayout } from "./utils/BaseEmailLayout";
 
 export default function SubscribtionFailedEmail() {
   return (
-    <EmailLayout>
-      <Preview>Important information about your ${SiteConfig.title} account</Preview>
+    <BaseEmailLayout previewText={"Important information about your ${SiteConfig.title} account"}>
       <Section className="my-6">
         <Text className="text-lg leading-6">Hello,</Text>
         <Text className="text-lg leading-6">{"Your last payment didn't go through, so your extra features are on hold."}</Text>
@@ -35,6 +34,6 @@ export default function SubscribtionFailedEmail() {
         Best,
         <br />- {SiteConfig.maker.name} from {SiteConfig.title}
       </Text>
-    </EmailLayout>
+    </BaseEmailLayout>
   );
 }

@@ -7,7 +7,6 @@ import { env } from "@/env";
 
 import {
   downgradeUserFromPlan,
-  getPlanFromLineItem,
   notifyUserOfPaymentFailure,
   notifyUserOfPremiumDowngrade,
   notifyUserOfPremiumUpgrade,
@@ -89,7 +88,7 @@ async function onCheckoutSessionCompleted(object: Stripe.Checkout.Session) {
   const lineItems = await stripe.checkout.sessions.listLineItems(object.id, { limit: 1 });
   logger.debug("Line-items", lineItems);
 
-  await upgradeUserToPlan(subscription.user.id, await getPlanFromLineItem(lineItems.data));
+  // await upgradeUserToPlan(subscription.user.id, await getPlanFromLineItem(lineItems.data));
   await notifyUserOfPremiumUpgrade(subscription.user);
 }
 
@@ -108,8 +107,7 @@ async function onInvoicePaid(object: Stripe.Invoice) {
 
   await upgradeUserToPlan(
     subscription.user.id,
-    // TODO :Verify if it's right values
-    await getPlanFromLineItem(object.lines.data),
+    // await getPlanFromLineItem(object.lines.data), // TODO: Add plan to user
   );
 }
 
@@ -138,6 +136,7 @@ async function onCustomerSubscriptionUpdated(object: Stripe.Subscription) {
   // The subscription was updated (upgrade or downgrade)
   const subscription = await findSubscriptionAndUserFromCustomer(object.customer);
 
-  await upgradeUserToPlan(subscription.user.id, await getPlanFromLineItem(object.items.data));
+  // await upgradeUserToPlan(subscription.user.id, await getPlanFromLineItem(object.items.data)); // TODO: Add plan to user
+
   await notifyUserOfPremiumUpgrade(subscription.user);
 }
