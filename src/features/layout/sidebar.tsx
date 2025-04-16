@@ -7,6 +7,7 @@ import { ChevronDown, MessageSquareText, Minus, Rocket, Settings, X } from "luci
 
 import { useI18n } from "locales/client";
 import RectangleGrid from "@public/images/rectangle-gird.png";
+import { cn } from "@/shared/lib/utils";
 import { paths } from "@/shared/constants/paths";
 import { useMediaQuery } from "@/fitlinks/hooks/use-media-query";
 import NavLink from "@/fitlinks/features/layout/nav-link";
@@ -32,6 +33,7 @@ const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathName = usePathname();
   const isTablet = useMediaQuery("(max-width: 1024px)");
+  const activeClass = "rounded-lg border !border-gray-300 bg-gray-400 !text-black !font-semibold";
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -148,7 +150,9 @@ const Sidebar = () => {
             <Minus className="hidden h-4 w-5 text-gray" />
           </h3>
           <NavLink
-            className={`nav-link ${normalizePath(pathName) === `/${paths.dashboard}` ? "!text-black" : ""}`}
+            className={cn("nav-link", {
+              [activeClass]: normalizePath(pathName) === `/${paths.dashboard}`,
+            })}
             href={`/${paths.dashboard}`}
           >
             {" "}
@@ -285,7 +289,12 @@ const Sidebar = () => {
             <span>Autre</span>
             <Minus className="hidden h-4 w-5 text-gray" />
           </h3>
-          <NavLink className={`nav-link ${pathName === `/${paths.settings}` && "!text-black"}`} href={`/${paths.settings}`}>
+          <NavLink
+            className={cn("nav-link", {
+              [activeClass]: normalizePath(pathName) === `/${paths.settings}`,
+            })}
+            href={`/${paths.settings}`}
+          >
             <Settings className="size-[18px] shrink-0" />
             <span>Paramètres</span>
           </NavLink>
