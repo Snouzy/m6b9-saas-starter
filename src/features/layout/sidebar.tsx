@@ -30,13 +30,17 @@ const normalizePath = (urlOrPath: string) => {
 
 const Sidebar = () => {
   const t = useI18n();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const pathName = usePathname();
   const isTablet = useMediaQuery("(max-width: 1024px)");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(() => !isTablet);
+  const pathName = usePathname();
   const activeClass = "rounded-lg border !border-gray-300 bg-gray-400 !text-black !font-semibold";
 
+  useEffect(() => {
+    setIsSidebarOpen(!isTablet);
+  }, [isTablet]);
+
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+    setIsSidebarOpen((prev) => !prev);
     const mainContent = document.getElementById("main-content");
     if (mainContent) {
       if (isTablet) {
@@ -105,16 +109,6 @@ const Sidebar = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (document?.getElementById("overlay")?.classList?.contains("open")) {
-  //     toggleSidebarResponsive();
-  //   }
-  // }, [pathName]);
-
-  useEffect(() => {
-    toggleSidebar();
-  }, [isTablet]);
-
   return (
     <>
       <div className="fixed inset-0 z-30 hidden bg-black/50" id="overlay" onClick={toggleSidebarResponsive} />
@@ -159,131 +153,6 @@ const Sidebar = () => {
             <MessageSquareText className="size-[18px] shrink-0" />
             <span>Tableau de bord</span>
           </NavLink>
-
-          {/* <NavLink className={`nav-link ${pathName === `/${paths.linkInBio}` && "!text-black"}`} href={`/${paths.linkInBio}`}>
-            <Pencil className="size-[18px] shrink-0" />
-            <span>Modifier</span>
-          </NavLink> */}
-          {/* <h3 className="mt-2.5 whitespace-nowrap rounded-lg bg-gray-400 px-5 py-2.5 text-xs/tight font-semibold uppercase text-black dark:bg-gray-400/[6%] dark:text-white">
-            <span>User Interface</span>
-            <Minus className="text-gray hidden h-4 w-5" />
-          </h3> */}
-          {/* <AccordionItem
-            className="p-0 !shadow-none dark:border-none"
-            value="item-4"
-          >
-            <AccordionTrigger className="nav-link">
-              <Component className="size-[18px] shrink-0" />
-              <span>Components</span>
-            </AccordionTrigger>
-            <AccordionContent>
-              <ul className="submenu space-y-2 ltr:pl-12 ltr:pr-5 rtl:pl-5 rtl:pr-12">
-                <li>
-                  <NavLink href="/accordion-page" isAccordion={true}>
-                    Accordion
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/alert" isAccordion={true}>
-                    Alert
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/alert-dialog" isAccordion={true}>
-                    Alert Dialog
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/avatar" isAccordion={true}>
-                    Avatar
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/breadcrumbs" isAccordion={true}>
-                    Breadcrumb
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/buttons" isAccordion={true}>
-                    Button
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/card-page" isAccordion={true}>
-                    Cards
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/carousel" isAccordion={true}>
-                    Carousel
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/dropdown" isAccordion={true}>
-                    Dropdown Menu
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/empty-stats" isAccordion={true}>
-                    Empty Stats
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/hover-card" isAccordion={true}>
-                    Hover Card
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/modal" isAccordion={true}>
-                    Modals
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/popover" isAccordion={true}>
-                    Popover
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/scroll-area" isAccordion={true}>
-                    Scroll Area
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink href="/sonner" isAccordion={true}>
-                    Sonner
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/tabs" isAccordion={true}>
-                    Tab
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink href="/tag" isAccordion={true}>
-                    Tag
-                  </NavLink>
-                </li>
-
-                <li>
-                  <NavLink href="/toasts" isAccordion={true}>
-                    Toasts
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/toggle-group" isAccordion={true}>
-                    Toggle Group
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink href="/tooltip" isAccordion={true}>
-                    Tooltip
-                  </NavLink>
-                </li>
-              </ul>
-            </AccordionContent>
-          </AccordionItem> */}
 
           <h3 className="mb-1 mt-2.5 whitespace-nowrap rounded-lg bg-gray-400 px-5 py-2.5 text-xs/tight font-semibold uppercase text-black dark:bg-gray-400/[6%] dark:text-white">
             <span>Autre</span>
