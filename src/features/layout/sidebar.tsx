@@ -16,6 +16,17 @@ import { Accordion } from "@/fitlinks/components/ui/accordion";
 import { ContactSupportDialog } from "@/features/contact/support/ContactSupportDialog";
 import { LogoSvg } from "@/components/svg/LogoSvg";
 
+const normalizePath = (urlOrPath: string) => {
+  try {
+    // Si c'est une URL absolue, extrait le pathname, sinon utilise tel quel
+    const pathname = urlOrPath.startsWith("http") ? new URL(urlOrPath).pathname : urlOrPath;
+    // Retire le segment de langue au début
+    return pathname.replace(/^\/[a-zA-Z]{2}(?=\/|$)/, "");
+  } catch {
+    return urlOrPath;
+  }
+};
+
 const Sidebar = () => {
   const t = useI18n();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -40,6 +51,7 @@ const Sidebar = () => {
   };
 
   const isOpen = () => {
+    const normalized = normalizePath(pathName);
     if (["/blog-list", "/blog-details", "/add-blog"].includes(pathName)) {
       return "item-2";
     } else if (
@@ -54,7 +66,7 @@ const Sidebar = () => {
         "/add-product",
         "/product-details",
         "/product-checkout",
-      ].includes(pathName)
+      ].includes(normalized)
     ) {
       return "item-1";
     } else if (["/invoice", "/invoice-details", "/create-invoice"].includes(pathName)) {
@@ -135,7 +147,11 @@ const Sidebar = () => {
             <span>Link in bio</span>
             <Minus className="hidden h-4 w-5 text-gray" />
           </h3>
-          <NavLink className={`nav-link ${pathName === `/${paths.dashboard}` && "!text-black"}`} href={`/${paths.dashboard}`}>
+          <NavLink
+            className={`nav-link ${normalizePath(pathName) === `/${paths.dashboard}` ? "!text-black" : ""}`}
+            href={`/${paths.dashboard}`}
+          >
+            {" "}
             <MessageSquareText className="size-[18px] shrink-0" />
             <span>Tableau de bord</span>
           </NavLink>
