@@ -53,7 +53,7 @@
 
 @layer components {
   .sidebar .nav-link {
-    @apply flex items-center gap-2.5 border border-transparent px-5 py-2.5 text-sm font-medium leading-tight text-gray transition hover:text-black dark:text-gray-500 dark:hover:text-white;
+    @apply mx-[2px] flex items-center gap-2.5 border border-transparent px-5 py-2.5 text-sm font-medium leading-tight text-gray transition hover:text-black dark:text-gray-500 dark:hover:text-white;
     @apply hover:rounded-lg hover:bg-gray-400;
   }
   .nav-item.sub-menu-active {

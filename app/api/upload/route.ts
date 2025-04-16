@@ -36,8 +36,8 @@ export const POST = async (req: NextRequest) => {
   let optimizedBuffer: Buffer;
   try {
     optimizedBuffer = await sharp(buffer)
-      .resize(512, 512, { fit: "inside" }) // max 512x512px
-      .toFormat("jpeg", { quality: 80 }) // compresse en JPEG qualité 80
+      .resize(256, 256, { fit: "inside" })
+      .toFormat("jpeg", { quality: 80 }) // maybe more ?
       .toBuffer();
   } catch (e) {
     logger.error(e);
