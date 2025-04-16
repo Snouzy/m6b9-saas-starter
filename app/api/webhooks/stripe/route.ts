@@ -45,22 +45,28 @@ export const POST = async (req: NextRequest) => {
       break;
 
     case "checkout.session.expired":
+      // user stop the checkout process
       await onCheckoutSessionExpired(event.data.object);
       break;
 
     case "invoice.paid":
+      // A payment was made through the invoice (usually a recurring payment for a subscription).
+      // ✅ Give access to your service
       await onInvoicePaid(event.data.object);
       break;
 
     case "invoice.payment_failed":
+      // A payment failed, usually a recurring payment for a subscription.
       await onInvoicePaymentFailed(event.data.object);
       break;
 
     case "customer.subscription.deleted":
+      // The subscription was canceled (user cancel the subscription)
       await onCustomerSubscriptionDeleted(event.data.object);
       break;
 
     case "customer.subscription.updated":
+      // The subscription was updated (user changed the plan)
       await onCustomerSubscriptionUpdated(event.data.object);
       break;
 
@@ -77,12 +83,10 @@ export const POST = async (req: NextRequest) => {
 
 async function onCheckoutSessionCompleted(object: Stripe.Checkout.Session) {
   // The user paid and the subscription is active
-  // ✅ Grant access to your service
+  // ✅ Grant access to service
   const user = await findUserFromCustomer(object.customer);
 
-  const lineItems = await stripe.checkout.sessions.listLineItems(object.id, {
-    limit: 1,
-  });
+  const lineItems = await stripe.checkout.sessions.listLineItems(object.id, { limit: 1 });
   logger.debug("Line-items", lineItems);
 
   await upgradeUserToPlan(user.id, await getPlanFromLineItem(lineItems.data));
@@ -131,6 +135,7 @@ async function onCustomerSubscriptionDeleted(object: Stripe.Subscription) {
 }
 
 async function onCustomerSubscriptionUpdated(object: Stripe.Subscription) {
+  // The subscription was updated (upgrade or downgrade)
   const user = await findUserFromCustomer(object.customer);
 
   await upgradeUserToPlan(user.id, await getPlanFromLineItem(object.items.data));
