@@ -11,9 +11,9 @@ datasource db {
 }
 
 model User {
-  id            String      @id
-  firstName     String      @default("")
-  lastName      String      @default("")
+  id            String        @id
+  firstName     String        @default("")
+  lastName      String        @default("")
   name          String
   email         String
   emailVerified Boolean
@@ -23,6 +23,7 @@ model User {
   sessions      Session[]
   accounts      Account[]
   feedbacks     Feedbacks[]
+  Subscription  Subscription?
 
   @@unique([email])
   @@map("user")
@@ -85,4 +86,50 @@ model Feedbacks {
   updatedAt DateTime @updatedAt
 
   @@map("feedbacks")
+}
+
+model Plan {
+  id          String   @id @default(cuid())
+  name        String // "Pro", "Business", etc.
+  description String?
+  createdAt   DateTime @default(now())
+
+  variants PlanVariant[]
+
+  @@map("plan")
+}
+
+model PlanVariant {
+  id     String @id @default(cuid())
+  label  String // "A", "B", etc.
+  planId String
+  plan   Plan   @relation(fields: [planId], references: [id])
+
+  stripePriceId String
+  description   String? // 10% off 1st month...
+  isActive      Boolean @default(true)
+
+  createdAt    DateTime       @default(now())
+  Subscription Subscription[]
+
+  @@map("plan_variant")
+}
+
+model Subscription {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  planVariantId String
+  planVariant   PlanVariant @relation(fields: [planVariantId], references: [id])
+
+  stripeCustomerId String
+  stripeSubId      String
+  status           String
+  currentPeriodEnd DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("subscription")
 }

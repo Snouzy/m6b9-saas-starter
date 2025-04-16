@@ -13,7 +13,7 @@ import {
   notifyUserOfPremiumUpgrade,
   upgradeUserToPlan,
 } from "./premium.helper";
-import { findUserFromCustomer } from "./findUserFromCustomer";
+import { findSubscriptionAndUserFromCustomer } from "./findSubscriptionAndUserFromCustomer";
 
 import type Stripe from "stripe";
 import type { NextRequest } from "next/server";
@@ -84,13 +84,13 @@ export const POST = async (req: NextRequest) => {
 async function onCheckoutSessionCompleted(object: Stripe.Checkout.Session) {
   // The user paid and the subscription is active
   // ✅ Grant access to service
-  const user = await findUserFromCustomer(object.customer);
+  const subscription = await findSubscriptionAndUserFromCustomer(object.customer);
 
   const lineItems = await stripe.checkout.sessions.listLineItems(object.id, { limit: 1 });
   logger.debug("Line-items", lineItems);
 
-  await upgradeUserToPlan(user.id, await getPlanFromLineItem(lineItems.data));
-  await notifyUserOfPremiumUpgrade(user);
+  await upgradeUserToPlan(subscription.user.id, await getPlanFromLineItem(lineItems.data));
+  await notifyUserOfPremiumUpgrade(subscription.user);
 }
 
 async function onCheckoutSessionExpired(object: Stripe.Checkout.Session) {
@@ -102,12 +102,12 @@ async function onCheckoutSessionExpired(object: Stripe.Checkout.Session) {
 async function onInvoicePaid(object: Stripe.Invoice) {
   // A payment was made through the invoice (usually a recurring payment for a subscription)
   // ✅ Give access to your service
-  const user = await findUserFromCustomer(object.customer);
+  const subscription = await findSubscriptionAndUserFromCustomer(object.customer);
 
-  if (user.plan !== "FREE") return;
+  if (subscription.status !== "active") return;
 
   await upgradeUserToPlan(
-    user.id,
+    subscription.user.id,
     // TODO :Verify if it's right values
     await getPlanFromLineItem(object.lines.data),
   );
@@ -119,25 +119,25 @@ async function onInvoicePaymentFailed(object: Stripe.Invoice) {
   // OR send email to user to pay/update payment method
   // and wait for 'customer.subscription.deleted' event to revoke access
 
-  const user = await findUserFromCustomer(object.customer);
+  const subscription = await findSubscriptionAndUserFromCustomer(object.customer);
 
-  await downgradeUserFromPlan(user.id);
-  await notifyUserOfPaymentFailure(user);
+  await downgradeUserFromPlan(subscription.user.id);
+  await notifyUserOfPaymentFailure(subscription.user);
 }
 
 async function onCustomerSubscriptionDeleted(object: Stripe.Subscription) {
   // The subscription was canceled
   // ❌ Revoke access to your service
 
-  const user = await findUserFromCustomer(object.customer);
-  await downgradeUserFromPlan(user.id);
-  await notifyUserOfPremiumDowngrade(user);
+  const subscription = await findSubscriptionAndUserFromCustomer(object.customer);
+  await downgradeUserFromPlan(subscription.user.id);
+  await notifyUserOfPremiumDowngrade(subscription.user);
 }
 
 async function onCustomerSubscriptionUpdated(object: Stripe.Subscription) {
   // The subscription was updated (upgrade or downgrade)
-  const user = await findUserFromCustomer(object.customer);
+  const subscription = await findSubscriptionAndUserFromCustomer(object.customer);
 
-  await upgradeUserToPlan(user.id, await getPlanFromLineItem(object.items.data));
-  await notifyUserOfPremiumUpgrade(user);
+  await upgradeUserToPlan(subscription.user.id, await getPlanFromLineItem(object.items.data));
+  await notifyUserOfPremiumUpgrade(subscription.user);
 }
