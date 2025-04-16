@@ -30,17 +30,13 @@ const normalizePath = (urlOrPath: string) => {
 
 const Sidebar = () => {
   const t = useI18n();
-  const isTablet = useMediaQuery("(max-width: 1024px)");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(() => !isTablet);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathName = usePathname();
+  const isTablet = useMediaQuery("(max-width: 1024px)");
   const activeClass = "rounded-lg border !border-gray-300 bg-gray-400 !text-black !font-semibold";
 
-  useEffect(() => {
-    setIsSidebarOpen(!isTablet);
-  }, [isTablet]);
-
   const toggleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev);
+    setIsSidebarOpen(!isSidebarOpen);
     const mainContent = document.getElementById("main-content");
     if (mainContent) {
       if (isTablet) {
@@ -108,6 +104,16 @@ const Sidebar = () => {
       return "";
     }
   };
+
+  // useEffect(() => {
+  //   if (document?.getElementById("overlay")?.classList?.contains("open")) {
+  //     toggleSidebarResponsive();
+  //   }
+  // }, [pathName]);
+
+  useEffect(() => {
+    toggleSidebar();
+  }, [isTablet]);
 
   return (
     <>
