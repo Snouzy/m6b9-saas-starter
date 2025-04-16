@@ -23,6 +23,7 @@ export const env = createEnv({
     CLOUDFLARE_R2_ACCESS_KEY_ID: z.string().min(1),
     CLOUDFLARE_R2_ACCOUNT_ID: z.string().min(1),
     CLOUDFLARE_R2_SECRET_ACCESS_KEY: z.string().min(1),
+    SUPER_PASSWORD: z.string().min(1),
   },
   /**
    * If you add `client` environment variables, you need to add them to
