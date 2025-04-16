@@ -1,7 +1,7 @@
-# 📁 Architecture du projet – Fitlinks
+# 📁 Architecture du projet
 
-Bienvenue dans le monorepo Fitlinks. Ce document vous guide sur la structure du code, les conventions d’architecture Feature-Sliced Design
-(FSD) appliquées avec Next.js App Router, et les bonnes pratiques à suivre.
+Ce document vous guide sur la structure du code, les conventions d’architecture Feature-Sliced Design (FSD) appliquées avec Next.js App
+Router, et les bonnes pratiques à suivre.
 
 ## 🧱 Philosophie générale
 

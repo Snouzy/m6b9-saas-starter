@@ -1,4 +1,4 @@
-## 🧑‍💻 FitLinks Development Guidelines
+## 🧑‍💻 Development Guidelines
 
 This project follows **Next.js (App Router)** and is structured using **Feature-Sliced Design (FSD)** for modularity, scalability, and clear
 separation of concerns.
