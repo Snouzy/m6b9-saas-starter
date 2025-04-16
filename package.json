@@ -1,5 +1,5 @@
 {
-  "name": "front-fit-site",
+  "name": "m6b9",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,6 @@
     "stripe-webhooks": "stripe listen --forward-to localhost:3000/api/webhooks/stripe",
     "vercel-build": "next build",
     "old-vercel-build": "prisma generate && prisma migrate deploy && next build",
-    "postinstall": "prisma generate",
     "lint": "next lint"
   },
   "resolutions": {

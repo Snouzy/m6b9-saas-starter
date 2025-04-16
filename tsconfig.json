@@ -16,7 +16,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@/fitlinks/*": ["./src/*"],
       "@emails/*": ["emails/*"],
       "@public/*": ["public/*"]
     },

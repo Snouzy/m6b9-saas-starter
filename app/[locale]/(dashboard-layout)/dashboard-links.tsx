@@ -11,7 +11,7 @@ export const DASHBOARD_LINKS = (t: T): NavigationLinkGroups[] => [
   {
     links: [
       {
-        title: t("my_links"),
+        title: t("my_orders"),
         icon: <Link />,
         url: `/${paths.dashboard}/${paths.linkInBio}`,
       },

@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import Image from "next/image";
-
 import iPhone from "@public/images/iphone.png";
+
 import { cn } from "@/shared/lib/utils";
 
 interface IPhoneMockupProps {

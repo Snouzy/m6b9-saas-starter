@@ -5,11 +5,11 @@ import { LockKeyhole, LockKeyholeOpen } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useI18n } from "locales/client";
-import { Input } from "@/fitlinks/components/ui/input";
-import { Button } from "@/fitlinks/components/ui/button";
 import { updatePasswordAction } from "@/features/settings/update-password/model/update-password.action";
 import { brandedToast } from "@/components/ui/toast";
+import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
 
 const passwordFormSchema = z
   .object({

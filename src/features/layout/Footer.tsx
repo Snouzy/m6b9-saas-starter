@@ -85,7 +85,7 @@ export const Footer = () => {
           ))}
         </nav>
 
-        <p className="mt-10 text-center text-sm/6 text-gray-600">&copy; 2024 Fit&apos;Links, Inc. All rights reserved.</p>
+        <p className="mt-10 text-center text-sm/6 text-gray-600">&copy; 2024 M6B9, Inc. All rights reserved.</p>
       </div>
     </footer>
   );

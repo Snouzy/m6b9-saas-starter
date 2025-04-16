@@ -1,26 +1,26 @@
 export const SiteConfig = {
-  title: "Fit'Links",
+  title: "M6B9",
   description: "Create beautiful and effective link in bio pages to connect with your audience",
-  prodUrl: "https://frontfit.links",
-  domain: "frontfit.links",
+  prodUrl: "https://m6b9.com",
+  domain: "m6b9.com",
   appIcon: "/images/logo4.jpg",
-  cdnIcon: "https://cdn.fitlinks.io/images/53992ead-81ad-43d9-bc89-9abe9a6ed800/public",
+  cdnIcon: "https://upload.wikimedia.org/wikipedia/fr/c/ca/Batman_logo.png",
   company: {
-    name: "Fit'Links",
+    name: "M6B9",
     address: "34 avenue des champ Elysée 75008 Paris, France",
   },
   brand: {
     primary: "#007291",
   },
   email: {
-    from: "Fit'Links <mat@fitlinks.coach>",
-    contact: "mat@fitlinks.coach",
+    from: "M6B9 <mat@m6b9.com>",
+    contact: "mat@m6b9.com",
   },
   maker: {
-    image: "https://frontfit.links/images/me/twitter-en.jpg",
-    website: "https://frontfit.links",
-    twitter: "https://twitter.com/frontfit_links",
-    name: "Fit'Links",
+    image: "https://m6b9.com/images/me/twitter-en.jpg",
+    website: "https://m6b9.com",
+    twitter: "https://twitter.com/m6b9",
+    name: "M6B9",
   },
   auth: {
     password: false as boolean,

@@ -32,12 +32,6 @@ export async function LandingHeader({ user }: { user: SessionUser | null }) {
                   <Button asChild className="justify-start" variant="outline">
                     <a href="#">FAQ</a>
                   </Button>
-                  <Button asChild className="justify-start" variant="outline">
-                    <a href="#">Prix</a>
-                  </Button>
-                  <Button asChild className="justify-start" variant="outline">
-                    <a href="#">Contact</a>
-                  </Button>
                 </div>
               </SheetContent>
             </Sheet>
@@ -53,12 +47,6 @@ export async function LandingHeader({ user }: { user: SessionUser | null }) {
         <nav className="text-muted-foreground hidden items-center gap-4 text-sm font-medium md:flex">
           <Button asChild className="font-semibold" variant="outline">
             <a href="#">FAQ</a>
-          </Button>
-          <Button asChild className="font-semibold" variant="outline">
-            <a href="#">Prix</a>
-          </Button>
-          <Button asChild className="font-semibold" variant="outline">
-            <a href="#">Contact</a>
           </Button>
         </nav>
 

@@ -1,10 +1,10 @@
 import { getI18n } from "locales/server";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/fitlinks/components/ui/tabs";
-import { Card, CardContent, CardHeader } from "@/fitlinks/components/ui/card";
 import { PasswordForm } from "@/features/settings/update-password/ui/password-form";
 import { EditProfileForm } from "@/features/settings/edit-profile/ui/edit-profile-form";
 import PageHeading from "@/features/layout/page-heading";
 import { serverRequiredUser } from "@/entities/user/model/get-server-session-user";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default async function SettingsPage() {
   const t = await getI18n();

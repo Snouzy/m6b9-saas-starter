@@ -33,8 +33,6 @@ export function useProfileImageUpload() {
         method: "POST",
         body: formData,
       });
-      console.log("res:", res);
-
       if (!res.ok) {
         const data = await res.json();
 
@@ -105,20 +103,11 @@ export function ProfileImageUploadForm({ isDisabled }: { isDisabled: boolean }) 
           )}
         >
           {!mounted ? (
-            <>
-              {console.log("[ProfileImageUploadForm] Affichage skeleton (not mounted)")}
-              <Skeleton height={40} rounded="rounded-full" width={40} />
-            </>
+            <Skeleton height={40} rounded="rounded-full" width={40} />
           ) : preview ? (
-            <>
-              {console.log("[ProfileImageUploadForm] Affichage image")}
-              <Image alt="Preview" className="h-full w-full object-cover" height={72} src={preview} width={72} />
-            </>
+            <Image alt="Preview" className="h-full w-full object-cover" height={72} src={preview} width={72} />
           ) : (
-            <>
-              {console.log("[ProfileImageUploadForm] Affichage skeleton (pas de preview)")}
-              <Skeleton height={40} rounded="rounded-full" width={40} />
-            </>
+            <Skeleton height={40} rounded="rounded-full" width={40} />
           )}
           <label
             className={cn(

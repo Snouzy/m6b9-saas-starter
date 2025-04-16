@@ -4,7 +4,7 @@ import { getI18n } from "locales/server";
 import { SignUpForm } from "@/features/auth/signup/ui/signup-form";
 
 export const metadata = {
-  title: "Sign Up - Front Fit Links",
+  title: "Sign Up - M6B9",
   description: "Créez votre compte pour commencer",
 };
 

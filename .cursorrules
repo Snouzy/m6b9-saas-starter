@@ -74,7 +74,6 @@ If reusable between many features (e.g. `User`, `Link`, `Session`), move logic t
 - Design theme:
 
   - **Minimal**, professional with a **slightly playful touch**
-  - Inspired by **Apple**, tailored to fitness coaches
   - Emphasize visuals: badges, progress bars, illustrations
   - Use `lucide-react` icons, subtle borders, hover feedback
   - Avoid drop shadows; prefer light borders and soft hover effects

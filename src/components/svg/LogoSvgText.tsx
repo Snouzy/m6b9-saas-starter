@@ -5,7 +5,7 @@ export interface LogoSvgTextProps extends ComponentPropsWithoutRef<"svg"> {
   size?: number;
 }
 
-export const LogoSvg = ({ text = "m6b99", size = 32, ...props }: LogoSvgTextProps) => {
+export const LogoSvgText = ({ text = "m6b9", size = 32, ...props }: LogoSvgTextProps) => {
   // Accentuer le dernier caractère
   const main = text.slice(0, -1);
   const accent = text.slice(-1);

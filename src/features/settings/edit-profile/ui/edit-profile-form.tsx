@@ -4,14 +4,14 @@ import { Mail, User } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useI18n } from "locales/client";
-import { Input } from "@/fitlinks/components/ui/input";
-import { Button } from "@/fitlinks/components/ui/button";
 import { editProfileFormSchema, EditProfileFormSchemaType } from "@/features/settings/edit-profile/schema/edit-profile.schema";
 import { updateProfileAction } from "@/features/settings/edit-profile/model/edit-profile.action";
 import { ProfileImageUploadForm } from "@/entities/user/ui/profile-image-upload-form";
 import { useCurrentUser } from "@/entities/user/model/useCurrentUser";
 import { brandedToast } from "@/components/ui/toast";
+import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
 
 export function EditProfileForm() {
   const t = useI18n();

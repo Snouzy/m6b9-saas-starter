@@ -1,5 +1,4 @@
 import PlausibleProvider from "next-plausible";
-import localFont from "next/font/local";
 import { Inter, Permanent_Marker } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
@@ -36,21 +35,6 @@ const permanentMarker = Permanent_Marker({
   display: "swap",
 });
 
-const hkgrotesk = localFont({
-  src: [
-    {
-      path: "../../public/fonts/HKGrotesk-Medium.woff2",
-      weight: "500",
-    },
-    {
-      path: "../../public/fonts/HKGrotesk-ExtraBold.woff2",
-      weight: "800",
-    },
-  ],
-  variable: "--font-hkgrotesk",
-  display: "swap",
-});
-
 export const preferredRegion = ["fra1", "sfo1", "iad1"];
 
 interface RootLayoutProps {
@@ -74,7 +58,6 @@ export default async function RootLayout({ params, children }: RootLayoutProps) 
             GeistSans.variable,
             inter.variable,
             permanentMarker.variable,
-            hkgrotesk.variable,
           )}
           suppressHydrationWarning
         >

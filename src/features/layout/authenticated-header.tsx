@@ -35,9 +35,6 @@ import ProfilePicture from "@public/images/profile.png";
 import { cn } from "@/shared/lib/utils";
 import { toR2PublicUrl } from "@/shared/lib/storage/to-R2-public-url";
 import { paths } from "@/shared/constants/paths";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/fitlinks/components/ui/hover-card";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/fitlinks/components/ui/dropdown-menu";
-import { Button } from "@/fitlinks/components/ui/button";
 import { useSidebarToggle } from "@/features/layout/useSidebarToggle";
 import NavLink from "@/features/layout/nav-link";
 import { ContactFeedbackPopover } from "@/features/contact-feedback/ui/contact-feedback-popover";
@@ -47,6 +44,9 @@ import { useCurrentUser } from "@/entities/user/model/useCurrentUser";
 import { displayFirstNameAndFirstLetterLastName } from "@/entities/user/lib/display-name";
 import { brandedToast } from "@/components/ui/toast";
 import { Skeleton } from "@/components/ui/skeleton";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 import { LogoSvg } from "@/components/svg/LogoSvg";
 
 interface UploadProfileImageParams {
@@ -69,7 +69,6 @@ export function useProfileImageUpload() {
         method: "POST",
         body: formData,
       });
-      console.log("res:", res);
 
       if (!res.ok) {
         const data = await res.json();
@@ -111,10 +110,6 @@ export function ProfileImageUploadForm({ isDisabled }: { isDisabled: boolean }) 
     setMounted(true);
   }, []);
 
-  console.log("[ProfileImageUploadForm] mounted:", mounted);
-  console.log("[ProfileImageUploadForm] user:", user);
-  console.log("[ProfileImageUploadForm] preview:", preview);
-
   const handleUpload = (file: File) => {
     if (isDisabled) return;
     setIsUploading(true);
@@ -144,20 +139,11 @@ export function ProfileImageUploadForm({ isDisabled }: { isDisabled: boolean }) 
           )}
         >
           {!mounted ? (
-            <>
-              {console.log("[ProfileImageUploadForm] Affichage skeleton (not mounted)")}
-              <Skeleton height={40} rounded="rounded-full" width={40} />
-            </>
+            <Skeleton height={40} rounded="rounded-full" width={40} />
           ) : preview ? (
-            <>
-              {console.log("[ProfileImageUploadForm] Affichage image")}
-              <Image alt="Preview" className="h-full w-full object-cover" height={72} src={preview} width={72} />
-            </>
+            <Image alt="Preview" className="h-full w-full object-cover" height={72} src={preview} width={72} />
           ) : (
-            <>
-              {console.log("[ProfileImageUploadForm] Affichage skeleton (pas de preview)")}
-              <Skeleton height={40} rounded="rounded-full" width={40} />
-            </>
+            <Skeleton height={40} rounded="rounded-full" width={40} />
           )}
           <label
             className={cn(

@@ -2,8 +2,6 @@ import { createSafeActionClient } from "next-safe-action";
 
 import { serverAuth } from "@/entities/user/model/get-server-session-user";
 
-import type { User } from "@prisma/client";
-
 export class ActionError extends Error {
   constructor(message: string) {
     super(message);
@@ -35,7 +33,7 @@ const getUser = async () => {
     throw new ActionError("Session is not valid!");
   }
 
-  return user as User;
+  return user;
 };
 
 export const authenticatedActionClient = createSafeActionClient({

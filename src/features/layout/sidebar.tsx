@@ -9,12 +9,12 @@ import { useI18n } from "locales/client";
 import RectangleGrid from "@public/images/rectangle-gird.png";
 import { cn } from "@/shared/lib/utils";
 import { paths } from "@/shared/constants/paths";
-import { useMediaQuery } from "@/fitlinks/hooks/use-media-query";
-import NavLink from "@/fitlinks/features/layout/nav-link";
-import { Card } from "@/fitlinks/components/ui/card";
-import { Button } from "@/fitlinks/components/ui/button";
-import { Accordion } from "@/fitlinks/components/ui/accordion";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import NavLink from "@/features/layout/nav-link";
 import { ContactSupportDialog } from "@/features/contact/support/ContactSupportDialog";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Accordion } from "@/components/ui/accordion";
 import { LogoSvg } from "@/components/svg/LogoSvg";
 
 const normalizePath = (urlOrPath: string) => {
